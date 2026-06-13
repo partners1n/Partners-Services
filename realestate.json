@@ -1,0 +1,30 @@
+{
+  "land_saraphi": {
+    "title": "ที่ดินทำเลทอง สารภี เชียงใหม่",
+    "images": [
+      "https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=200&auto=format&fit=crop"
+    ],
+    "feedback_text": "ข้อมูลอสังหาฯ นี้ตรงกับความต้องการหรือไม่?",
+    "feedback_options": ["ใช่", "ไม่"],
+    "sources": [
+      { "icon": "fa-solid fa-map-location-dot", "title": "ทำเลที่ตั้ง", "subtitle": "อ.สารภี จ.เชียงใหม่", "is_pro": false }
+    ],
+    "more_sources_text": "ดูรูปภาพโครงการเพิ่มเติม",
+    "answer_text": "ขายที่ดินเปล่าทำเลดี อำเภอสารภี เชียงใหม่ เหมาะสำหรับการสร้างบ้านพักอาศัย โฮมออฟฟิศ หรือพัฒนาต่อยอดเป็นโครงการ PWA ที่อยู่อาศัย เดินทางสะดวก ใกล้แหล่งชุมชน",
+    "related_questions": ["ราคาตารางวาละเท่าไหร่?", "มีโฉนดพร้อมโอนหรือไม่?"]
+  },
+  "house_chiangmai": {
+    "title": "บ้านเดี่ยว 2 ชั้น เชียงใหม่-ลำพูน",
+    "images": [
+      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=200&auto=format&fit=crop"
+    ],
+    "feedback_text": "ข้อมูลอสังหาฯ นี้ตรงกับความต้องการหรือไม่?",
+    "feedback_options": ["ใช่", "ไม่"],
+    "sources": [
+      { "icon": "fa-solid fa-house", "title": "บ้านเดี่ยว", "subtitle": "พร้อมเข้าอยู่", "is_pro": true }
+    ],
+    "more_sources_text": "นัดหมายเข้าดูบ้าน",
+    "answer_text": "บ้านพักตากอากาศดีไซน์ทันสมัย พร้อมพื้นที่สวนกว้างขวาง บรรยากาศเงียบสงบในโซนเชียงใหม่ เหมาะสำหรับการพักผ่อนของครอบครัว",
+    "related_questions": ["จัดไฟแนนซ์ได้ไหม?", "ค่าโอนใครเป็นคนจ่าย?"]
+  }
+}

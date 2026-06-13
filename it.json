@@ -1,0 +1,61 @@
+{
+  "python_course": {
+    "title": "Python Programming สำหรับผู้เริ่มต้น",
+    "images": [
+      "https://images.unsplash.com/photo-1526379095098-d400fd0bfce8?q=80&w=200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=200&auto=format&fit=crop"
+    ],
+    "feedback_text": "ข้อมูลการเขียนโปรแกรมนี้ตรงกับที่คุณหาอยู่หรือไม่?",
+    "feedback_options": ["ใช่", "ไม่"],
+    "sources": [
+      { "icon": "fa-brands fa-python", "title": "Official", "subtitle": "Python.org", "is_pro": false },
+      { "icon": "fa-solid fa-chalkboard-user", "title": "คอร์สเรียน", "subtitle": "Python 101", "is_pro": true }
+    ],
+    "more_sources_text": "ดูคอร์สเรียนเพิ่มเติม +5 แห่ง",
+    "answer_text": "Python เป็นภาษาโปรแกรมระดับสูงที่อ่านง่ายและได้รับความนิยมอย่างมาก เหมาะสำหรับผู้เริ่มต้นไปจนถึงนักพัฒนาระดับโปร สามารถนำไปใช้งานได้หลากหลาย ทั้งการทำเว็บไซต์ (Django, Flask), วิเคราะห์ข้อมูล (Data Science) และการพัฒนาปัญญาประดิษฐ์ (AI/Machine Learning)",
+    "related_questions": [
+      "ใช้โปรแกรมอะไรเขียน Python ได้บ้าง?",
+      "Python ทำงานต่างจาก Java อย่างไร?",
+      "อยากเริ่มเขียน AI ต้องใช้ไลบรารีอะไร?"
+    ]
+  },
+  "web_dev": {
+    "title": "Full-Stack Web Development",
+    "images": [
+      "https://images.unsplash.com/photo-1627398240411-8bbeb449711c?q=80&w=200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1547658719-da2b51169166?q=80&w=200&auto=format&fit=crop"
+    ],
+    "feedback_text": "คุณสนใจด้านการพัฒนาเว็บไซต์ใช่หรือไม่?",
+    "feedback_options": ["ใช่เลย", "แค่ดูเฉยๆ"],
+    "sources": [
+      { "icon": "fa-brands fa-html5", "title": "Frontend", "subtitle": "HTML/CSS/JS", "is_pro": false },
+      { "icon": "fa-brands fa-react", "title": "Framework", "subtitle": "React.js Mastery", "is_pro": true }
+    ],
+    "more_sources_text": "ดูเนื้อหาเชิงลึกระดับ Pro",
+    "answer_text": "การพัฒนาเว็บไซต์แบบ Full-Stack ครอบคลุมทั้งส่วนหน้าบ้าน (Frontend) ที่เน้น UI/UX ด้วย HTML, CSS, JavaScript (หรือ React, Vue) และส่วนหลังบ้าน (Backend) ที่จัดการฐานข้อมูลและเซิร์ฟเวอร์ด้วยเทคโนโลยีอย่าง Node.js, Python หรือ PHP",
+    "related_questions": [
+      "Frontend กับ Backend ต่างกันอย่างไร?",
+      "เรียน Web Dev พื้นฐานใช้เวลาเท่าไหร่?",
+      "ฐานข้อมูล SQL กับ NoSQL เลือกใช้อะไรดี?"
+    ]
+  },
+  "git_github": {
+    "title": "คู่มือการใช้งาน Git & GitHub",
+    "images": [
+      "https://images.unsplash.com/photo-1618401471353-b98afee0b2eb?q=80&w=200&auto=format&fit=crop"
+    ],
+    "feedback_text": "บทความนี้ช่วยแก้ปัญหาโค้ดของคุณได้ไหม?",
+    "feedback_options": ["ช่วยได้มาก", "ยังงงอยู่"],
+    "sources": [
+      { "icon": "fa-brands fa-github", "title": "GitHub", "subtitle": "Official Docs", "is_pro": false },
+      { "icon": "fa-solid fa-code-branch", "title": "Git", "subtitle": "Version Control", "is_pro": false }
+    ],
+    "more_sources_text": "ดูคำสั่ง Git ฉบับเต็ม",
+    "answer_text": "Git คือระบบควบคุมเวอร์ชัน (Version Control System) ที่ช่วยให้นักพัฒนาสามารถติดตามการเปลี่ยนแปลงของซอร์สโค้ด และทำงานร่วมกันเป็นทีมได้อย่างมีประสิทธิภาพ ส่วน GitHub คือแพลตฟอร์มบนคลาวด์ที่ใช้สำหรับฝากและจัดการ Repository ของ Git",
+    "related_questions": [
+      "คำสั่ง git commit กับ git push ต่างกันยังไง?",
+      "วิธีแก้ไขเมื่อเกิด Merge Conflict?",
+      "Fork กับ Clone บน GitHub แตกต่างกันอย่างไร?"
+    ]
+  }
+}

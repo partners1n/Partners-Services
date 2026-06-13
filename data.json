@@ -1,0 +1,131 @@
+{
+  "coinRegistry": {
+    "BTC":    { "label": "Bitcoin" },
+    "ETH":    { "label": "Ethereum" },
+    "BNB":    { "label": "BNB" },
+    "SOL":    { "label": "Solana" },
+    "XRP":    { "label": "XRP" },
+    "ADA":    { "label": "Cardano" },
+    "DOGE":   { "label": "Dogecoin" },
+    "AVAX":   { "label": "Avalanche" },
+    "DOT":    { "label": "Polkadot" },
+    "MATIC":  { "label": "Polygon" },
+    "LTC":    { "label": "Litecoin" },
+    "LINK":   { "label": "Chainlink" },
+    "UNI":    { "label": "Uniswap" },
+    "ATOM":   { "label": "Cosmos" },
+    "TON":    { "label": "TON" },
+    "SUI":    { "label": "Sui" },
+    "APT":    { "label": "Aptos" },
+    "xauusd": { "label": "ทอง" },
+    "HBAR":   { "label": "Hbar" },
+    "OP":     { "label": "Optimism" },
+    "NEAR":   { "label": "NEAR" }
+  },
+
+  "mainCategories": [
+    {
+      "label": "แนวโน้ม {COIN} วันนี้",
+      "mainQuery": "แนวโน้ม {COIN} วันนี้ วิเคราะห์ทางเทคนิค",
+      "subQueries": [
+        { "label": "ระยะสั้น 4H",         "query": "แนวโน้ม {COIN} ระยะสั้น กราฟ 4 ชั่วโมง" },
+        { "label": "แนวโน้มรายวัน",       "query": "แนวโน้ม {COIN} รายวัน แนวโน้มหลัก" },
+        { "label": "แนวโน้มรายสัปดาห์",   "query": "แนวโน้ม {COIN} รายสัปดาห์ ภาพรวม" },
+        { "label": "ปัจจัยเศรษฐกิจมหภาค", "query": "ปัจจัยเศรษฐกิจที่ส่งผลต่อ {COIN} ล่าสุด" }
+      ]
+    },
+    {
+      "label": "แนวรับ-แนวต้าน {COIN}",
+      "mainQuery": "{COIN} แนวรับแนวต้าน ระดับราคาสำคัญ",
+      "subQueries": [
+        { "label": "แนวรับสำคัญ",   "query": "{COIN} แนวรับสำคัญ ราคา" },
+        { "label": "แนวต้านสำคัญ",  "query": "{COIN} แนวต้านสำคัญ ราคา" },
+        { "label": "Fibonacci โซน", "query": "Fibonacci retracement {COIN} แนวรับแนวต้าน" },
+        { "label": "Order Block",   "query": "{COIN} order block แนวรับแนวต้าน" }
+      ]
+    },
+    {
+      "label": "สัญญาณ RSI / MACD",
+      "mainQuery": "สัญญาณ RSI {COIN} และ MACD ล่าสุด",
+      "subQueries": [
+        { "label": "RSI สภาวะซื้อมากเกิน", "query": "{COIN} RSI overbought oversold สัญญาณ" },
+        { "label": "MACD สัญญาณครอส",      "query": "{COIN} MACD cross signal" },
+        { "label": "Divergence",            "query": "{COIN} RSI divergence MACD divergence" },
+        { "label": "ตัวชี้วัดเสริม",        "query": "{COIN} Stochastic RSI OBV ปริมาณ" }
+      ]
+    },
+    {
+      "label": "ข่าว {COIN} ล่าสุด",
+      "mainQuery": "ข่าว {COIN} วันนี้ ที่ส่งผลต่อราคา",
+      "subQueries": [
+        { "label": "ข่าวด้านกฎหมาย",    "query": "{COIN} ข่าวกฎหมาย regulation ล่าสุด" },
+        { "label": "ข่าวสถาบันการเงิน",  "query": "สถาบันการเงินลงทุน {COIN} ข่าว" },
+        { "label": "ข่าวเทคโนโลยี",      "query": "{COIN} เทคโนโลยีอัปเกรด ข่าว" },
+        { "label": "ข่าวเศรษฐกิจสหรัฐ", "query": "{COIN} ผลกระทบจากเศรษฐกิจสหรัฐ" }
+      ]
+    },
+    {
+      "label": "วิเคราะห์กราฟ & เป้าหมาย",
+      "mainQuery": "วิเคราะห์กราฟ {COIN} ทิศทางและเป้าหมายราคา",
+      "subQueries": [
+        { "label": "Elliott Wave",    "query": "{COIN} Elliott Wave analysis" },
+        { "label": "รูปแบบแท่งเทียน", "query": "{COIN} รูปแบบแท่งเทียน reversal pattern" },
+        { "label": "เป้าหมายราคา",    "query": "{COIN} เป้าหมายราคา short term long term" },
+        { "label": "รูปแบบกราฟ",      "query": "{COIN} รูปแบบกราฟ bullish bearish pattern" }
+      ]
+    }
+  ],
+
+  "newsCategories": [
+    {
+      "label": "ข่าววันนี้",
+      "mainQuery": null,
+      "subQueries": [
+        { "label": "ข่าวด่วน",      "query": "ข่าวด่วนวันนี้ล่าสุด" },
+        { "label": "ข่าวการเมือง",  "query": "ข่าวการเมืองวันนี้" },
+        { "label": "ข่าวเศรษฐกิจ",  "query": "ข่าวเศรษฐกิจโลกวันนี้" },
+        { "label": "ข่าวเทคโนโลยี", "query": "ข่าวเทคโนโลยีล่าสุด" }
+      ]
+    },
+    {
+      "label": "คริปโตวันนี้",
+      "mainQuery": "ข่าวคริปโตวันนี้ ราคาและแนวโน้ม",
+      "subQueries": [
+        { "label": "ราคาตลาด",       "query": "ราคาตลาดคริปโตวันนี้" },
+        { "label": "Bitcoin ล่าสุด",  "query": "ข่าว Bitcoin ล่าสุดวันนี้" },
+        { "label": "Altcoin ล่าสุด",  "query": "ข่าว Altcoin ล่าสุดวันนี้" },
+        { "label": "Regulation",      "query": "ข่าวกฎหมายคริปโตล่าสุด" }
+      ]
+    },
+    {
+      "label": "ตลาดหุ้น",
+      "mainQuery": "ตลาดหุ้นวันนี้ ดัชนีสำคัญ",
+      "subQueries": [
+        { "label": "SET วันนี้", "query": "ดัชนีหุ้นไทย SET วันนี้" },
+        { "label": "Dow Jones",  "query": "Dow Jones วันนี้" },
+        { "label": "S&P 500",    "query": "S&P 500 วันนี้" },
+        { "label": "Nasdaq",     "query": "Nasdaq วันนี้" }
+      ]
+    },
+    {
+      "label": "สินค้าโภคภัณฑ์",
+      "mainQuery": "ราคาสินค้าโภคภัณฑ์วันนี้ ทอง น้ำมัน",
+      "subQueries": [
+        { "label": "ทองคำ",       "query": "ราคาทองคำวันนี้ล่าสุด" },
+        { "label": "น้ำมัน",       "query": "ราคาน้ำมันโลกวันนี้" },
+        { "label": "เงิน Silver",  "query": "ราคาเงิน Silver วันนี้" },
+        { "label": "Forex",        "query": "อัตราแลกเปลี่ยนวันนี้ USD THB" }
+      ]
+    },
+    {
+      "label": "เทคโนโลยี & AI",
+      "mainQuery": "ข่าวเทคโนโลยีและ AI ล่าสุดวันนี้",
+      "subQueries": [
+        { "label": "AI ล่าสุด",    "query": "ข่าว AI ล่าสุดวันนี้" },
+        { "label": "สตาร์ทอัพ",    "query": "ข่าวสตาร์ทอัพเทคโนโลยีล่าสุด" },
+        { "label": "Blockchain",   "query": "ข่าว Blockchain ล่าสุด" },
+        { "label": "อุปกรณ์ใหม่",  "query": "ข่าวอุปกรณ์เทคโนโลยีใหม่ล่าสุด" }
+      ]
+    }
+  ]
+}

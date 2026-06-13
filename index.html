@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deepsearch - App</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="app-container">
+
+    <div id="view-home" class="page-view active">
+        <div class="top-bar">
+            <div class="user-greeting">สวัสดีตอนเช้า ☀️</div>
+            <div class="profile-pic"><i class="fa-regular fa-user"></i></div>
+        </div>
+
+        <div class="hero-section">
+            <h1 class="hero-title">xPARTNERS.</h1>
+            <p class="hero-subtitle">เลขาผู้ช่วยส่วนตัวสำหรับคุณ สนับสนุนเสมอ</p>
+            
+            <div class="main-search-bar" onclick="focusSearch()">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="searchInput" placeholder="พิมพ์ btc, eth, sol หรือ hbar..." onkeypress="handleEnter(event)">
+                <i class="fa-solid fa-microphone" style="cursor:pointer;"></i>
+            </div>
+        </div>
+
+        <div class="section-title">ค้นหาล่าสุด</div>
+        <div class="recent-list">
+            <div class="recent-item">
+                <i class="fa-solid fa-clock-rotate-left recent-icon"></i>
+                <span class="recent-text">เช็คราคาบิทคอยน์</span>
+                <button class="recent-remove"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="recent-item">
+                <i class="fa-solid fa-clock-rotate-left recent-icon"></i>
+                <span class="recent-text">ราคาทองคำวันนี้</span>
+                <button class="recent-remove"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="recent-item">
+                <i class="fa-solid fa-clock-rotate-left recent-icon"></i>
+                <span class="recent-text">คำนวนราคาก่อสร้าง</span>
+                <button class="recent-remove"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="recent-item">
+                <i class="fa-solid fa-clock-rotate-left recent-icon"></i>
+                <span class="recent-text">ประเมินราคาซ่อม</span>
+                <button class="recent-remove"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+        </div>
+
+        <div class="section-title">หมวดหมู่</div>
+        <div class="categories-grid">
+            <div class="category-item" onclick="navigateTo('view-category', {cat: 'crypto'})">
+                <div class="category-icon"><i class="fa-brands fa-bitcoin"></i></div>
+                <div class="category-name">คริปโต</div>
+            </div>
+            <div class="category-item" onclick="navigateTo('view-category', {cat: 'it'})">
+                <div class="category-icon"><i class="fa-solid fa-laptop-code"></i></div>
+                <div class="category-name">ไอที/โค้ด</div>
+            </div>
+            <div class="category-item" onclick="navigateTo('view-category', {cat: 'realestate'})">
+                <div class="category-icon"><i class="fa-solid fa-building"></i></div>
+                <div class="category-name">อสังหาฯ</div>
+            </div>
+            <div class="category-item" onclick="navigateTo('view-category', {cat: 'repair'})">
+                <div class="category-icon"><i class="fa-solid fa-mobile-screen"></i></div>
+                <div class="category-name">ซ่อมมือถือ</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="view-category" class="page-view">
+        <div class="top-bar sticky-top">
+            <button class="icon-btn" onclick="goBack()"><i class="fa-solid fa-arrow-left"></i></button>
+            <div class="page-title" id="catTitle">กำลังโหลด...</div>
+        </div>
+        <div class="list-container" id="itemList">
+            </div>
+    </div>
+
+    <div id="view-search" class="page-view">
+        <div class="top-bar">
+            <button class="icon-btn" onclick="goBack()"><i class="fa-solid fa-arrow-left"></i></button>
+            <div class="top-bar-right">
+                <button class="icon-btn"><i class="fa-solid fa-arrow-up-from-bracket"></i></button>
+                <button class="icon-btn"><i class="fa-solid fa-ellipsis"></i></button>
+            </div>
+        </div>
+        
+        <div id="app-content">
+            </div>
+
+        <div class="bottom-bar">
+            <div class="search-input">
+                <i class="fa-solid fa-link"></i>
+                <input type="text" placeholder="สอบถามเพิ่มเติม">
+            </div>
+            <button class="send-btn"><i class="fa-regular fa-comment-dots"></i></button>
+        </div>
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
