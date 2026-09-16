@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<title>PARTNERS — รายการที่บันทึก</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+*{ box-sizing:border-box; }
+body{
+  margin:0; background:#e7e7e7; color:#111;
+  font-family:Arial,"Noto Sans Thai",sans-serif;
+}
+.app{ max-width:880px; margin:auto; padding:18px; }
+h1{ margin:0; font-size:24px; font-weight:900; letter-spacing:.5px; }
+.sub{ color:#777; margin:4px 0 14px; font-size:13px; }
+
+.topnav{
+  display:flex; gap:8px; flex-wrap:wrap;
+  margin-bottom:14px; background:#fff; padding:8px; border-radius:12px;
+  box-shadow:0 2px 8px #0001;
+}
+.topnav a{
+  flex:1; min-width:120px; text-align:center; text-decoration:none;
+  padding:10px 12px; border-radius:8px;
+  font-size:13px; font-weight:700;
+  color:#111; background:#f2f2f2; transition:all .15s;
+}
+.topnav a:hover{ background:#e8e8e8; }
+.topnav a.active{ background:#111; color:#fff; }
+
+.card{
+  background:#fff; border-radius:12px; padding:18px;
+  margin-bottom:18px; box-shadow:0 2px 10px #0001;
+}
+.section-title{
+  font-size:16px; font-weight:900; margin:0;
+  display:flex; justify-content:space-between; align-items:center;
+  gap:10px; flex-wrap:wrap;
+}
+.section-title small{ color:#888; font-weight:400; font-size:11px; }
+
+input{ width:100%; padding:10px; border:1px solid #ccc; border-radius:7px;
+  font-size:14px; background:#fff; font-family:inherit; color:#111; }
+input:focus{ outline:none; border-color:#111; box-shadow:0 0 0 2px #1111; }
+
+button{
+  border:0; border-radius:8px; padding:10px 14px;
+  font-weight:700; font-size:12px; cursor:pointer;
+  font-family:inherit; transition:filter .15s;
+}
+button:hover{ filter:brightness(.95); }
+.btn-dark{ background:#111; color:#fff; }
+.btn-light{ background:#eee; color:#111; }
+.btn-danger{ background:#fff0f2; color:#b00020; }
+
+.search-bar{ display:flex; gap:8px; margin-top:14px; }
+.search-bar input{ flex:1; }
+
+.counter{
+  font-size:12px; color:#666; font-weight:700;
+  background:#f2f2f2; border-radius:999px; padding:4px 12px;
+}
+
+/* ---------- RECORDS SLIDER ---------- */
+.records-slider{
+  display:flex; gap:14px;
+  overflow-x:auto;
+  scroll-snap-type:x mandatory;
+  scroll-behavior:smooth;
+  padding:12px 2px 14px;
+  scrollbar-width:none;
+  align-items:flex-start;
+}
+.records-slider::-webkit-scrollbar{ display:none; }
+
+.record-card{
+  flex:0 0 100%; scroll-snap-align:start;
+  min-width:0;
+  border:1px solid #ddd; border-radius:12px;
+  padding:14px; background:#fafafa;
+  transition:border-color .15s;
+}
+.record-card.active{ border-color:#111; box-shadow:0 0 0 2px #1111; }
+.record-head{
+  display:flex; justify-content:space-between; align-items:flex-start; gap:10px;
+}
+.record-name{ font-weight:900; font-size:14px; }
+.record-store{ color:#777; font-size:11px; margin-top:3px; }
+.record-sn{
+  background:#111; color:#fff; padding:5px 8px;
+  border-radius:5px; font-size:10px; font-weight:700;
+  word-break:break-all; max-width:130px;
+}
+.record-grid{
+  display:grid; grid-template-columns:1fr 1fr;
+  gap:7px; margin-top:10px;
+}
+.info-box{
+  background:#fff; border:1px solid #e5e5e5;
+  border-radius:6px; padding:8px; min-width:0;
+}
+.info-box span{ display:block; color:#888; font-size:9px; margin-bottom:3px; }
+.info-box b{ font-size:11px; word-break:break-word; }
+
+.record-buttons{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:6px; margin-top:12px;
+}
+.record-buttons button{ padding:10px; font-size:12px; }
+
+.records-nav{
+  display:flex; justify-content:space-between; align-items:center;
+  gap:10px; margin-top:6px;
+}
+.records-nav button{
+  background:#eee; padding:8px 16px; font-size:14px; flex:0 0 auto;
+}
+.records-nav button:disabled{ opacity:.4; cursor:not-allowed; }
+.records-dots{
+  display:flex; justify-content:center; gap:6px; flex:1;
+  overflow:hidden; flex-wrap:wrap;
+}
+.records-dots .dot{
+  width:6px; height:6px; border-radius:50%;
+  background:#ccc; transition:all .2s; cursor:pointer;
+}
+.records-dots .dot.active{ background:#111; transform:scale(1.4); }
+
+.empty{
+  padding:44px 20px; text-align:center; color:#888; font-size:13px;
+}
+.empty .big{
+  font-size:38px; margin-bottom:10px; line-height:1;
+}
+.empty a{
+  display:inline-block; margin-top:14px;
+  background:#111; color:#fff; padding:10px 20px;
+  border-radius:8px; text-decoration:none;
+  font-weight:700; font-size:13px;
+}
+
+#toast{
+  position:fixed; left:50%; bottom:30px;
+  transform:translateX(-50%) translateY(80px);
+  background:#111; color:#fff; padding:12px 20px; border-radius:10px;
+  font-size:13px; font-weight:700; opacity:0; pointer-events:none;
+  transition:all .3s; z-index:9999;
+  box-shadow:0 4px 20px #0003; max-width:90vw; text-align:center;
+}
+#toast.show{ opacity:1; transform:translateX(-50%) translateY(0); }
+
+@media (max-width:700px){
+  .record-grid{ grid-template-columns:1fr; }
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <h1>PARTNERS</h1>
+  <div class="sub">รายการที่บันทึกไว้</div>
+
+  <nav class="topnav">
+    <a href="foum.html">➕ กรอกข้อมูล</a>
+    <a href="data.html" class="active">📋 รายการที่บันทึก</a>
+    <a href="preview.html">📄 ตัวอย่างเอกสาร</a>
+  </nav>
+
+  <div class="card">
+    <div class="section-title">
+      <span>รายการทั้งหมด <small id="recordCount">0 รายการ</small></span>
+      <span class="counter" id="recordsCounter">—</span>
+    </div>
+
+    <div class="search-bar">
+      <input id="searchInput" placeholder="ค้นหา บริษัท / Order / SN / IMEI / รุ่น / ลูกค้า">
+      <button type="button" class="btn-light" onclick="clearSearch()">ล้าง</button>
+    </div>
+
+    <div class="records-slider" id="recordsSlider"></div>
+
+    <div class="records-nav" id="recordsNav" style="display:none">
+      <button type="button" id="recPrev" onclick="goToRecord(currentIdx - 1)">⬅</button>
+      <div class="records-dots" id="recordsDots"></div>
+      <button type="button" id="recNext" onclick="goToRecord(currentIdx + 1)">➡</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<script>
+/* =========================================================
+   CONSTANTS & STATE
+   ========================================================= */
+const APPLE_STORAGE_KEY = "partners_apple_purchase_records";
+
+let appleRecords = [];
+let filteredRecords = [];
+let currentIdx = 0;
+
+/* =========================================================
+   INIT
+   ========================================================= */
+document.addEventListener("DOMContentLoaded", init);
+
+function init(){
+  loadAppleRecords();
+  renderRecords();
+
+  document.getElementById("searchInput").addEventListener("input", () => {
+    currentIdx = 0;
+    renderRecords();
+  });
+
+  const rs = document.getElementById("recordsSlider");
+  rs.addEventListener("scroll", () => {
+    const idx = Math.round(rs.scrollLeft / rs.clientWidth);
+    if(idx !== currentIdx) updateNav(idx);
+  }, { passive:true });
+
+  window.addEventListener("resize", () => {
+    // Reposition on resize
+    const rs2 = document.getElementById("recordsSlider");
+    rs2.scrollLeft = currentIdx * rs2.clientWidth;
+  });
+}
+
+/* =========================================================
+   STORAGE
+   ========================================================= */
+function loadAppleRecords(){
+  try{
+    const raw = localStorage.getItem(APPLE_STORAGE_KEY);
+    if(!raw){ appleRecords = []; return; }
+    const data = JSON.parse(raw);
+    appleRecords = Array.isArray(data) ? data : [];
+  }catch(e){
+    console.error("Load error:", e);
+    appleRecords = [];
+  }
+}
+
+function saveAppleRecords(){
+  try{
+    localStorage.setItem(APPLE_STORAGE_KEY, JSON.stringify(appleRecords));
+    return true;
+  }catch(e){
+    console.error(e);
+    showToast("บันทึกไม่สำเร็จ");
+    return false;
+  }
+}
+
+/* =========================================================
+   FORMATTERS
+   ========================================================= */
+function escapeHtml(text){
+  return String(text ?? "")
+    .replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;").replace(/'/g,"&#039;");
+}
+
+function money(n){
+  const v = Number(n);
+  if(!isFinite(v)) return "0.00";
+  return v.toLocaleString("th-TH", { minimumFractionDigits:2, maximumFractionDigits:2 });
+}
+
+function appleMoney(value){
+  if(value === "" || value === null || value === undefined) return "-";
+  const n = Number(value);
+  if(!isFinite(n)) return "-";
+  return n.toLocaleString("th-TH", { minimumFractionDigits:2, maximumFractionDigits:2 }) + " บาท";
+}
+
+function appleDate(value){
+  if(!value) return "-";
+  const d = new Date(value + "T00:00:00");
+  if(isNaN(d.getTime())) return "-";
+  return d.toLocaleDateString("th-TH", { year:"numeric", month:"2-digit", day:"2-digit" });
+}
+
+/* =========================================================
+   SEARCH
+   ========================================================= */
+function searchRecord(rec){
+  const prod = (rec.products || []).map(p =>
+    [p.modelName, p.capacity, p.color, p.name, p.sn, p.imei, p.imei2, p.itemCode].join(" ")
+  ).join(" ");
+  return [
+    rec.storeName, rec.companyEn, rec.customer, rec.seller,
+    rec.orderNumber, rec.invoiceNo, rec.note, prod
+  ].join(" ").toLowerCase();
+}
+
+/* =========================================================
+   RENDER
+   ========================================================= */
+function renderRecords(){
+  const container = document.getElementById("recordsSlider");
+  const nav = document.getElementById("recordsNav");
+  const query = document.getElementById("searchInput").value.trim().toLowerCase();
+
+  filteredRecords = appleRecords
+    .filter(r => searchRecord(r).includes(query))
+    .sort((a,b) => new Date(b.updatedAt||0) - new Date(a.updatedAt||0));
+
+  document.getElementById("recordCount").textContent = appleRecords.length + " รายการ";
+
+  if(filteredRecords.length === 0){
+    nav.style.display = "none";
+    document.getElementById("recordsCounter").textContent = "—";
+    container.innerHTML = `
+      <div class="empty" style="flex:0 0 100%">
+        <div class="big">📄</div>
+        ${appleRecords.length ? "ไม่พบข้อมูลที่ค้นหา" : "ยังไม่มีข้อมูลที่บันทึกไว้"}
+        ${!appleRecords.length ? `<br><a href="foum.html">➕ เพิ่มรายการใหม่</a>` : ""}
+      </div>
+    `;
+    return;
+  }
+
+  if(currentIdx >= filteredRecords.length) currentIdx = 0;
+
+  container.innerHTML = filteredRecords.map(rec => {
+    const p0 = (rec.products && rec.products[0]) || {};
+    const total = (rec.products||[]).reduce((s,p)=> s + (Number(p.qty)*Number(p.price)), 0);
+    const methodLabel = { installment:"ผ่อนชำระ", cash:"เงินสด", transfer:"โอนเงิน" }[rec.paymentMethod] || "-";
+
+    return `
+    <div class="record-card">
+      <div class="record-head">
+        <div style="min-width:0">
+          <div class="record-name">${escapeHtml(p0.name || p0.modelName || "สินค้า")}</div>
+          <div class="record-store">${escapeHtml(rec.companyEn || rec.storeName || "-")} · ${escapeHtml(rec.customer || "-")}</div>
+        </div>
+        <div class="record-sn">${escapeHtml(p0.sn || "NO SN")}</div>
+      </div>
+
+      <div class="record-grid">
+        <div class="info-box"><span>เลขที่ใบกำกับภาษี</span><b>${escapeHtml(rec.invoiceNo || "-")}</b></div>
+        <div class="info-box"><span>Order Ref</span><b>${escapeHtml(rec.orderNumber || "-")}</b></div>
+        <div class="info-box"><span>IMEI</span><b>${escapeHtml(p0.imei || "-")}</b></div>
+        <div class="info-box"><span>วันที่</span><b>${appleDate(rec.purchaseDate)}</b></div>
+        <div class="info-box"><span>ยอดรวม</span><b>${appleMoney(total)}</b></div>
+        <div class="info-box"><span>วิธีชำระ</span><b>${escapeHtml(methodLabel)}</b></div>
+      </div>
+
+      ${rec.note ? `<div class="info-box" style="margin-top:7px"><span>หมายเหตุ</span><b>${escapeHtml(rec.note)}</b></div>` : ""}
+
+      <div class="record-buttons">
+        <button type="button" class="btn-dark" onclick="goPreview('${rec.id}')">📄 สร้างเอกสาร</button>
+        <button type="button" class="btn-dark" onclick="goEdit('${rec.id}')">✏️ แก้ไข</button>
+        <button type="button" class="btn-light" onclick="copyRecord('${rec.id}')">📋 คัดลอก</button>
+        <button type="button" class="btn-danger" onclick="deleteRecord('${rec.id}')">🗑 ลบ</button>
+      </div>
+    </div>
+    `;
+  }).join("");
+
+  nav.style.display = "flex";
+
+  document.getElementById("recordsCounter").textContent = (currentIdx + 1) + " / " + filteredRecords.length;
+
+  const dotsEl = document.getElementById("recordsDots");
+  dotsEl.innerHTML = filteredRecords.map((_, i) =>
+    `<span class="dot ${i===currentIdx?"active":""}" data-idx="${i}" onclick="goToRecord(${i})"></span>`
+  ).join("");
+
+  document.getElementById("recPrev").disabled = currentIdx <= 0;
+  document.getElementById("recNext").disabled = currentIdx >= filteredRecords.length - 1;
+
+  requestAnimationFrame(() => {
+    const rs = document.getElementById("recordsSlider");
+    rs.scrollLeft = currentIdx * rs.clientWidth;
+  });
+}
+
+function updateNav(idx){
+  currentIdx = idx;
+  document.getElementById("recordsCounter").textContent = (idx + 1) + " / " + filteredRecords.length;
+  document.querySelectorAll("#recordsDots .dot").forEach((d,i) => d.classList.toggle("active", i===idx));
+  document.getElementById("recPrev").disabled = idx <= 0;
+  document.getElementById("recNext").disabled = idx >= filteredRecords.length - 1;
+}
+
+function goToRecord(idx){
+  if(idx < 0 || idx >= filteredRecords.length) return;
+  const rs = document.getElementById("recordsSlider");
+  rs.scrollTo({ left: idx * rs.clientWidth, behavior:"smooth" });
+  updateNav(idx);
+}
+
+function clearSearch(){
+  document.getElementById("searchInput").value = "";
+  currentIdx = 0;
+  renderRecords();
+}
+
+/* =========================================================
+   ACTIONS
+   ========================================================= */
+function goEdit(id){
+  location.href = "foum.html?id=" + encodeURIComponent(id);
+}
+
+function goPreview(id){
+  location.href = "preview.html?id=" + encodeURIComponent(id);
+}
+
+async function copyRecord(id){
+  const rec = appleRecords.find(r => r.id === id);
+  if(!rec) return;
+  const p0 = (rec.products && rec.products[0]) || {};
+  const text =
+`ข้อมูลหลักฐาน / ใบกำกับภาษี
+เลขที่เอกสาร: ${rec.invoiceNo || "-"}
+บริษัท: ${rec.companyEn || rec.storeName || "-"}
+Order Ref: ${rec.orderNumber || "-"}
+รุ่น: ${p0.name || "-"}
+Item Code: ${p0.itemCode || "-"}
+SN: ${p0.sn || "-"}
+IMEI: ${p0.imei || "-"}
+ราคา: ${appleMoney(p0.price)}
+วันที่: ${appleDate(rec.purchaseDate)}
+ลูกค้า: ${rec.customer || "-"}
+ผู้ขาย: ${rec.seller || "-"}
+หมายเหตุ: ${rec.note || "-"}`;
+
+  try{
+    await navigator.clipboard.writeText(text);
+    showToast("คัดลอกข้อมูลแล้ว");
+  }catch(e){
+    prompt("คัดลอกข้อความด้านล่าง:", text);
+  }
+}
+
+function deleteRecord(id){
+  const rec = appleRecords.find(r => r.id === id);
+  if(!rec) return;
+  const ok = confirm("ต้องการลบข้อมูลนี้หรือไม่?\n\n" + (rec.products?.[0]?.sn || rec.invoiceNo || "-"));
+  if(!ok) return;
+
+  appleRecords = appleRecords.filter(r => r.id !== id);
+  saveAppleRecords();
+  currentIdx = 0;
+  renderRecords();
+  showToast("ลบข้อมูลเรียบร้อย");
+}
+
+/* =========================================================
+   TOAST
+   ========================================================= */
+let toastTimer = null;
+function showToast(msg){
+  const el = document.getElementById("toast");
+  el.textContent = msg;
+  el.classList.add("show");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=> el.classList.remove("show"), 2400);
+}
+</script>
+</body>
+</html>

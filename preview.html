@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<title>PARTNERS — ตัวอย่างเอกสาร</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;700;900&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+<style>
+*{ box-sizing:border-box; }
+body{
+  margin:0; background:#e7e7e7; color:#111;
+  font-family:Arial,"Noto Sans Thai",sans-serif;
+}
+.app{ max-width:1000px; margin:auto; padding:18px; }
+h1{ margin:0; font-size:24px; font-weight:900; letter-spacing:.5px; }
+.sub{ color:#777; margin:4px 0 14px; font-size:13px; }
+
+.topnav{
+  display:flex; gap:8px; flex-wrap:wrap;
+  margin-bottom:14px; background:#fff; padding:8px; border-radius:12px;
+  box-shadow:0 2px 8px #0001;
+}
+.topnav a{
+  flex:1; min-width:120px; text-align:center; text-decoration:none;
+  padding:10px 12px; border-radius:8px;
+  font-size:13px; font-weight:700;
+  color:#111; background:#f2f2f2; transition:all .15s;
+}
+.topnav a:hover{ background:#e8e8e8; }
+.topnav a.active{ background:#111; color:#fff; }
+
+.card{
+  background:#fff; border-radius:12px; padding:18px;
+  margin-bottom:18px; box-shadow:0 2px 10px #0001;
+}
+
+button{
+  border:0; border-radius:8px; padding:12px 16px;
+  font-weight:700; font-size:14px; cursor:pointer;
+  font-family:inherit; transition:filter .15s;
+}
+button:hover{ filter:brightness(.95); }
+.btn-dark{ background:#111; color:#fff; }
+.btn-light{ background:#eee; color:#111; }
+
+/* ---------- HEADER INFO ---------- */
+.doc-head{
+  display:flex; justify-content:space-between; align-items:center;
+  gap:12px; flex-wrap:wrap; margin-bottom:12px;
+}
+.doc-title{ font-size:17px; font-weight:900; }
+.doc-badge{
+  background:#111; color:#fff; padding:5px 12px;
+  border-radius:999px; font-size:11px; font-weight:700;
+}
+
+/* ---------- PREVIEW SLIDER ---------- */
+.preview-slider{
+  display:flex; gap:16px;
+  overflow-x:auto;
+  scroll-snap-type:x mandatory;
+  scroll-behavior:smooth;
+  padding:6px 4px 14px;
+  scrollbar-width:thin;
+}
+.preview-slider::-webkit-scrollbar{ height:6px; }
+.preview-slider::-webkit-scrollbar-thumb{ background:#bbb; border-radius:6px; }
+
+.preview-slide{
+  flex:0 0 100%; scroll-snap-align:center;
+  min-width:0; display:flex; flex-direction:column; align-items:center;
+}
+.slide-label{
+  font-size:12px; font-weight:700; color:#555;
+  background:#f2f2f2; border-radius:999px;
+  padding:5px 14px; margin-bottom:12px; white-space:nowrap;
+}
+.slide-body{
+  width:100%; display:flex; justify-content:center; overflow:hidden;
+}
+.slide-dots{
+  display:flex; justify-content:center; gap:8px; margin-top:8px;
+}
+.slide-dots .dot{
+  width:8px; height:8px; border-radius:50%;
+  background:#ccc; transition:all .2s; cursor:pointer;
+}
+.slide-dots .dot.active{ background:#111; width:22px; border-radius:99px; }
+.slide-nav{ display:flex; justify-content:center; gap:10px; margin-top:8px; }
+.slide-nav button{ background:#eee; padding:8px 14px; font-size:13px; }
+
+/* ---------- SAVE AREA ---------- */
+.save-area{ max-width:420px; margin:22px auto 0; }
+.save-btn{ width:100%; background:#111; color:#fff; padding:14px; font-size:14px; }
+
+#qualitySelect{
+  background:#fff;
+  cursor:pointer;
+  transition:border-color .15s;
+}
+#qualitySelect:hover{ border-color:#888; }
+#qualitySelect:focus{
+  outline:none;
+  border-color:#111;
+  box-shadow:0 0 0 2px #1111;
+}
+#saveInfo{
+  transition:opacity .2s;
+  min-height:16px;
+}
+
+/* ---------- A4 ---------- */
+.a4-wrap{ display:block; overflow:hidden; }
+#a4Receipt{
+  width:210mm; min-height:297mm;
+  padding:14mm 15mm; background:#fff; color:#111;
+  box-shadow:0 2px 15px #0002;
+  font-family:Arial,"Noto Sans Thai",sans-serif;
+  font-size:11px; line-height:1.45; flex-shrink:0;
+}
+.ti-page{ text-align:right; font-size:10px; color:#666; margin-bottom:12px; }
+
+.ti-header{
+  display:flex; justify-content:space-between;
+  align-items:flex-start; gap:30px;
+  padding-bottom:14px; border-bottom:1px solid #ddd;
+}
+.ti-company{ flex:1 1 auto; min-width:0; }
+.ti-doc{ flex:0 0 auto; text-align:right; min-width:230px; }
+
+.ti-company-en{ font-size:19px; font-weight:900; letter-spacing:.3px; line-height:1.2; }
+.ti-company-th{ font-size:12.5px; font-weight:900; margin-top:4px; }
+.ti-company-addr{ font-size:10.5px; color:#333; margin-top:8px; line-height:1.6; }
+.ti-company-line{ font-size:10.5px; color:#333; margin-top:3px; }
+.ti-company-line b{ color:#111; }
+
+.ti-doc-en{ font-size:19px; font-weight:900; line-height:1.15; letter-spacing:.5px; text-align:right; }
+.ti-doc-th{ font-size:13px; font-weight:900; margin-top:6px; text-align:right; }
+.ti-doc-copy{ font-size:10.5px; color:#555; margin-top:4px; text-align:right; }
+.ti-doc-meta{ margin-top:20px; display:flex; flex-direction:column; gap:6px; }
+.ti-meta-row{
+  display:grid; grid-template-columns:auto auto;
+  gap:14px; align-items:baseline; font-size:11px;
+}
+.ti-meta-row span{ color:#666; text-align:right; }
+.ti-meta-row b{ font-weight:900; color:#111; text-align:right; min-width:110px; }
+
+.ti-customer{
+  background:#f5f5f5; border-radius:4px;
+  padding:14px 16px; margin-top:16px; font-size:11px;
+}
+.ti-cust-row{
+  display:grid; grid-template-columns:130px 1fr;
+  gap:14px; align-items:baseline; padding:3px 0;
+}
+.ti-cust-bottom{ grid-template-columns:1fr auto; margin-top:2px; }
+.ti-cust-label{ font-weight:900; color:#111; }
+.ti-cust-value{ font-weight:900; color:#111; font-size:11.5px; word-break:break-word; }
+
+.ti-table{ width:100%; border-collapse:collapse; margin-top:18px; font-size:11px; }
+.ti-table thead th{
+  background:#f0f0f0; color:#111; font-weight:900;
+  padding:9px 8px; text-align:left;
+  border-top:1px solid #ddd; border-bottom:1px solid #ddd;
+  font-size:10.5px; letter-spacing:.2px;
+}
+.ti-table .col-qty{ width:44px; text-align:center; }
+.ti-table .col-price{ width:90px; text-align:right; }
+.ti-table .col-amount{ width:98px; text-align:right; }
+.ti-table thead th.col-qty,
+.ti-table thead th.col-price,
+.ti-table thead th.col-amount{ text-align:right; }
+.ti-table tbody td{ padding:12px 8px; border-bottom:1px solid #e5e5e5; vertical-align:top; }
+.ti-table tbody td:nth-child(4){ text-align:center; }
+.ti-table tbody td:nth-child(5),
+.ti-table tbody td:nth-child(6){ text-align:right; }
+.ti-item-name{ font-weight:700; font-size:11.5px; }
+.ti-item-sub{ font-size:10px; color:#555; margin-top:3px; line-height:1.5; }
+.ti-item-code{ font-size:10.5px; color:#111; word-break:break-all; }
+
+.ti-pay{ margin-top:18px; padding-top:14px; border-top:1px solid #ddd; }
+.ti-pay-title{ font-size:12px; font-weight:900; letter-spacing:.4px; margin-bottom:10px; }
+.ti-pay-grid{ display:grid; grid-template-columns:1.15fr 1fr; gap:40px; }
+.ti-pay-col{ display:flex; flex-direction:column; gap:4px; }
+.ti-pay-row{
+  display:grid; grid-template-columns:1fr auto;
+  gap:14px; align-items:baseline;
+  padding:3px 0; font-size:11px;
+}
+.ti-pay-row span{ color:#333; }
+.ti-pay-row b{ font-weight:900; color:#111; text-align:right; }
+.ti-pay-row .ti-pay-date{ font-size:10px; color:#666; font-weight:400; }
+.ti-pay-left .ti-pay-row{ grid-template-columns:auto 1fr; }
+.ti-pay-left .ti-pay-row b{ justify-self:end; }
+.ti-pay-right .ti-pay-row{ grid-template-columns:1fr auto; }
+.ti-pay-right .ti-pay-row span{ text-align:right; }
+.ti-pay-net{ border-top:1px solid #ddd; margin-top:4px; padding-top:8px; font-size:13px; }
+.ti-pay-net b{ font-size:13.5px; }
+
+.ti-remarks-section{
+  margin-top:22px;
+  display:grid; grid-template-columns:1.1fr 1fr;
+  gap:24px; align-items:start;
+}
+.ti-remarks-title{ font-size:11.5px; font-weight:900; letter-spacing:.3px; margin-bottom:6px; }
+.ti-remarks-body{ font-size:10.5px; color:#333; line-height:1.7; white-space:pre-wrap; }
+.ti-amount-th{
+  background:#f5f5f5; border-radius:4px;
+  padding:14px 16px; text-align:center;
+  font-size:12.5px; font-weight:900; color:#111;
+  align-self:start;
+}
+
+.ti-signatures{
+  margin-top:70px; display:grid; grid-template-columns:1fr 1fr;
+  gap:100px; padding-top:20px;
+}
+.ti-sig{ border-top:1px solid #333; height:1px; position:relative; }
+.ti-sig::before{
+  content:attr(data-label);
+  position:absolute; top:6px; left:0;
+  font-size:10px; color:#666;
+}
+
+/* ---------- 58MM ---------- */
+#smallReceipt{
+  width:58mm; padding:4mm 3mm 5mm;
+  background:#fff; color:#111;
+  font-family:Arial,"Noto Sans Thai",sans-serif;
+  flex-shrink:0; box-shadow:0 2px 15px #0002;
+}
+.shop{ text-align:center; font-size:16px; font-weight:900; letter-spacing:.5px; }
+.shop-sub{ text-align:center; color:#666; font-size:8px; margin-top:2px; }
+.receipt-title{ text-align:center; font-size:13px; font-weight:900; margin-top:10px; }
+.receipt-en{ text-align:center; font-size:8px; color:#666; letter-spacing:1px; }
+.meta{ margin-top:9px; font-size:9px; line-height:1.6; }
+.line{ border-top:1px dashed #777; margin:8px 0; }
+.items{ width:100%; font-size:9px; border-collapse:collapse; }
+.items th{ font-weight:700; border-bottom:1px solid #111; padding-bottom:4px; }
+.items td{ padding:5px 0; vertical-align:top; }
+.items .name{ width:55%; }
+.items .qty{ width:15%; text-align:center; }
+.items .price{ width:30%; text-align:right; }
+.item-desc{ font-size:7px; color:#777; line-height:1.3; margin-top:2px; }
+.summary{ font-size:9px; line-height:1.8; }
+.summary-row{ display:flex; justify-content:space-between; }
+.total{ display:flex; justify-content:space-between; font-size:13px; font-weight:900; padding:5px 0; }
+.paid{
+  margin:10px auto; text-align:center;
+  border:2px solid #111; padding:5px;
+  font-size:13px; font-weight:900; letter-spacing:2px;
+}
+.footer{ text-align:center; font-size:8px; color:#555; line-height:1.6; margin-top:12px; }
+
+/* ---------- ERROR / EMPTY ---------- */
+.err-box{
+  padding:50px 20px; text-align:center; color:#888; font-size:14px;
+}
+.err-box .big{ font-size:44px; margin-bottom:10px; line-height:1; }
+.err-box a{
+  display:inline-block; margin-top:16px;
+  background:#111; color:#fff; padding:10px 20px;
+  border-radius:8px; text-decoration:none;
+  font-weight:700; font-size:13px;
+}
+
+#toast{
+  position:fixed; left:50%; bottom:30px;
+  transform:translateX(-50%) translateY(80px);
+  background:#111; color:#fff; padding:12px 20px; border-radius:10px;
+  font-size:13px; font-weight:700; opacity:0; pointer-events:none;
+  transition:all .3s; z-index:9999;
+  box-shadow:0 4px 20px #0003; max-width:90vw; text-align:center;
+}
+#toast.show{ opacity:1; transform:translateX(-50%) translateY(0); }
+
+@media (max-width:700px){
+  .ti-header{ flex-direction:column; gap:14px; }
+  .ti-doc{ text-align:left; min-width:0; width:100%; }
+  .ti-doc-en, .ti-doc-th, .ti-doc-copy{ text-align:left; }
+  .ti-meta-row{ justify-content:start; }
+  .ti-meta-row span, .ti-meta-row b{ text-align:left; min-width:0; }
+  .ti-pay-grid{ grid-template-columns:1fr; gap:14px; }
+  .ti-remarks-section{ grid-template-columns:1fr; }
+  .ti-signatures{ gap:40px; margin-top:40px; }
+}
+
+@media print{
+  @page{ size:A4; margin:0; }
+  html, body{ background:#fff; margin:0; padding:0; }
+  .topnav, .doc-head, .slide-label, .slide-dots, .slide-nav, .save-area{ display:none !important; }
+  .card{ box-shadow:none; padding:0; border-radius:0; }
+  .preview-slider{ overflow:visible !important; display:block !important; padding:0 !important; }
+  .preview-slide{ display:block !important; }
+  .preview-slide:not(:first-child){ display:none !important; }
+  .slide-body{ display:block !important; overflow:visible !important; }
+  .a4-wrap{ overflow:visible !important; }
+  #a4Receipt{ box-shadow:none !important; transform:none !important; margin:0 !important; }
+  #smallReceipt{ display:none !important; }
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <h1>PARTNERS</h1>
+  <div class="sub">ตัวอย่างเอกสารใบกำกับภาษี / ใบเสร็จรับเงิน</div>
+
+  <nav class="topnav">
+    <a href="foum.html">➕ กรอกข้อมูล</a>
+    <a href="data.html">📋 รายการที่บันทึก</a>
+    <a href="preview.html" class="active">📄 ตัวอย่างเอกสาร</a>
+  </nav>
+
+  <div class="card" id="previewCard" style="display:none">
+    <div class="doc-head">
+      <div>
+        <div class="doc-title">📄 ตัวอย่างเอกสาร</div>
+        <div style="color:#777;font-size:12px;margin-top:4px">เลื่อนซ้าย/ขวาเพื่อดูเอกสารแต่ละรูปแบบ</div>
+      </div>
+      <div class="doc-badge" id="docBadge">—</div>
+    </div>
+
+    <div class="preview-slider" id="previewSlider">
+
+      <!-- SLIDE 1: A4 -->
+      <div class="preview-slide">
+        <div class="slide-label">📄 ใบกำกับภาษี / ใบเสร็จรับเงิน (A4)</div>
+        <div class="slide-body">
+          <div class="a4-wrap">
+            <div id="a4Receipt">
+              <div class="ti-page">หน้า 1/1</div>
+
+              <div class="ti-header">
+                <div class="ti-company">
+                  <div class="ti-company-en" id="a4CompanyEn">—</div>
+                  <div class="ti-company-th" id="a4CompanyTh"></div>
+                  <div class="ti-company-addr" id="a4StoreInfo"></div>
+                  <div class="ti-company-line"><b>Tax ID:</b> <span id="a4TaxId">-</span> &nbsp;|&nbsp; <b>Tel:</b> <span id="a4Phone">-</span></div>
+                  <div class="ti-company-line"><b>Email:</b> <span id="a4Email">-</span></div>
+                  <div class="ti-company-line"><b>Website:</b> <span id="a4Website">-</span></div>
+                  <div class="ti-company-line"><b>Platform:</b> <span id="a4Platform">-</span></div>
+                </div>
+
+                <div class="ti-doc">
+                  <div class="ti-doc-en">TAX INVOICE</div>
+                  <div class="ti-doc-en">RECEIPT</div>
+                  <div class="ti-doc-th">ใบกำกับภาษี / ใบเสร็จรับเงิน</div>
+                  <div class="ti-doc-copy">(ใบแทนใบกำกับภาษี / COPY)</div>
+
+                  <div class="ti-doc-meta">
+                    <div class="ti-meta-row"><span>Invoice No:</span><b id="a4No">-</b></div>
+                    <div class="ti-meta-row"><span>Date:</span><b id="a4Date">-</b></div>
+                    <div class="ti-meta-row"><span>Order Ref:</span><b id="a4OrderRef">-</b></div>
+                    <div class="ti-meta-row"><span>Terms:</span><b id="a4Terms">-</b></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="ti-customer">
+                <div class="ti-cust-row">
+                  <span class="ti-cust-label">Customer Name:</span>
+                  <span class="ti-cust-value" id="a4Customer">-</span>
+                </div>
+                <div class="ti-cust-row">
+                  <span class="ti-cust-label">Address:</span>
+                  <span class="ti-cust-value" id="a4CustomerAddress">-</span>
+                </div>
+                <div class="ti-cust-row ti-cust-bottom">
+                  <span><span class="ti-cust-label">Tel:</span> <span class="ti-cust-value" id="a4CustomerPhone">-</span></span>
+                  <span><span class="ti-cust-label">Tax ID:</span> <span class="ti-cust-value" id="a4CustomerTaxId">-</span></span>
+                </div>
+              </div>
+
+              <table class="ti-table">
+                <thead>
+                  <tr>
+                    <th class="col-no">NO.</th>
+                    <th class="col-code">ITEM CODE</th>
+                    <th>DESCRIPTION</th>
+                    <th class="col-qty">QTY</th>
+                    <th class="col-price">UNIT PRICE</th>
+                    <th class="col-amount">AMOUNT (THB)</th>
+                  </tr>
+                </thead>
+                <tbody id="a4Items"></tbody>
+              </table>
+
+              <div class="ti-pay">
+                <div class="ti-pay-title">PAYMENT &amp; INSTALLMENT DETAILS</div>
+                <div class="ti-pay-grid">
+                  <div class="ti-pay-col ti-pay-left" id="a4PayLeft"></div>
+                  <div class="ti-pay-col ti-pay-right">
+                    <div class="ti-pay-row"><span>Gross Amount:</span><b id="a4Gross">0.00</b></div>
+                    <div class="ti-pay-row"><span>Discount:</span><b id="a4Discount">0.00</b></div>
+                    <div class="ti-pay-row"><span>Non-VAT Amount:</span><b id="a4NonVat">0.00</b></div>
+                    <div class="ti-pay-row"><span>Amount before VAT:</span><b id="a4BeforeVat">0.00</b></div>
+                    <div class="ti-pay-row"><span>VAT 7%:</span><b id="a4Vat">0.00</b></div>
+                    <div class="ti-pay-row ti-pay-net"><span>NET AMOUNT (THB):</span><b id="a4NetAmount">0.00</b></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="ti-remarks-section">
+                <div class="ti-remarks">
+                  <div class="ti-remarks-title">REMARKS</div>
+                  <div class="ti-remarks-body" id="a4Remarks">-</div>
+                </div>
+                <div class="ti-amount-th" id="a4AmountThai">(ศูนย์บาทถ้วน)</div>
+              </div>
+
+              <div class="ti-signatures">
+                <div class="ti-sig" data-label="ผู้สั่งซื้อ / Customer"></div>
+                <div class="ti-sig" data-label="ผู้ขาย / Authorized Signature"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 2: 58MM -->
+      <div class="preview-slide">
+        <div class="slide-label">🧾 สลิปย่อ (58mm)</div>
+        <div class="slide-body">
+          <div class="small-wrap">
+            <div id="smallReceipt">
+              <div class="shop" id="smallStoreName">—</div>
+              <div class="shop-sub">GLOBAL BUSINESS INFRASTRUCTURE</div>
+              <div class="receipt-title">ใบเสร็จรับเงิน / RECEIPT</div>
+              <div class="receipt-en">TAX INVOICE (COPY)</div>
+
+              <div class="meta">
+                <div>เลขที่: <b id="rNo">-</b></div>
+                <div>วันที่: <span id="rDate">-</span></div>
+                <div>เวลา: <span id="rTime">-</span></div>
+                <div>ลูกค้า: <span id="rCustomer">-</span></div>
+                <div>ผู้ขาย: <span id="rSeller">-</span></div>
+              </div>
+
+              <div class="line"></div>
+
+              <table class="items">
+                <thead>
+                  <tr>
+                    <th class="name">รายการ</th>
+                    <th class="qty">จำนวน</th>
+                    <th class="price">ราคา</th>
+                  </tr>
+                </thead>
+                <tbody id="rItems"></tbody>
+              </table>
+
+              <div class="line"></div>
+
+              <div class="summary">
+                <div class="summary-row"><span>รวมสินค้า</span><span id="rSubtotal">0.00</span></div>
+                <div class="summary-row"><span>ส่วนลด</span><span id="rDiscount">0.00</span></div>
+              </div>
+
+              <div class="line"></div>
+
+              <div class="total"><span>ยอดรวมสุทธิ</span><span id="rTotal">0.00</span></div>
+
+              <div class="summary">
+                <div class="summary-row"><span>รับเงินสด</span><span id="rCash">0.00</span></div>
+                <div class="summary-row"><span>เงินทอน</span><span id="rChange">0.00</span></div>
+              </div>
+
+              <div class="paid">PAID</div>
+
+              <div class="footer">
+                <span id="rFooterStore">PARTNERS</span><br>
+                ขอขอบพระคุณที่ใช้บริการ
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="slide-dots" id="slideDots">
+      <span class="dot active" data-slide="0" onclick="goToSlide(0)"></span>
+      <span class="dot" data-slide="1" onclick="goToSlide(1)"></span>
+    </div>
+
+    <div class="slide-nav">
+      <button type="button" onclick="goToSlide(0)">⬅ A4</button>
+      <button type="button" onclick="goToSlide(1)">58mm ➡</button>
+    </div>
+
+    <div class="save-area">
+      <label style="display:block;font-size:12px;color:#666;margin-bottom:6px;font-weight:700">คุณภาพไฟล์ที่ดาวน์โหลด</label>
+      <select id="qualitySelect" style="width:100%;padding:10px;border:1px solid #ccc;border-radius:7px;font-size:13px;margin-bottom:10px;font-family:inherit">
+        <option value="standard">มาตรฐาน (A4 192 DPI · 58mm 384 DPI) — ไฟล์เล็ก</option>
+        <option value="high" selected>สูง (A4 288 DPI · 58mm 576 DPI) — แนะนำ</option>
+        <option value="ultra">สูงสุด (A4 384 DPI · 58mm 768 DPI) — ไฟล์ใหญ่</option>
+      </select>
+      <button class="save-btn" onclick="saveReceipt()">💾 บันทึกเอกสารทั้งหมด (A4 + 58mm PNG)</button>
+      <div id="saveInfo" style="text-align:center;font-size:11px;color:#888;margin-top:8px"></div>
+    </div>
+  </div>
+
+  <div class="card" id="errorCard" style="display:none">
+    <div class="err-box">
+      <div class="big">📄</div>
+      <div id="errMsg">ไม่พบข้อมูลเอกสาร</div>
+      <a href="data.html">← กลับไปยังรายการ</a>
+    </div>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<script>
+/* =========================================================
+   CONSTANTS & STATE
+   ========================================================= */
+const APPLE_STORAGE_KEY = "partners_apple_purchase_records";
+const VAT_RATE = 0.07;
+
+let appleRecords = [];
+let currentRecord = null;
+
+/* =========================================================
+   INIT
+   ========================================================= */
+document.addEventListener("DOMContentLoaded", init);
+
+function init(){
+  loadAppleRecords();
+
+  const params = new URLSearchParams(location.search);
+  const id = params.get("id");
+
+  if(!id){
+    showError("กรุณาเลือกเอกสารจากรายการที่บันทึกไว้");
+    return;
+  }
+
+  const rec = appleRecords.find(r => r.id === id);
+  if(!rec){
+    showError("ไม่พบเอกสารที่ระบุ (อาจถูกลบไปแล้ว)");
+    return;
+  }
+
+  currentRecord = rec;
+  renderPreview(rec);
+
+  document.getElementById("previewCard").style.display = "block";
+  document.getElementById("docBadge").textContent = rec.invoiceNo || "—";
+
+  window.addEventListener("resize", fitA4Scale);
+  document.getElementById("previewSlider").addEventListener("scroll", function(){
+    const idx = Math.round(this.scrollLeft / this.clientWidth);
+    updateDots(idx);
+  }, { passive:true });
+
+  requestAnimationFrame(fitA4Scale);
+}
+
+function showError(msg){
+  document.getElementById("errorCard").style.display = "block";
+  document.getElementById("errMsg").textContent = msg;
+}
+
+/* =========================================================
+   STORAGE
+   ========================================================= */
+function loadAppleRecords(){
+  try{
+    const raw = localStorage.getItem(APPLE_STORAGE_KEY);
+    if(!raw){ appleRecords = []; return; }
+    const data = JSON.parse(raw);
+    appleRecords = Array.isArray(data) ? data : [];
+  }catch(e){
+    console.error(e);
+    appleRecords = [];
+  }
+}
+
+/* =========================================================
+   FORMATTERS
+   ========================================================= */
+function money(n){
+  const v = Number(n);
+  if(!isFinite(v)) return "0.00";
+  return v.toLocaleString("th-TH", { minimumFractionDigits:2, maximumFractionDigits:2 });
+}
+
+function formatDateShort(iso){
+  if(!iso) return "";
+  const d = new Date(iso + "T00:00:00");
+  if(isNaN(d.getTime())) return "";
+  const dd = String(d.getDate()).padStart(2,"0");
+  const mm = String(d.getMonth()+1).padStart(2,"0");
+  return `${dd}/${mm}/${d.getFullYear()}`;
+}
+
+function escapeHtml(text){
+  return String(text ?? "")
+    .replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;").replace(/'/g,"&#039;");
+}
+
+/* ---------- THAI BAHT TEXT ---------- */
+function bahtText(num){
+  num = Number(num);
+  if(!isFinite(num) || num < 0) return "";
+
+  const digits = ["","หนึ่ง","สอง","สาม","สี่","ห้า","หก","เจ็ด","แปด","เก้า"];
+  const positions = ["","สิบ","ร้อย","พัน","หมื่น","แสน"];
+
+  function readSix(n){
+    if(n === 0) return "";
+    const s = String(n).padStart(6,"0");
+    let str = "";
+    for(let i=0;i<6;i++){
+      const d = parseInt(s[i],10);
+      const pos = 5 - i;
+      if(d === 0) continue;
+      if(pos === 1 && d === 1) str += "สิบ";
+      else if(pos === 1 && d === 2) str += "ยี่สิบ";
+      else if(pos === 0 && d === 1 && n > 1) str += "เอ็ด";
+      else str += digits[d] + positions[pos];
+    }
+    return str;
+  }
+
+  function readInt(n){
+    if(n === 0) return "ศูนย์";
+    if(n < 1000000) return readSix(n);
+    const millions = Math.floor(n / 1000000);
+    const rest = n % 1000000;
+    return readInt(millions) + "ล้าน" + (rest > 0 ? readSix(rest) : "");
+  }
+
+  const intPart = Math.floor(num);
+  const decPart = Math.round((num - intPart) * 100);
+
+  let text = readInt(intPart) + "บาท";
+  if(decPart === 0) text += "ถ้วน";
+  else text += readSix(decPart) + "สตางค์";
+  return text;
+}
+
+/* =========================================================
+   RENDER PREVIEW
+   ========================================================= */
+function renderPreview(rec){
+  /* ---------- Items + totals ---------- */
+  let subtotal = 0;
+  const rItems = document.getElementById("rItems");
+  const a4Items = document.getElementById("a4Items");
+  rItems.innerHTML = "";
+  a4Items.innerHTML = "";
+
+  (rec.products || []).forEach((p, i)=>{
+    const qty = Number(p.qty) || 0;
+    const price = Number(p.price) || 0;
+    const total = qty * price;
+    subtotal += total;
+
+    // 58mm
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
+      <td class="name">
+        ${escapeHtml(p.name || "สินค้า")}
+        ${p.sn   ? `<div class="item-desc">SN: ${escapeHtml(p.sn)}</div>` : ""}
+        ${p.imei ? `<div class="item-desc">IMEI: ${escapeHtml(p.imei)}</div>` : ""}
+      </td>
+      <td class="qty">${qty}</td>
+      <td class="price">${money(total)}</td>
+    `;
+    rItems.appendChild(tr);
+
+    // A4
+    const subs = [];
+    if(p.modelCode) subs.push(`Model: ${escapeHtml(p.modelCode)}`);
+    if(p.sn)        subs.push(`S/N: ${escapeHtml(p.sn)}`);
+    if(p.imei)      subs.push(`IMEI: ${escapeHtml(p.imei)}${p.imei2 ? " / " + escapeHtml(p.imei2) : ""}`);
+    if(p.desc)      subs.push(escapeHtml(p.desc));
+
+    const a4tr = document.createElement("tr");
+    a4tr.innerHTML = `
+      <td>${i + 1}</td>
+      <td><div class="ti-item-code">${escapeHtml(p.itemCode || "-")}</div></td>
+      <td>
+        <div class="ti-item-name">${escapeHtml(p.name || "สินค้า")}</div>
+        ${subs.map(s => `<div class="ti-item-sub">${s}</div>`).join("")}
+      </td>
+      <td>${qty}</td>
+      <td>${money(price)}</td>
+      <td>${money(total)}</td>
+    `;
+    a4Items.appendChild(a4tr);
+  });
+
+  /* ---------- Money ---------- */
+  const discount  = Number(rec.discount) || 0;
+  const cash      = Number(rec.cash) || 0;
+  const netTotal  = Math.max(0, subtotal - discount);
+  const beforeVat = netTotal / (1 + VAT_RATE);
+  const vatAmount = netTotal - beforeVat;
+  const change    = Math.max(0, cash - netTotal);
+
+  const downPercent = Number(rec.downPercent) || 0;
+  const months      = Number(rec.installmentMonths) || 0;
+  const downPayment = netTotal * downPercent / 100;
+  const financed    = netTotal - downPayment;
+  const monthly     = months > 0 ? financed / months : 0;
+
+  const now = new Date();
+  const dateStr = now.toLocaleDateString("th-TH");
+  const timeStr = now.toLocaleTimeString("th-TH", { hour:"2-digit", minute:"2-digit", second:"2-digit" });
+
+  /* ---------- A4 Header ---------- */
+  document.getElementById("a4CompanyEn").textContent = rec.companyEn || rec.storeName || "PARTNERS";
+  document.getElementById("a4CompanyTh").textContent = rec.storeName || "";
+  document.getElementById("a4StoreInfo").innerHTML   = escapeHtml(rec.storeAddress || "-").replace(/\n/g,"<br>");
+  document.getElementById("a4TaxId").textContent     = rec.taxId || "-";
+  document.getElementById("a4Phone").textContent     = rec.storePhone || "-";
+  document.getElementById("a4Email").textContent     = rec.email || "-";
+  document.getElementById("a4Website").textContent   = rec.website || "-";
+  document.getElementById("a4Platform").textContent  = rec.platform || "-";
+
+  document.getElementById("a4No").textContent       = rec.invoiceNo || "-";
+  document.getElementById("a4Date").textContent     = formatDateShort(rec.purchaseDate) || dateStr;
+  document.getElementById("a4OrderRef").textContent = rec.orderNumber || "-";
+  document.getElementById("a4Terms").textContent    = rec.terms || buildTerms(rec) || "-";
+
+  document.getElementById("a4Customer").textContent        = rec.customer || "-";
+  document.getElementById("a4CustomerAddress").textContent = rec.customerAddress || "-";
+  document.getElementById("a4CustomerPhone").textContent   = rec.customerPhone || "-";
+  document.getElementById("a4CustomerTaxId").textContent   = rec.customerTaxId || "-";
+
+  /* ---------- Payment left column ---------- */
+  renderPayLeft(rec, { netTotal, downPayment, financed, monthly, months, downPercent, cash, change });
+
+  document.getElementById("a4Gross").textContent     = money(subtotal);
+  document.getElementById("a4Discount").textContent  = discount > 0 ? "-" + money(discount) : money(0);
+  document.getElementById("a4NonVat").textContent    = money(0);
+  document.getElementById("a4BeforeVat").textContent = money(beforeVat);
+  document.getElementById("a4Vat").textContent       = money(vatAmount);
+  document.getElementById("a4NetAmount").textContent = money(netTotal);
+
+  document.getElementById("a4Remarks").textContent    = rec.note || "-";
+  document.getElementById("a4AmountThai").textContent = `(${bahtText(netTotal)})`;
+
+  /* ---------- 58mm ---------- */
+  document.getElementById("smallStoreName").textContent = rec.storeName || rec.companyEn || "PARTNERS";
+  document.getElementById("rFooterStore").textContent   = rec.storeName || rec.companyEn || "PARTNERS";
+
+  document.getElementById("rNo").textContent       = rec.invoiceNo || "-";
+  document.getElementById("rDate").textContent     = rec.purchaseDate ? formatDateShort(rec.purchaseDate) : dateStr;
+  document.getElementById("rTime").textContent     = timeStr;
+  document.getElementById("rCustomer").textContent = rec.customer || "-";
+  document.getElementById("rSeller").textContent   = rec.seller || "-";
+  document.getElementById("rSubtotal").textContent = money(subtotal);
+  document.getElementById("rDiscount").textContent = money(discount);
+  document.getElementById("rTotal").textContent    = money(netTotal);
+  document.getElementById("rCash").textContent     = money(cash);
+  document.getElementById("rChange").textContent   = money(change);
+}
+
+function buildTerms(rec){
+  if(rec.paymentMethod === "installment") return `Installment ${rec.installmentMonths} Months`;
+  if(rec.paymentMethod === "cash") return "Cash";
+  if(rec.paymentMethod === "transfer") return "Bank Transfer";
+  return "";
+}
+
+function renderPayLeft(rec, calc){
+  const el = document.getElementById("a4PayLeft");
+  const method = rec.paymentMethod || "installment";
+  const methodLabel = { installment:"Installment", cash:"Cash", transfer:"Bank Transfer" }[method];
+
+  let rows = "";
+  rows += `<div class="ti-pay-row"><span>Net Total:</span><b>${money(calc.netTotal)}</b></div>`;
+
+  if(method === "installment"){
+    rows += `<div class="ti-pay-row">
+      <span>Down Payment (${calc.downPercent}%):</span>
+      <b>${money(calc.downPayment)} ${rec.purchaseDate ? `<span class="ti-pay-date">(${formatDateShort(rec.purchaseDate)})</span>` : ""}</b>
+    </div>`;
+    rows += `<div class="ti-pay-row"><span>Financed Amount:</span><b>${money(calc.financed)}</b></div>`;
+    rows += `<div class="ti-pay-row"><span>Monthly Installment:</span><b>${money(calc.monthly)} x ${calc.months} Months</b></div>`;
+  }else if(method === "cash"){
+    rows += `<div class="ti-pay-row"><span>Cash Received:</span><b>${money(calc.cash)}</b></div>`;
+    rows += `<div class="ti-pay-row"><span>Change:</span><b>${money(calc.change)}</b></div>`;
+  }else if(method === "transfer"){
+    if(rec.bankName)     rows += `<div class="ti-pay-row"><span>Bank:</span><b>${escapeHtml(rec.bankName)}</b></div>`;
+    if(rec.bankAccount)  rows += `<div class="ti-pay-row"><span>Account No.:</span><b>${escapeHtml(rec.bankAccount)}</b></div>`;
+    if(rec.transferDate) rows += `<div class="ti-pay-row"><span>Transfer Date:</span><b>${formatDateShort(rec.transferDate)}</b></div>`;
+    if(rec.transferRef)  rows += `<div class="ti-pay-row"><span>Ref No.:</span><b>${escapeHtml(rec.transferRef)}</b></div>`;
+  }
+
+  rows += `<div class="ti-pay-row"><span>Payment Method:</span><b>${methodLabel}</b></div>`;
+  el.innerHTML = rows;
+}
+
+/* =========================================================
+   A4 SCALE FIT
+   ========================================================= */
+function fitA4Scale(){
+  const wrap = document.querySelector(".a4-wrap");
+  const rec = document.getElementById("a4Receipt");
+  if(!wrap || !rec) return;
+
+  rec.style.transform = "";
+  rec.style.marginBottom = "";
+  rec.style.transformOrigin = "";
+
+  const wrapW = wrap.clientWidth;
+  const recW = rec.offsetWidth;
+  if(wrapW <= 0 || recW <= 0) return;
+
+  if(recW > wrapW){
+    const s = wrapW / recW;
+    const h = rec.offsetHeight;
+    rec.style.transformOrigin = "top left";
+    rec.style.transform = `scale(${s})`;
+    rec.style.marginBottom = `-${h * (1 - s)}px`;
+  }
+}
+
+/* =========================================================
+   SLIDER
+   ========================================================= */
+function goToSlide(idx){
+  const slider = document.getElementById("previewSlider");
+  if(!slider) return;
+  slider.scrollTo({ left: idx * slider.clientWidth, behavior:"smooth" });
+  updateDots(idx);
+}
+
+function updateDots(idx){
+  document.querySelectorAll("#slideDots .dot").forEach(d => {
+    d.classList.toggle("active", Number(d.dataset.slide) === idx);
+  });
+}
+
+/* =========================================================
+   PNG EXPORT — HIGH RESOLUTION
+   ========================================================= */
+function fileTimestamp(){
+  const now = new Date();
+  const pad = n => String(n).padStart(2,"0");
+  return now.getFullYear() + pad(now.getMonth()+1) + pad(now.getDate())
+       + "_" + pad(now.getHours()) + pad(now.getMinutes()) + pad(now.getSeconds());
+}
+
+function downloadCanvas(canvas, filename){
+  return new Promise(resolve=>{
+    canvas.toBlob(function(blob){
+      if(!blob){ resolve(false); return; }
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      setTimeout(()=> URL.revokeObjectURL(url), 1500);
+      resolve(true);
+    }, "image/png", 1.0);
+  });
+}
+
+/* ---------- Detect browser canvas limits ---------- */
+function getMaxPixels(){
+  const ua = navigator.userAgent;
+  // Safari (macOS) + iOS ทั้งหมด (WebKit) จำกัด canvas ~16.7M pixels
+  if(/^((?!chrome|android|crios|fxios).)*safari/i.test(ua)) return 16700000;
+  if(/iPad|iPhone|iPod/.test(ua)) return 16700000;
+  // Chrome/Edge/Firefox desktop
+  return 50000000;
+}
+
+/* ---------- คำนวณ scale ที่ปลอดภัย ---------- */
+function safeScale(w, h, target, maxPixels){
+  let s = target;
+  while(w * s * h * s > maxPixels && s > 1){
+    s = Math.max(1, s - 0.5);
+  }
+  return s;
+}
+
+/* ---------- โหลดรูปภาพทั้งหมดให้เสร็จ ---------- */
+function waitForImages(root){
+  const imgs = Array.from(root.querySelectorAll("img"));
+  if(!imgs.length) return Promise.resolve();
+  return Promise.all(imgs.map(img => {
+    if(img.complete) return Promise.resolve();
+    return new Promise(res => {
+      img.onload = img.onerror = res;
+    });
+  }));
+}
+
+/* ---------- MAIN ---------- */
+async function saveReceipt(){
+  if(!currentRecord){ showToast("ไม่พบเอกสาร"); return; }
+  if(typeof html2canvas === "undefined"){ showToast("โหลด html2canvas ไม่สำเร็จ"); return; }
+
+  const a4    = document.getElementById("a4Receipt");
+  const small = document.getElementById("smallReceipt");
+  const ts    = fileTimestamp();
+
+  /* --- 1. รอฟอนต์โหลดเสร็จ --- */
+  if(document.fonts && document.fonts.ready){
+    try{ await document.fonts.ready; }catch(e){}
+  }
+
+  /* --- 2. รอรูปโหลดเสร็จ --- */
+  await waitForImages(a4);
+  await waitForImages(small);
+
+  /* --- 3. กำหนด scale ตามระดับคุณภาพ --- */
+  const quality = (document.getElementById("qualitySelect") || {}).value || "high";
+
+  // A4 = 210mm ≈ 794px ที่ 96dpi:
+  //   scale 2 = 192 DPI | scale 3 = 288 DPI | scale 4 = 384 DPI
+  // 58mm ≈ 220px ที่ 96dpi:
+  //   scale 4 = 384 DPI | scale 6 = 576 DPI | scale 8 = 768 DPI
+  const presets = {
+    standard: { a4: 2, small: 4 },
+    high:     { a4: 3, small: 6 },
+    ultra:    { a4: 4, small: 8 }
+  };
+  const preset = presets[quality] || presets.high;
+
+  const maxPixels = getMaxPixels();
+
+  /* --- 4. Save A4 transform ชั่วคราว --- */
+  const savedTransform = a4.style.transform;
+  const savedMargin    = a4.style.marginBottom;
+  const savedOrigin    = a4.style.transformOrigin;
+  a4.style.transform = "";
+  a4.style.marginBottom = "";
+  a4.style.transformOrigin = "";
+
+  const infoEl = document.getElementById("saveInfo");
+  if(infoEl) infoEl.textContent = "กำลังประมวลผล...";
+
+  try{
+    /* ---------- A4 ---------- */
+    const a4W = a4.scrollWidth;
+    const a4H = a4.scrollHeight;
+    const a4Scale = safeScale(a4W, a4H, preset.a4, maxPixels);
+
+    if(infoEl) infoEl.textContent =
+      "กำลังสร้าง A4 (" + Math.round(a4W * a4Scale) + "×" + Math.round(a4H * a4Scale) + " px)...";
+
+    await new Promise(r => setTimeout(r, 200));
+
+    const a4Canvas = await html2canvas(a4, {
+      scale: a4Scale,
+      backgroundColor: "#ffffff",
+      useCORS: true,
+      allowTaint: false,
+      logging: false,
+      letterRendering: true,
+      imageTimeout: 15000,
+      removeContainer: true,
+      width: a4W,
+      height: a4H,
+      windowWidth: a4W,
+      windowHeight: a4H
+    });
+
+    await downloadCanvas(a4Canvas, "tax_invoice_A4_" + ts + ".png");
+
+    // คืน transform ก่อนวาด 58mm
+    a4.style.transform = savedTransform;
+    a4.style.marginBottom = savedMargin;
+    a4.style.transformOrigin = savedOrigin;
+
+    await new Promise(r => setTimeout(r, 400));
+
+    /* ---------- 58mm ---------- */
+    const sW = small.scrollWidth;
+    const sH = small.scrollHeight;
+    const sScale = safeScale(sW, sH, preset.small, maxPixels);
+
+    if(infoEl) infoEl.textContent =
+      "กำลังสร้าง 58mm (" + Math.round(sW * sScale) + "×" + Math.round(sH * sScale) + " px)...";
+
+    const smallCanvas = await html2canvas(small, {
+      scale: sScale,
+      backgroundColor: "#ffffff",
+      useCORS: true,
+      allowTaint: false,
+      logging: false,
+      letterRendering: true,
+      imageTimeout: 15000,
+      removeContainer: true,
+      width: sW,
+      height: sH,
+      windowWidth: sW,
+      windowHeight: sH
+    });
+
+    await downloadCanvas(smallCanvas, "receipt_58mm_" + ts + ".png");
+
+    /* ---------- Done ---------- */
+    const a4Dpi = Math.round(a4Scale * 96);
+    const sDpi  = Math.round(sScale * 96);
+
+    if(infoEl) infoEl.textContent =
+      "✅ เสร็จแล้ว · A4 " + a4Dpi + " DPI · 58mm " + sDpi + " DPI";
+
+    showToast("บันทึกเรียบร้อย: A4 (" + a4Dpi + " DPI) + 58mm (" + sDpi + " DPI)");
+
+  }catch(e){
+    console.error(e);
+    if(infoEl) infoEl.textContent = "❌ เกิดข้อผิดพลาด: " + (e.message || "");
+    showToast("เกิดข้อผิดพลาดในการบันทึกเอกสาร");
+    // คืน transform
+    a4.style.transform = savedTransform;
+    a4.style.marginBottom = savedMargin;
+    a4.style.transformOrigin = savedOrigin;
+  }
+}
+
+/* =========================================================
+   TOAST
+   ========================================================= */
+let toastTimer = null;
+function showToast(msg){
+  const el = document.getElementById("toast");
+  el.textContent = msg;
+  el.classList.add("show");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=> el.classList.remove("show"), 3000);
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,2199 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<meta name="theme-color" content="#111111">
+<title>PARTNERS — กรอกข้อมูล</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+/* =========================================================
+   DESIGN TOKENS
+   ========================================================= */
+:root{
+  --c-primary: #111111;
+  --c-primary-soft: #f4f4f5;
+  --c-primary-hover: #2a2a2a;
+  --c-accent: #0066ff;
+  --c-accent-soft: #eaf1ff;
+  --c-success: #10b981;
+  --c-success-soft: #e8f9f2;
+  --c-warn: #f59e0b;
+  --c-warn-soft: #fff5e6;
+  --c-danger: #ef4444;
+  --c-danger-soft: #fef0f0;
+
+  --c-text: #18181b;
+  --c-text-soft: #52525b;
+  --c-text-mute: #a1a1aa;
+  --c-border: #e4e4e7;
+  --c-border-strong: #d4d4d8;
+  --c-bg: #f4f4f5;
+  --c-card: #ffffff;
+
+  --r-xs: 6px;
+  --r-sm: 10px;
+  --r-md: 14px;
+  --r-lg: 18px;
+  --r-xl: 24px;
+
+  --sh-sm: 0 1px 2px rgba(0,0,0,.04);
+  --sh-md: 0 4px 14px rgba(0,0,0,.06);
+  --sh-lg: 0 12px 40px rgba(0,0,0,.12);
+  --sh-glow: 0 8px 24px rgba(0,0,0,.18);
+
+  --ease: cubic-bezier(.2, .9, .3, 1);
+  --ease-out: cubic-bezier(.16, 1, .3, 1);
+  --dur-fast: .18s;
+  --dur: .28s;
+  --dur-slow: .45s;
+}
+
+*{ box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+
+html, body{
+  margin:0;
+  background:var(--c-bg);
+  color:var(--c-text);
+  font-family:"Noto Sans Thai", Arial, sans-serif;
+  font-size:15px;
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* =========================================================
+   APP LAYOUT
+   ========================================================= */
+.app{
+  max-width:760px;
+  margin:auto;
+  padding:0 0 120px;
+  min-height:100vh;
+}
+
+/* =========================================================
+   STICKY HEADER
+   ========================================================= */
+.sticky-top{
+  position:sticky;
+  top:0;
+  z-index:50;
+  background:rgba(255,255,255,.92);
+  backdrop-filter:saturate(180%) blur(14px);
+  -webkit-backdrop-filter:saturate(180%) blur(14px);
+  border-bottom:1px solid var(--c-border);
+}
+
+.app-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  padding:14px 20px 10px;
+}
+
+.app-title{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  min-width:0;
+}
+.app-title h1{
+  margin:0;
+  font-size:18px;
+  font-weight:900;
+  letter-spacing:.3px;
+}
+.app-title .sub{
+  font-size:11px;
+  color:var(--c-text-mute);
+  font-weight:500;
+  white-space:nowrap;
+}
+
+/* Save state */
+.save-state{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  font-size:11px;
+  font-weight:700;
+  color:var(--c-text-mute);
+  background:var(--c-primary-soft);
+  padding:6px 10px;
+  border-radius:99px;
+  transition:all var(--dur) var(--ease);
+  white-space:nowrap;
+  flex-shrink:0;
+}
+.save-state .dot{
+  width:6px; height:6px;
+  border-radius:50%;
+  background:var(--c-text-mute);
+  transition:background var(--dur);
+}
+.save-state.saving{ color:var(--c-warn); background:var(--c-warn-soft); }
+.save-state.saving .dot{ background:var(--c-warn); animation:pulse 1s infinite; }
+.save-state.saved{ color:var(--c-success); background:var(--c-success-soft); }
+.save-state.saved .dot{ background:var(--c-success); }
+
+@keyframes pulse{
+  0%,100%{ opacity:1; transform:scale(1); }
+  50%{ opacity:.5; transform:scale(1.4); }
+}
+
+/* Progress bar */
+.progress-wrap{
+  padding:0 20px 12px;
+}
+.progress-track{
+  height:4px;
+  background:var(--c-border);
+  border-radius:99px;
+  overflow:hidden;
+  position:relative;
+}
+.progress-bar{
+  height:100%;
+  width:0%;
+  background:linear-gradient(90deg, var(--c-primary), var(--c-accent));
+  border-radius:99px;
+  transition:width var(--dur-slow) var(--ease-out);
+}
+.progress-meta{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-top:8px;
+  font-size:11px;
+  font-weight:700;
+  color:var(--c-text-soft);
+}
+.progress-meta .pct{
+  color:var(--c-primary);
+  font-weight:900;
+}
+
+/* =========================================================
+   STEP PILLS
+   ========================================================= */
+.steps{
+  display:flex;
+  gap:6px;
+  padding:0 20px 14px;
+  overflow-x:auto;
+  scrollbar-width:none;
+}
+.steps::-webkit-scrollbar{ display:none; }
+
+.step-pill{
+  flex:0 0 auto;
+  display:flex;
+  align-items:center;
+  gap:6px;
+  padding:8px 14px;
+  border-radius:99px;
+  background:#fff;
+  border:1px solid var(--c-border);
+  font-size:12px;
+  font-weight:700;
+  color:var(--c-text-soft);
+  cursor:pointer;
+  transition:all var(--dur) var(--ease);
+  user-select:none;
+  white-space:nowrap;
+}
+.step-pill .num{
+  width:18px; height:18px;
+  border-radius:50%;
+  background:var(--c-primary-soft);
+  color:var(--c-text-soft);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:10px;
+  font-weight:900;
+  transition:all var(--dur) var(--ease);
+}
+.step-pill:hover{
+  border-color:var(--c-border-strong);
+  transform:translateY(-1px);
+}
+.step-pill.active{
+  background:var(--c-primary);
+  color:#fff;
+  border-color:var(--c-primary);
+  box-shadow:var(--sh-glow);
+}
+.step-pill.active .num{
+  background:rgba(255,255,255,.2);
+  color:#fff;
+}
+.step-pill.done .num{
+  background:var(--c-success);
+  color:#fff;
+}
+.step-pill.done .num::after{
+  content:"✓";
+  font-size:10px;
+}
+.step-pill.done .num span{ display:none; }
+
+/* =========================================================
+   DRAFT BANNER
+   ========================================================= */
+.draft-banner{
+  margin:0 20px 14px;
+  padding:12px 14px;
+  background:var(--c-accent-soft);
+  border:1px solid #c7dbff;
+  border-radius:var(--r-md);
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-size:12px;
+  font-weight:700;
+  color:#1e40af;
+  animation:slideDown .35s var(--ease-out);
+}
+.draft-banner .ico{
+  font-size:18px;
+  line-height:1;
+}
+.draft-banner .spacer{ flex:1; }
+.draft-banner button{
+  border:0;
+  padding:7px 12px;
+  border-radius:99px;
+  font-size:11px;
+  font-weight:900;
+  cursor:pointer;
+  font-family:inherit;
+  transition:all var(--dur-fast);
+}
+.draft-banner .restore{
+  background:var(--c-accent);
+  color:#fff;
+}
+.draft-banner .discard{
+  background:transparent;
+  color:#1e40af;
+  text-decoration:underline;
+}
+.draft-banner button:hover{ transform:scale(1.03); }
+
+@keyframes slideDown{
+  from{ opacity:0; transform:translateY(-8px); }
+  to{ opacity:1; transform:translateY(0); }
+}
+
+/* =========================================================
+   CARD
+   ========================================================= */
+.card{
+  background:var(--c-card);
+  border-radius:var(--r-lg);
+  padding:20px;
+  margin:0 12px 14px;
+  box-shadow:var(--sh-sm);
+  border:1px solid var(--c-border);
+}
+
+/* =========================================================
+   FORM SLIDER
+   ========================================================= */
+.form-slider{
+  display:flex;
+  overflow-x:auto;
+  scroll-snap-type:x mandatory;
+  scroll-behavior:smooth;
+  scrollbar-width:none;
+  align-items:flex-start;
+  scroll-padding:0 12px;
+  padding:0 12px;
+}
+.form-slider::-webkit-scrollbar{ display:none; }
+
+.form-slide{
+  flex:0 0 calc(100% - 0px);
+  scroll-snap-align:start;
+  min-width:0;
+  padding:0 0 6px;
+  box-sizing:border-box;
+}
+
+/* =========================================================
+   FIELD GROUPS
+   ========================================================= */
+.field-group{
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+
+.field{
+  display:flex;
+  flex-direction:column;
+  gap:5px;
+}
+
+.field-label{
+  font-size:12.5px;
+  font-weight:700;
+  color:var(--c-text-soft);
+  display:flex;
+  align-items:center;
+  gap:6px;
+}
+.field-label .hint{
+  font-weight:400;
+  color:var(--c-text-mute);
+  font-size:11px;
+}
+.field-label .required{
+  color:var(--c-danger);
+  font-weight:900;
+}
+
+.field-hint{
+  font-size:11px;
+  color:var(--c-text-mute);
+  margin-top:2px;
+  line-height:1.5;
+}
+
+/* Inputs */
+input, textarea, select{
+  width:100%;
+  padding:12px 14px;
+  border:1.5px solid var(--c-border);
+  border-radius:var(--r-sm);
+  font-size:15px;
+  font-family:inherit;
+  background:#fff;
+  color:var(--c-text);
+  transition:all var(--dur-fast) var(--ease);
+  outline:none;
+  -webkit-appearance:none;
+  appearance:none;
+}
+textarea{ min-height:80px; resize:vertical; line-height:1.55; }
+input:hover, textarea:hover, select:hover{ border-color:var(--c-border-strong); }
+input:focus, textarea:focus, select:focus{
+  border-color:var(--c-primary);
+  box-shadow:0 0 0 4px rgba(17,17,17,.08);
+  background:#fff;
+}
+input::placeholder, textarea::placeholder{ color:var(--c-text-mute); }
+
+/* Input with valid state */
+input.valid, textarea.valid{
+  border-color:var(--c-success);
+  background:linear-gradient(0deg, rgba(16,185,129,.03), rgba(16,185,129,.03));
+}
+input.invalid, textarea.invalid{
+  border-color:var(--c-danger);
+  box-shadow:0 0 0 4px rgba(239,68,68,.08);
+}
+
+/* Grid */
+.grid-2{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+.grid-3{ display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+
+/* =========================================================
+   SLIDE HEADING
+   ========================================================= */
+.slide-head{
+  padding:22px 4px 18px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+.slide-head .icon{
+  width:40px; height:40px;
+  border-radius:12px;
+  background:var(--c-primary);
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:20px;
+  flex-shrink:0;
+  box-shadow:var(--sh-glow);
+}
+.slide-head .txt{ min-width:0; }
+.slide-head h2{
+  margin:0;
+  font-size:17px;
+  font-weight:900;
+  letter-spacing:.2px;
+}
+.slide-head p{
+  margin:2px 0 0;
+  font-size:12px;
+  color:var(--c-text-mute);
+  font-weight:500;
+}
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+button{
+  font-family:inherit;
+  cursor:pointer;
+  border:0;
+  font-weight:700;
+  transition:all var(--dur-fast) var(--ease);
+  border-radius:var(--r-sm);
+  -webkit-appearance:none;
+  appearance:none;
+}
+button:active{ transform:scale(.98); }
+
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+  padding:12px 18px;
+  font-size:14px;
+  font-weight:700;
+  min-height:44px;
+}
+.btn-primary{ background:var(--c-primary); color:#fff; }
+.btn-primary:hover{ background:var(--c-primary-hover); }
+.btn-light{ background:var(--c-primary-soft); color:var(--c-text); }
+.btn-light:hover{ background:#e4e4e7; }
+.btn-ghost{ background:transparent; color:var(--c-text-soft); }
+.btn-ghost:hover{ background:var(--c-primary-soft); }
+.btn-danger{ background:var(--c-danger-soft); color:var(--c-danger); }
+.btn-block{ width:100%; }
+.btn[disabled]{ opacity:.45; cursor:not-allowed; transform:none; }
+
+/* Add product button */
+.btn-add{
+  width:100%;
+  border:2px dashed var(--c-border-strong);
+  background:transparent;
+  color:var(--c-text-soft);
+  padding:14px;
+  font-size:13px;
+  border-radius:var(--r-md);
+  font-weight:700;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+  margin-top:6px;
+}
+.btn-add:hover{
+  border-color:var(--c-primary);
+  color:var(--c-primary);
+  background:var(--c-primary-soft);
+}
+
+/* =========================================================
+   PAYMENT METHOD CARDS
+   ========================================================= */
+.pay-methods{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+}
+.pay-btn{
+  background:#fff;
+  border:1.5px solid var(--c-border);
+  padding:14px 8px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:5px;
+  border-radius:var(--r-md);
+  font-size:12px;
+  font-weight:700;
+  color:var(--c-text-soft);
+  position:relative;
+  transition:all var(--dur) var(--ease);
+}
+.pay-btn .ico{ font-size:22px; line-height:1; }
+.pay-btn:hover{ border-color:var(--c-border-strong); }
+.pay-btn.active{
+  background:var(--c-primary);
+  color:#fff;
+  border-color:var(--c-primary);
+  box-shadow:var(--sh-glow);
+  transform:translateY(-2px);
+}
+.pay-btn.active::after{
+  content:"✓";
+  position:absolute;
+  top:6px; right:8px;
+  font-size:11px;
+  font-weight:900;
+  background:var(--c-success);
+  color:#fff;
+  width:16px; height:16px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  animation:pop .3s var(--ease-out);
+}
+@keyframes pop{
+  0%{ transform:scale(0); }
+  60%{ transform:scale(1.25); }
+  100%{ transform:scale(1); }
+}
+
+/* Pay detail panels */
+.pay-detail{
+  background:var(--c-primary-soft);
+  border-radius:var(--r-md);
+  padding:16px;
+  margin-top:12px;
+  border:1px solid var(--c-border);
+  animation:slideDown .3s var(--ease-out);
+}
+.pay-detail[hidden]{ display:none; }
+
+/* =========================================================
+   PRODUCT CARD
+   ========================================================= */
+.product{
+  border:1.5px solid var(--c-border);
+  padding:16px;
+  border-radius:var(--r-md);
+  margin-bottom:12px;
+  background:#fff;
+  transition:all var(--dur) var(--ease);
+  position:relative;
+  overflow:hidden;
+}
+.product::before{
+  content:"";
+  position:absolute;
+  left:0; top:0; bottom:0;
+  width:4px;
+  background:var(--c-accent);
+  transition:opacity var(--dur);
+}
+.product:hover{
+  border-color:var(--c-border-strong);
+  box-shadow:var(--sh-md);
+}
+.product-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:12px;
+}
+.product-head b{
+  font-size:13px;
+  font-weight:900;
+  display:flex;
+  align-items:center;
+  gap:6px;
+}
+.product-head b::before{
+  content:"📱";
+  font-size:14px;
+}
+.remove{
+  background:var(--c-danger-soft);
+  color:var(--c-danger);
+  padding:6px 10px;
+  border-radius:var(--r-xs);
+  font-size:11px;
+  font-weight:700;
+}
+
+.picker-grid{
+  display:grid;
+  grid-template-columns:1.4fr 1fr 1fr;
+  gap:8px;
+  margin-bottom:10px;
+}
+.product-grid{
+  display:grid;
+  grid-template-columns:1fr 80px 110px;
+  gap:8px;
+  margin-top:10px;
+}
+
+/* =========================================================
+   LIVE TOTAL PREVIEW
+   ========================================================= */
+.live-total{
+  background:linear-gradient(135deg, #111 0%, #2a2a2a 100%);
+  color:#fff;
+  border-radius:var(--r-md);
+  padding:16px 18px;
+  margin-top:16px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  box-shadow:var(--sh-glow);
+}
+.live-total .label{
+  font-size:12px;
+  font-weight:700;
+  opacity:.7;
+  text-transform:uppercase;
+  letter-spacing:.5px;
+}
+.live-total .amount{
+  font-size:22px;
+  font-weight:900;
+  letter-spacing:.3px;
+}
+.live-total .amount small{
+  font-size:12px;
+  font-weight:700;
+  opacity:.7;
+  margin-left:4px;
+}
+
+/* =========================================================
+   STICKY BOTTOM BAR
+   ========================================================= */
+.bottom-bar{
+  position:fixed;
+  left:0; right:0; bottom:0;
+  z-index:60;
+  background:rgba(255,255,255,.94);
+  backdrop-filter:saturate(180%) blur(14px);
+  -webkit-backdrop-filter:saturate(180%) blur(14px);
+  border-top:1px solid var(--c-border);
+  padding:12px max(12px, calc((100% - 760px) / 2 + 12px));
+  display:flex;
+  gap:10px;
+  align-items:center;
+  box-shadow:0 -4px 20px rgba(0,0,0,.04);
+}
+.bottom-bar .step-indicator{
+  font-size:11px;
+  font-weight:900;
+  color:var(--c-text-soft);
+  background:var(--c-primary-soft);
+  padding:8px 12px;
+  border-radius:99px;
+  white-space:nowrap;
+}
+.bottom-bar .btn{ flex:1; padding:12px 14px; font-size:13.5px; }
+.bottom-bar .btn-icon{
+  flex:0 0 auto;
+  width:44px; height:44px;
+  min-height:44px;
+  padding:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:18px;
+}
+
+/* =========================================================
+   SUCCESS MODAL
+   ========================================================= */
+.modal-backdrop{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.5);
+  backdrop-filter:blur(4px);
+  z-index:200;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity var(--dur) var(--ease);
+}
+.modal-backdrop.show{
+  opacity:1;
+  pointer-events:auto;
+}
+.modal{
+  background:#fff;
+  border-radius:var(--r-xl);
+  padding:32px 24px 24px;
+  max-width:400px;
+  width:100%;
+  text-align:center;
+  transform:scale(.9) translateY(20px);
+  transition:transform .4s var(--ease-out);
+  box-shadow:var(--sh-lg);
+}
+.modal-backdrop.show .modal{
+  transform:scale(1) translateY(0);
+}
+
+.check-anim{
+  width:72px;
+  height:72px;
+  margin:0 auto 16px;
+  border-radius:50%;
+  background:var(--c-success);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#fff;
+  font-size:38px;
+  animation:bounceIn .55s var(--ease-out);
+  box-shadow:0 10px 30px rgba(16,185,129,.35);
+}
+@keyframes bounceIn{
+  0%{ transform:scale(0); opacity:0; }
+  55%{ transform:scale(1.15); opacity:1; }
+  75%{ transform:scale(.95); }
+  100%{ transform:scale(1); }
+}
+
+.modal h3{
+  margin:0 0 6px;
+  font-size:20px;
+  font-weight:900;
+}
+.modal p{
+  margin:0 0 8px;
+  font-size:13px;
+  color:var(--c-text-soft);
+}
+.invoice-chip{
+  display:inline-block;
+  background:var(--c-primary-soft);
+  padding:8px 14px;
+  border-radius:99px;
+  font-size:12px;
+  font-weight:900;
+  color:var(--c-primary);
+  letter-spacing:.5px;
+  margin:6px 0 20px;
+  font-family:ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+.modal .actions{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+.modal .actions .btn{ padding:13px; }
+
+/* =========================================================
+   TOAST
+   ========================================================= */
+#toast{
+  position:fixed;
+  left:50%;
+  bottom:100px;
+  transform:translateX(-50%) translateY(20px);
+  background:var(--c-primary);
+  color:#fff;
+  padding:12px 20px;
+  border-radius:99px;
+  font-size:13px;
+  font-weight:700;
+  opacity:0;
+  pointer-events:none;
+  transition:all var(--dur) var(--ease-out);
+  z-index:999;
+  box-shadow:var(--sh-lg);
+  max-width:90vw;
+  text-align:center;
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+#toast.show{
+  opacity:1;
+  transform:translateX(-50%) translateY(0);
+}
+#toast.toast-success{ background:var(--c-success); }
+#toast.toast-error{ background:var(--c-danger); }
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+@media (max-width:700px){
+  .grid-2{ grid-template-columns:1fr; }
+  .grid-3{ grid-template-columns:1fr; }
+  .picker-grid{ grid-template-columns:1fr; }
+  .product-grid{ grid-template-columns:1fr 70px 100px; }
+  .card{ margin:0 8px 12px; padding:16px; }
+  .app{ padding-bottom:130px; }
+  .bottom-bar .step-indicator{ display:none; }
+  .app-title .sub{ display:none; }
+  .slide-head{ padding:18px 4px 14px; }
+  .save-state{ font-size:10px; padding:5px 8px; }
+}
+
+/* Hide on very small screens - let name field full width */
+@media (max-width:420px){
+  .product-grid{ grid-template-columns:1fr 1fr; }
+  .product-grid .pprice{ grid-column:1/-1; }
+}
+
+/* =========================================================
+   ANIMATIONS
+   ========================================================= */
+@keyframes fadeUp{
+  from{ opacity:0; transform:translateY(8px); }
+  to{ opacity:1; transform:translateY(0); }
+}
+.card{ animation:fadeUp .35s var(--ease-out) backwards; }
+.card:nth-child(1){ animation-delay:.05s; }
+.card:nth-child(2){ animation-delay:.1s; }
+.card:nth-child(3){ animation-delay:.15s; }
+</style>
+</head>
+<body>
+
+<div class="app">
+
+  <!-- ===================== STICKY TOP ===================== -->
+  <div class="sticky-top">
+    <div class="app-head">
+      <div class="app-title">
+        <h1>PARTNERS</h1>
+        <span class="sub">ใบกำกับภาษี / ใบเสร็จรับเงิน</span>
+      </div>
+      <div class="save-state" id="saveState">
+        <span class="dot"></span>
+        <span id="saveStateText">พร้อมใช้งาน</span>
+      </div>
+    </div>
+
+    <div class="progress-wrap">
+      <div class="progress-track">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+      <div class="progress-meta">
+        <span id="progressLabel">เริ่มกรอกข้อมูล</span>
+        <span class="pct" id="progressPct">0%</span>
+      </div>
+    </div>
+
+    <div class="steps" id="stepsBar">
+      <button type="button" class="step-pill active" data-slide="0" onclick="goToFormSlide(0)">
+        <span class="num"><span>1</span></span> ร้านค้า
+      </button>
+      <button type="button" class="step-pill" data-slide="1" onclick="goToFormSlide(1)">
+        <span class="num"><span>2</span></span> ลูกค้า
+      </button>
+      <button type="button" class="step-pill" data-slide="2" onclick="goToFormSlide(2)">
+        <span class="num"><span>3</span></span> สินค้า
+      </button>
+      <button type="button" class="step-pill" data-slide="3" onclick="goToFormSlide(3)">
+        <span class="num"><span>4</span></span> ชำระเงิน
+      </button>
+    </div>
+  </div>
+
+  <!-- ===================== DRAFT BANNER ===================== -->
+  <div class="draft-banner" id="draftBanner" hidden>
+    <span class="ico">💾</span>
+    <span>พบข้อมูลที่กรอกค้างไว้</span>
+    <span class="spacer"></span>
+    <button type="button" class="restore" onclick="restoreDraft()">กู้คืน</button>
+    <button type="button" class="discard" onclick="discardDraft()">ลบทิ้ง</button>
+  </div>
+
+  <!-- ===================== FORM ===================== -->
+  <form id="mainForm" novalidate onsubmit="return false;">
+
+    <div class="form-slider" id="formSlider">
+
+      <!-- ========== SLIDE 1: COMPANY ========== -->
+      <div class="form-slide" data-slide="0">
+        <div class="slide-head">
+          <div class="icon">🏢</div>
+          <div class="txt">
+            <h2>ข้อมูลร้านค้า</h2>
+            <p>ข้อมูลนี้จะถูกบันทึกไว้ใช้ครั้งต่อไป</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="field-group">
+
+            <div class="field">
+              <label class="field-label" for="companyEn">
+                ชื่อบริษัท (EN) <span class="required">*</span>
+              </label>
+              <input id="companyEn" type="text" required autocomplete="organization"
+                placeholder="THAI FINTECH COMPANY LIMITED">
+              <div class="field-hint">ชื่อที่จะแสดงบนหัวใบกำกับภาษี</div>
+            </div>
+
+            <div class="field">
+              <label class="field-label" for="storeName">ชื่อบริษัท (TH)</label>
+              <input id="storeName" type="text" placeholder="บริษัท ไทย ฟินเทค จำกัด (สำนักงานใหญ่)">
+            </div>
+
+            <div class="field">
+              <label class="field-label" for="storeAddress">ที่อยู่บริษัท</label>
+              <textarea id="storeAddress" placeholder="เลขที่ / อาคาร / ชั้น / ซอย / แขวง / เขต / จังหวัด / รหัสไปรษณีย์"></textarea>
+            </div>
+
+            <div class="grid-2">
+              <div class="field">
+                <label class="field-label" for="taxId">Tax ID</label>
+                <input id="taxId" type="text" inputmode="numeric" placeholder="0105560086541">
+              </div>
+              <div class="field">
+                <label class="field-label" for="storePhone">เบอร์โทร</label>
+                <input id="storePhone" type="tel" placeholder="02-105-4638">
+              </div>
+            </div>
+
+            <div class="grid-2">
+              <div class="field">
+                <label class="field-label" for="email">Email</label>
+                <input id="email" type="email" autocomplete="email" placeholder="service@example.co.th">
+              </div>
+              <div class="field">
+                <label class="field-label" for="website">Website</label>
+                <input id="website" type="text" placeholder="www.example.com">
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="field-label" for="platform">Platform</label>
+              <input id="platform" type="text" placeholder="ThisShop (Mobile Application)">
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- ========== SLIDE 2: CUSTOMER ========== -->
+      <div class="form-slide" data-slide="1">
+        <div class="slide-head">
+          <div class="icon">👤</div>
+          <div class="txt">
+            <h2>ข้อมูลลูกค้า</h2>
+            <p>ข้อมูลผู้ซื้อที่จะปรากฏบนเอกสาร</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="field-group">
+
+            <div class="field">
+              <label class="field-label" for="customer">
+                ชื่อลูกค้า <span class="required">*</span>
+              </label>
+              <input id="customer" type="text" required autocomplete="name"
+                placeholder="เช่น คุณธิดาภา กำบัง">
+            </div>
+
+            <div class="field">
+              <label class="field-label" for="customerAddress">ที่อยู่ลูกค้า</label>
+              <textarea id="customerAddress" placeholder="เลขที่ / หมู่ / ตำบล / อำเภอ / จังหวัด / รหัสไปรษณีย์"></textarea>
+            </div>
+
+            <div class="grid-2">
+              <div class="field">
+                <label class="field-label" for="customerPhone">โทรศัพท์</label>
+                <input id="customerPhone" type="tel" placeholder="08X-XXX-XXXX">
+              </div>
+              <div class="field">
+                <label class="field-label" for="customerTaxId">Tax ID ลูกค้า</label>
+                <input id="customerTaxId" type="text" inputmode="numeric" placeholder="เลข 13 หลัก">
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- ========== SLIDE 3: PRODUCTS ========== -->
+      <div class="form-slide" data-slide="2">
+        <div class="slide-head">
+          <div class="icon">📱</div>
+          <div class="txt">
+            <h2>รายการสินค้า</h2>
+            <p>เลือกจากรายการ iPhone พร้อม SN / IMEI</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="field-group">
+            <div class="grid-2">
+              <div class="field">
+                <label class="field-label" for="purchaseDate">
+                  วันที่ออกเอกสาร <span class="required">*</span>
+                </label>
+                <input id="purchaseDate" type="date" required>
+              </div>
+              <div class="field">
+                <label class="field-label" for="orderNumber">Order Ref</label>
+                <input id="orderNumber" type="text" placeholder="621553732251807744">
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="field-label" for="seller">ผู้ขาย</label>
+              <input id="seller" type="text" placeholder="ชื่อพนักงาน / ผู้ขาย">
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div id="products"></div>
+          <button type="button" class="btn-add" onclick="addProduct()">
+            <span style="font-size:16px">＋</span> เพิ่มสินค้า
+          </button>
+
+          <div class="live-total" id="liveTotal" hidden>
+            <span class="label">ยอดรวมสินค้า</span>
+            <span class="amount" id="liveTotalAmount">0.00<small>THB</small></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========== SLIDE 4: PAYMENT ========== -->
+      <div class="form-slide" data-slide="3">
+        <div class="slide-head">
+          <div class="icon">💳</div>
+          <div class="txt">
+            <h2>การชำระเงิน</h2>
+            <p>เลือกวิธีชำระและกรอกรายละเอียด</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="field" style="margin-bottom:6px">
+            <label class="field-label">
+              วิธีชำระเงิน <span class="required">*</span>
+            </label>
+            <div class="pay-methods" id="payMethods">
+              <button type="button" class="pay-btn active" data-method="installment">
+                <span class="ico">💳</span>ผ่อนชำระ
+              </button>
+              <button type="button" class="pay-btn" data-method="cash">
+                <span class="ico">💵</span>เงินสด
+              </button>
+              <button type="button" class="pay-btn" data-method="transfer">
+                <span class="ico">🏦</span>โอนเงิน
+              </button>
+            </div>
+            <input type="hidden" id="paymentMethod" value="installment">
+          </div>
+
+          <!-- Installment -->
+          <div class="pay-detail" id="payDetail-installment">
+            <div class="grid-2">
+              <div class="field">
+                <label class="field-label" for="downPercent">เงินดาวน์ (%)</label>
+                <input id="downPercent" type="number" value="40" min="0" max="100" step="1">
+              </div>
+              <div class="field">
+                <label class="field-label" for="installmentMonths">จำนวนงวด (เดือน)</label>
+                <input id="installmentMonths" type="number" value="12" min="1" step="1">
+              </div>
+            </div>
+            <div class="field-hint" id="installmentPreview" style="margin-top:10px"></div>
+          </div>
+
+          <!-- Cash -->
+          <div class="pay-detail" id="payDetail-cash" hidden>
+            <div class="field">
+              <label class="field-label" for="cash">รับเงินสด (บาท)</label>
+              <input id="cash" type="number" value="0" min="0" step="0.01" placeholder="0.00">
+            </div>
+          </div>
+
+          <!-- Transfer -->
+          <div class="pay-detail" id="payDetail-transfer" hidden>
+            <div class="grid-2">
+              <div class="field">
+                <label class="field-label" for="bankName">ธนาคาร</label>
+                <input id="bankName" type="text" placeholder="เช่น ธนาคารกสิกรไทย">
+              </div>
+              <div class="field">
+                <label class="field-label" for="bankAccount">เลขที่บัญชี</label>
+                <input id="bankAccount" type="text" placeholder="XXX-X-XXXXX-X">
+              </div>
+              <div class="field">
+                <label class="field-label" for="transferDate">วันที่โอน</label>
+                <input id="transferDate" type="date">
+              </div>
+              <div class="field">
+                <label class="field-label" for="transferRef">เลขที่อ้างอิง</label>
+                <input id="transferRef" type="text" placeholder="Ref No.">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="field-group">
+            <div class="grid-2">
+              <div class="field">
+                <label class="field-label" for="discount">ส่วนลด (บาท)</label>
+                <input id="discount" type="number" value="0" min="0" step="0.01">
+              </div>
+              <div class="field">
+                <label class="field-label" for="terms">Terms</label>
+                <input id="terms" type="text" placeholder="Installment 12 Months">
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="field-label" for="note">หมายเหตุ / REMARKS</label>
+              <textarea id="note" placeholder="เช่น - Delivery by: ...&#10;- สินค้าซื้อแล้วไม่รับเปลี่ยนหรือคืน&#10;- No exchange or refund."></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </form>
+
+  <!-- Hidden elements kept for compatibility -->
+  <div style="display:none">
+    <span id="modeBadge">NEW</span>
+    <span id="afterSave" hidden></span>
+    <span id="savedInvoiceNo"></span>
+    <a id="viewListLink" href="data.html"></a>
+    <button id="cancelBtn" onclick="cancelEdit()">cancel</button>
+  </div>
+
+</div>
+
+<!-- ===================== STICKY BOTTOM BAR ===================== -->
+<div class="bottom-bar">
+  <button type="button" class="btn btn-light btn-icon" id="prevBtn" onclick="prevSlide()" disabled>←</button>
+  <span class="step-indicator" id="stepIndicator">ขั้นที่ 1 / 4</span>
+  <button type="button" class="btn btn-primary" id="nextBtn" onclick="nextSlide(currentFormSlide)">ถัดไป →</button>
+  <button type="button" class="btn btn-primary" id="saveBtnTop" onclick="saveRecord()" hidden>💾 บันทึก</button>
+  <button type="button" class="btn btn-ghost btn-icon" onclick="clearForm()" title="ล้างฟอร์ม">🗑</button>
+</div>
+
+<!-- ===================== SUCCESS MODAL ===================== -->
+<div class="modal-backdrop" id="successModal">
+  <div class="modal">
+    <div class="check-anim">✓</div>
+    <h3>บันทึกเรียบร้อย!</h3>
+    <p>เอกสารของคุณถูกบันทึกไว้แล้ว</p>
+    <div class="invoice-chip" id="modalInvoice">INV000000001</div>
+    <div class="actions">
+      <button type="button" class="btn btn-primary btn-block" onclick="modalPreview()">
+        📄 สร้างเอกสารเลย
+      </button>
+      <button type="button" class="btn btn-light btn-block" onclick="modalGoList()">
+        📋 ดูรายการทั้งหมด
+      </button>
+      <button type="button" class="btn btn-ghost btn-block" onclick="modalNew()">
+        ➕ เพิ่มรายการใหม่
+      </button>
+    </div>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<script>
+/* =========================================================
+   CONSTANTS & STATE
+   ========================================================= */
+const APPLE_STORAGE_KEY   = "partners_apple_purchase_records";
+const STORE_STORAGE_KEY   = "partners_store_info";
+const INVOICE_STORAGE_KEY = "partners_invoice";
+const DRAFT_STORAGE_KEY   = "partners_form_draft";
+
+let iphoneData       = { models: [] };
+let appleRecords     = [];
+let appleEditingId   = null;
+let productCount     = 0;
+let currentInvoiceNo = "";
+let currentFormSlide = 0;
+let savedRecordId    = null;
+let draftTimer       = null;
+let isInitialLoad    = true;
+
+const FALLBACK_IPHONE_DATA = {
+  models: [
+    { name:"iPhone 15 Pro Max", series:"iPhone 15", capacities:["256GB","512GB","1TB"], colors:["Black Titanium","White Titanium","Blue Titanium","Natural Titanium"] },
+    { name:"iPhone 15",         series:"iPhone 15", capacities:["128GB","256GB","512GB"], colors:["Black","Blue","Green","Yellow","Pink"] },
+    { name:"iPhone 14",         series:"iPhone 14", capacities:["128GB","256GB","512GB"], colors:["Blue","Purple","Yellow","Midnight","Starlight","Red"] },
+    { name:"iPhone 13",         series:"iPhone 13", capacities:["128GB","256GB","512GB"], colors:["Pink","Blue","Midnight","Starlight","Red","Green"] },
+    { name:"iPhone 12",         series:"iPhone 12", capacities:["64GB","128GB","256GB"],  colors:["Black","White","Red","Green","Blue","Purple"] },
+    { name:"iPhone 11",         series:"iPhone 11", capacities:["64GB","128GB","256GB"],  colors:["Black","White","Red","Green","Blue","Purple"] }
+  ]
+};
+
+/* =========================================================
+   INIT
+   ========================================================= */
+document.addEventListener("DOMContentLoaded", init);
+
+async function init(){
+  await loadIphoneData();
+  loadStoreInfo();
+  loadAppleRecords();
+  bindEvents();
+  bindPaymentMethods();
+
+  const params = new URLSearchParams(location.search);
+  const editId = params.get("id");
+  const isNew = params.get("new") === "1";
+
+  if(editId){
+    const rec = appleRecords.find(r => r.id === editId);
+    if(rec){
+      appleEditingId = rec.id;
+      currentInvoiceNo = rec.invoiceNo || "";
+      applyFormData(rec);
+      showToast("✏️ กำลังแก้ไข " + (rec.invoiceNo || ""), "success");
+    }
+  }else if(!isNew){
+    checkDraftBanner();
+  }
+
+  if(!document.getElementById("products").children.length){
+    addProduct();
+  }
+
+  if(!document.getElementById("purchaseDate").value){
+    document.getElementById("purchaseDate").value = new Date().toISOString().slice(0,10);
+  }
+
+  updateFormDots(0);
+  updateProgress();
+  updateBottomBar();
+
+  isInitialLoad = false;
+
+  // Listen for any input to trigger autosave + progress update
+  document.getElementById("mainForm").addEventListener("input", () => {
+    if(isInitialLoad) return;
+    updateProgress();
+    updateLiveTotal();
+    updateInstallmentPreview();
+    scheduleDraftSave();
+  });
+  document.getElementById("mainForm").addEventListener("change", () => {
+    if(isInitialLoad) return;
+    updateProgress();
+    updateLiveTotal();
+    updateInstallmentPreview();
+    scheduleDraftSave();
+  });
+
+  // Keyboard shortcuts
+  document.addEventListener("keydown", (e) => {
+    // Ctrl+S / Cmd+S = Save
+    if((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "s"){
+      e.preventDefault();
+      saveRecord();
+    }
+    // Esc = clear if not editing
+    if(e.key === "Escape" && !appleEditingId && !document.getElementById("successModal").classList.contains("show")){
+      if(confirm("ล้างข้อมูลทั้งหมด?")) clearForm();
+    }
+  });
+
+  // Resize handler
+  window.addEventListener("resize", () => {
+    const slider = document.getElementById("formSlider");
+    slider.scrollLeft = currentFormSlide * slider.clientWidth;
+  });
+}
+
+/* =========================================================
+   DATA.JSON
+   ========================================================= */
+async function loadIphoneData(){
+  try{
+    const res = await fetch("data.json", { cache:"no-store" });
+    if(res.ok){ iphoneData = await res.json(); return; }
+  }catch(e){ console.warn("Cannot fetch data.json — using fallback."); }
+  iphoneData = FALLBACK_IPHONE_DATA;
+}
+
+/* =========================================================
+   EVENTS
+   ========================================================= */
+function bindEvents(){
+  ["companyEn","storeName","storeAddress","storePhone","taxId","email","website","platform"]
+    .forEach(id => {
+      const el = document.getElementById(id);
+      if(el) el.addEventListener("input", saveStoreInfo);
+    });
+
+  const productsEl = document.getElementById("products");
+  productsEl.addEventListener("change", handleProductChange);
+  productsEl.addEventListener("input", handleProductChange);
+
+  const slider = document.getElementById("formSlider");
+  slider.addEventListener("scroll", () => {
+    const idx = Math.round(slider.scrollLeft / slider.clientWidth);
+    if(idx !== currentFormSlide){
+      currentFormSlide = idx;
+      updateFormDots(idx);
+      updateBottomBar();
+    }
+  }, { passive:true });
+
+  // Live total recompute on any change
+  document.getElementById("products").addEventListener("input", updateLiveTotal, { passive:true });
+}
+
+/* =========================================================
+   FORM SLIDER NAVIGATION
+   ========================================================= */
+function goToFormSlide(idx){
+  const slider = document.getElementById("formSlider");
+  const total = slider.querySelectorAll(".form-slide").length;
+  idx = Math.max(0, Math.min(idx, total - 1));
+  slider.scrollTo({ left: idx * slider.clientWidth, behavior:"smooth" });
+  currentFormSlide = idx;
+  updateFormDots(idx);
+  updateBottomBar();
+}
+
+function nextSlide(fromIdx){
+  saveStoreInfo();
+  // Validate current slide before advancing
+  if(!validateSlide(fromIdx)) return;
+  goToFormSlide(fromIdx + 1);
+}
+
+function prevSlide(){
+  saveStoreInfo();
+  goToFormSlide(currentFormSlide - 1);
+}
+
+function validateSlide(idx){
+  if(idx === 0){
+    const v = document.getElementById("companyEn").value.trim();
+    if(!v){
+      highlightField("companyEn");
+      showToast("กรุณากรอกชื่อบริษัท (EN)", "error");
+      return false;
+    }
+  }
+  if(idx === 1){
+    const v = document.getElementById("customer").value.trim();
+    if(!v){
+      highlightField("customer");
+      showToast("กรุณากรอกชื่อลูกค้า", "error");
+      return false;
+    }
+  }
+  if(idx === 2){
+    const v = document.getElementById("purchaseDate").value;
+    if(!v){
+      highlightField("purchaseDate");
+      showToast("กรุณาเลือกวันที่ออกเอกสาร", "error");
+      return false;
+    }
+  }
+  return true;
+}
+
+function highlightField(id){
+  const el = document.getElementById(id);
+  if(!el) return;
+  el.classList.add("invalid");
+  el.focus();
+  el.scrollIntoView({ behavior:"smooth", block:"center" });
+  setTimeout(() => el.classList.remove("invalid"), 2200);
+}
+
+function updateFormDots(idx){
+  currentFormSlide = idx;
+  document.querySelectorAll(".step-pill").forEach(p => {
+    const n = Number(p.dataset.slide);
+    p.classList.toggle("active", n === idx);
+    p.classList.toggle("done", n < idx);
+  });
+}
+
+function updateBottomBar(){
+  const prev = document.getElementById("prevBtn");
+  const next = document.getElementById("nextBtn");
+  const save = document.getElementById("saveBtnTop");
+  const indicator = document.getElementById("stepIndicator");
+
+  prev.disabled = currentFormSlide === 0;
+
+  if(currentFormSlide === 3){
+    next.hidden = true;
+    save.hidden = false;
+  }else{
+    next.hidden = false;
+    save.hidden = true;
+  }
+
+  indicator.textContent = "ขั้นที่ " + (currentFormSlide + 1) + " / 4";
+}
+
+/* =========================================================
+   PAYMENT METHODS
+   ========================================================= */
+function bindPaymentMethods(){
+  document.querySelectorAll(".pay-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const method = btn.dataset.method;
+      document.querySelectorAll(".pay-btn").forEach(b => b.classList.toggle("active", b === btn));
+      document.getElementById("paymentMethod").value = method;
+
+      document.querySelectorAll(".pay-detail").forEach(d => {
+        const show = d.id === "payDetail-" + method;
+        d.hidden = !show;
+        if(show){
+          d.style.animation = "none";
+          void d.offsetWidth;
+          d.style.animation = "slideDown .3s var(--ease-out)";
+        }
+      });
+
+      updateInstallmentPreview();
+      updateProgress();
+      scheduleDraftSave();
+    });
+  });
+
+  // Live installment preview
+  ["downPercent","installmentMonths","discount","cash","downPercent"].forEach(id => {
+    const el = document.getElementById(id);
+    if(el){
+      el.addEventListener("input", () => {
+        updateInstallmentPreview();
+        updateLiveTotal();
+      });
+    }
+  });
+}
+
+function updateInstallmentPreview(){
+  const method = document.getElementById("paymentMethod").value;
+  const box = document.getElementById("installmentPreview");
+  if(!box) return;
+  if(method !== "installment"){ box.textContent = ""; return; }
+
+  const total = calcProductsTotal();
+  const discount = Number(document.getElementById("discount").value) || 0;
+  const net = Math.max(0, total - discount);
+  const pct = Number(document.getElementById("downPercent").value) || 0;
+  const months = Number(document.getElementById("installmentMonths").value) || 0;
+
+  if(!total || !months){ box.textContent = ""; return; }
+
+  const down = net * pct / 100;
+  const financed = net - down;
+  const monthly = financed / months;
+
+  box.innerHTML = `
+    <span style="color:var(--c-text-soft)">ยอดจัดไฟแนนซ์ </span>
+    <b style="color:var(--c-primary)">฿${money(financed)}</b>
+    <span style="color:var(--c-text-mute);margin:0 6px">·</span>
+    <span style="color:var(--c-text-soft)">ผ่อนเดือนละ </span>
+    <b style="color:var(--c-primary)">฿${money(monthly)}</b>
+    <span style="color:var(--c-text-mute)"> × ${months} เดือน</span>
+  `;
+}
+
+/* =========================================================
+   STORE INFO PERSISTENCE
+   ========================================================= */
+function saveStoreInfo(){
+  const info = {
+    companyEn: document.getElementById("companyEn").value,
+    name:      document.getElementById("storeName").value,
+    address:   document.getElementById("storeAddress").value,
+    phone:     document.getElementById("storePhone").value,
+    taxId:     document.getElementById("taxId").value,
+    email:     document.getElementById("email").value,
+    website:   document.getElementById("website").value,
+    platform:  document.getElementById("platform").value
+  };
+  try{ localStorage.setItem(STORE_STORAGE_KEY, JSON.stringify(info)); }
+  catch(e){ console.warn("Store info save failed", e); }
+}
+
+function loadStoreInfo(){
+  try{
+    const raw = localStorage.getItem(STORE_STORAGE_KEY);
+    const defaults = {
+      companyEn:"THAI FINTECH COMPANY LIMITED",
+      name:"บริษัท ไทย ฟินเทค จำกัด (สำนักงานใหญ่)",
+      address:"เลขที่ 6/10 อาคารพัฒณสิน ชั้นที่ 15 และ 17 ซอยพัฒณสิน แขวงทุ่งมหาเมฆ เขตสาทร กรุงเทพฯ 10120",
+      phone:"02-105-4638",
+      taxId:"0105560086541",
+      email:"service@example.co.th",
+      website:"www.example.com",
+      platform:"ThisShop (Mobile Application)"
+    };
+    const info = raw ? { ...defaults, ...JSON.parse(raw) } : defaults;
+
+    document.getElementById("companyEn").value    = info.companyEn || "";
+    document.getElementById("storeName").value    = info.name || "";
+    document.getElementById("storeAddress").value = info.address || "";
+    document.getElementById("storePhone").value   = info.phone || "";
+    document.getElementById("taxId").value        = info.taxId || "";
+    document.getElementById("email").value        = info.email || "";
+    document.getElementById("website").value      = info.website || "";
+    document.getElementById("platform").value     = info.platform || "";
+  }catch(e){ console.error("Store info load error:", e); }
+}
+
+/* =========================================================
+   PRODUCT PICKER
+   ========================================================= */
+function buildModelOptions(selected){
+  const groups = {};
+  iphoneData.models.forEach(m=>{
+    if(!groups[m.series]) groups[m.series] = [];
+    groups[m.series].push(m);
+  });
+  let html = `<option value="">— เลือกรุ่น iPhone —</option>`;
+  Object.keys(groups).sort().reverse().forEach(series=>{
+    html += `<optgroup label="${escapeHtml(series)}">`;
+    groups[series].forEach(m=>{
+      html += `<option value="${escapeHtml(m.name)}" ${selected===m.name?"selected":""}>${escapeHtml(m.name)}</option>`;
+    });
+    html += `</optgroup>`;
+  });
+  return html;
+}
+
+function findModel(name){
+  return iphoneData.models.find(m => m.name === name) || null;
+}
+
+function buildOptionList(arr, selected, placeholder){
+  let html = `<option value="">${placeholder}</option>`;
+  arr.forEach(v=>{
+    html += `<option value="${escapeHtml(v)}" ${selected===v?"selected":""}>${escapeHtml(v)}</option>`;
+  });
+  return html;
+}
+
+/* =========================================================
+   PRODUCTS
+   ========================================================= */
+function addProduct(prefill){
+  productCount++;
+  const p = prefill || {};
+  const idx = productCount;
+
+  const box = document.createElement("div");
+  box.className = "product";
+  box.dataset.idx = idx;
+  box.style.animation = "fadeUp .35s var(--ease-out)";
+  box.innerHTML = `
+    <div class="product-head">
+      <b>สินค้า ${idx}</b>
+      <button type="button" class="remove" onclick="removeProduct(this)">ลบ</button>
+    </div>
+
+    <div class="picker-grid">
+      <select class="pmodel">${buildModelOptions(p.modelName||"")}</select>
+      <select class="pcapacity">${buildOptionList([], p.capacity||"", "— ความจุ —")}</select>
+      <select class="pcolor">${buildOptionList([], p.color||"", "— สี —")}</select>
+    </div>
+
+    <div class="grid-2">
+      <div class="field">
+        <label class="field-label">Item Code</label>
+        <input class="pitemCode" placeholder="เช่น MGE13TH/A" value="${escapeHtml(p.itemCode||"")}">
+      </div>
+      <div class="field">
+        <label class="field-label">Apple Model</label>
+        <input class="pmodelCode" placeholder="เช่น A2399" value="${escapeHtml(p.modelCode||"")}">
+      </div>
+    </div>
+
+    <div class="field" style="margin-top:10px">
+      <label class="field-label">ชื่อสินค้า (แก้ไขได้)</label>
+      <input class="pname" placeholder="จะเติมอัตโนมัติจากตัวเลือกด้านบน" value="${escapeHtml(p.name||"")}">
+    </div>
+
+    <div class="grid-2" style="margin-top:10px">
+      <div class="field">
+        <label class="field-label">Serial Number (SN)</label>
+        <input class="psn" placeholder="เช่น FD9DW01R0GPT" autocapitalize="characters" value="${escapeHtml(p.sn||"")}">
+      </div>
+      <div class="field">
+        <label class="field-label">IMEI</label>
+        <input class="pimei" inputmode="numeric" placeholder="15 หลัก" value="${escapeHtml(p.imei||"")}">
+      </div>
+      <div class="field">
+        <label class="field-label">IMEI2</label>
+        <input class="pimei2" inputmode="numeric" placeholder="ถ้ามี" value="${escapeHtml(p.imei2||"")}">
+      </div>
+      <div class="field">
+        <label class="field-label">รายละเอียดเพิ่มเติม</label>
+        <input class="pdesc" placeholder="เช่น สภาพ 95% / มีกล่อง" value="${escapeHtml(p.desc||"")}">
+      </div>
+    </div>
+
+    <div class="product-grid">
+      <div class="field">
+        <label class="field-label">จำนวน</label>
+        <input class="pqty" type="number" min="1" value="${p.qty||1}" placeholder="1">
+      </div>
+      <div class="field">
+        <label class="field-label">หน่วย</label>
+        <input class="punit" value="${escapeHtml(p.unit||"ชิ้น")}" placeholder="ชิ้น">
+      </div>
+      <div class="field">
+        <label class="field-label">ราคา/หน่วย</label>
+        <input class="pprice" type="number" min="0" step="0.01" value="${p.price||0}" placeholder="0.00">
+      </div>
+    </div>
+  `;
+
+  document.getElementById("products").appendChild(box);
+
+  if(p.modelName){
+    const model = findModel(p.modelName);
+    if(model){
+      box.querySelector(".pcapacity").innerHTML = buildOptionList(model.capacities, p.capacity||"", "— ความจุ —");
+      box.querySelector(".pcolor").innerHTML    = buildOptionList(model.colors,     p.color||"",    "— สี —");
+    }
+  }
+
+  updateLiveTotal();
+  updateProgress();
+}
+
+function removeProduct(btn){
+  const card = btn.closest(".product");
+  if(!card) return;
+  card.style.animation = "fadeUp .2s reverse";
+  setTimeout(() => {
+    card.remove();
+    updateLiveTotal();
+    updateProgress();
+    scheduleDraftSave();
+  }, 150);
+}
+
+function handleProductChange(e){
+  const card = e.target.closest(".product");
+  if(!card) return;
+
+  if(e.target.classList.contains("pmodel")){
+    const model = findModel(e.target.value);
+    const capSel = card.querySelector(".pcapacity");
+    const colSel = card.querySelector(".pcolor");
+    if(model){
+      capSel.innerHTML = buildOptionList(model.capacities, "", "— ความจุ —");
+      colSel.innerHTML = buildOptionList(model.colors,     "", "— สี —");
+    }else{
+      capSel.innerHTML = buildOptionList([], "", "— ความจุ —");
+      colSel.innerHTML = buildOptionList([], "", "— สี —");
+    }
+    autoFillProductName(card);
+  }else if(e.target.classList.contains("pcapacity") || e.target.classList.contains("pcolor")){
+    autoFillProductName(card);
+  }
+}
+
+function autoFillProductName(card){
+  const model = card.querySelector(".pmodel").value;
+  const cap   = card.querySelector(".pcapacity").value;
+  const col   = card.querySelector(".pcolor").value;
+  const nameField = card.querySelector(".pname");
+  if(!nameField.dataset.custom){
+    const parts = [ "Apple", model, col, cap ].filter(Boolean);
+    nameField.value = parts.join(" ").replace(/\s+/g," ").trim();
+  }
+  nameField.oninput = () => { nameField.dataset.custom = "1"; };
+}
+
+/* =========================================================
+   LIVE TOTAL
+   ========================================================= */
+function calcProductsTotal(){
+  let total = 0;
+  document.querySelectorAll(".product").forEach(p => {
+    const qty = Number(p.querySelector(".pqty").value) || 0;
+    const price = Number(p.querySelector(".pprice").value) || 0;
+    total += qty * price;
+  });
+  return total;
+}
+
+function updateLiveTotal(){
+  const total = calcProductsTotal();
+  const box = document.getElementById("liveTotal");
+  if(!box) return;
+
+  if(total > 0){
+    box.hidden = false;
+    document.getElementById("liveTotalAmount").innerHTML = money(total) + "<small>THB</small>";
+  }else{
+    box.hidden = true;
+  }
+}
+
+/* =========================================================
+   PROGRESS CALCULATION
+   ========================================================= */
+function updateProgress(){
+  let score = 0;
+
+  // Company (20)
+  if(document.getElementById("companyEn").value.trim()) score += 15;
+  if(document.getElementById("storeAddress").value.trim()) score += 5;
+
+  // Customer (20)
+  if(document.getElementById("customer").value.trim()) score += 15;
+  if(document.getElementById("customerAddress").value.trim()) score += 5;
+
+  // Products (30)
+  const products = document.querySelectorAll(".product");
+  if(products.length > 0) score += 10;
+  let hasProductName = false, hasProductPrice = false;
+  products.forEach(p => {
+    if(p.querySelector(".pname").value.trim()) hasProductName = true;
+    if(Number(p.querySelector(".pprice").value) > 0) hasProductPrice = true;
+  });
+  if(hasProductName) score += 12;
+  if(hasProductPrice) score += 8;
+
+  // Payment (30)
+  if(document.getElementById("purchaseDate").value) score += 10;
+  if(document.getElementById("paymentMethod").value) score += 10;
+
+  const method = document.getElementById("paymentMethod").value;
+  if(method === "installment"){
+    if(Number(document.getElementById("installmentMonths").value) > 0) score += 10;
+  }else if(method === "cash"){
+    if(Number(document.getElementById("cash").value) > 0) score += 10;
+  }else if(method === "transfer"){
+    if(document.getElementById("bankName").value || document.getElementById("bankAccount").value) score += 10;
+  }
+
+  const pct = Math.min(100, score);
+  document.getElementById("progressBar").style.width = pct + "%";
+  document.getElementById("progressPct").textContent = pct + "%";
+
+  const label = document.getElementById("progressLabel");
+  if(pct === 0) label.textContent = "เริ่มกรอกข้อมูล";
+  else if(pct < 30) label.textContent = "เริ่มต้นดีแล้ว";
+  else if(pct < 60) label.textContent = "กำลังไปได้สวย";
+  else if(pct < 90) label.textContent = "ใกล้เสร็จแล้ว";
+  else if(pct < 100) label.textContent = "อีกนิดเดียว!";
+  else label.textContent = "✅ ข้อมูลครบถ้วน";
+}
+
+/* =========================================================
+   DRAFT AUTO-SAVE
+   ========================================================= */
+function scheduleDraftSave(){
+  setState("saving");
+  clearTimeout(draftTimer);
+  draftTimer = setTimeout(() => {
+    saveDraft();
+    setState("saved");
+  }, 600);
+}
+
+function saveDraft(){
+  try{
+    const data = collectFormData();
+    // Don't save if completely empty
+    if(!data.companyEn && !data.customer && (!data.products || !data.products[0].name)) return;
+
+    localStorage.setItem(DRAFT_STORAGE_KEY, JSON.stringify({
+      ...data,
+      _savedAt: Date.now()
+    }));
+  }catch(e){ console.warn("Draft save failed", e); }
+}
+
+function checkDraftBanner(){
+  try{
+    const raw = localStorage.getItem(DRAFT_STORAGE_KEY);
+    if(!raw) return;
+    const draft = JSON.parse(raw);
+    if(!draft || !draft._savedAt) return;
+
+    // Only show if saved within last 7 days
+    if(Date.now() - draft._savedAt > 7 * 24 * 60 * 60 * 1000){
+      localStorage.removeItem(DRAFT_STORAGE_KEY);
+      return;
+    }
+
+    document.getElementById("draftBanner").hidden = false;
+  }catch(e){}
+}
+
+function restoreDraft(){
+  try{
+    const raw = localStorage.getItem(DRAFT_STORAGE_KEY);
+    if(!raw) return;
+    const draft = JSON.parse(raw);
+    applyFormData(draft);
+    document.getElementById("draftBanner").hidden = true;
+    updateProgress();
+    updateLiveTotal();
+    updateInstallmentPreview();
+    showToast("กู้คืนข้อมูลเรียบร้อย", "success");
+  }catch(e){
+    showToast("กู้คืนไม่สำเร็จ", "error");
+  }
+}
+
+function discardDraft(){
+  localStorage.removeItem(DRAFT_STORAGE_KEY);
+  document.getElementById("draftBanner").hidden = true;
+  showToast("ลบข้อมูลที่ค้างไว้แล้ว");
+}
+
+/* =========================================================
+   SAVE STATE INDICATOR
+   ========================================================= */
+function setState(state){
+  const el = document.getElementById("saveState");
+  const txt = document.getElementById("saveStateText");
+  el.classList.remove("saving", "saved");
+  if(state === "saving"){
+    el.classList.add("saving");
+    txt.textContent = "กำลังบันทึก...";
+  }else if(state === "saved"){
+    el.classList.add("saved");
+    txt.textContent = "บันทึกแล้ว";
+    setTimeout(() => {
+      if(el.classList.contains("saved")){
+        el.classList.remove("saved");
+        txt.textContent = "พร้อมใช้งาน";
+      }
+    }, 2500);
+  }else{
+    txt.textContent = "พร้อมใช้งาน";
+  }
+}
+
+/* =========================================================
+   FORM DATA COLLECTION
+   ========================================================= */
+function collectFormData(){
+  const products = [];
+  document.querySelectorAll(".product").forEach(p=>{
+    products.push({
+      modelName: p.querySelector(".pmodel").value.trim(),
+      capacity:  p.querySelector(".pcapacity").value.trim(),
+      color:     p.querySelector(".pcolor").value.trim(),
+      itemCode:  p.querySelector(".pitemCode").value.trim(),
+      modelCode: p.querySelector(".pmodelCode").value.trim(),
+      name:      p.querySelector(".pname").value.trim(),
+      sn:        p.querySelector(".psn").value.trim().toUpperCase(),
+      imei:      p.querySelector(".pimei").value.trim(),
+      imei2:     p.querySelector(".pimei2").value.trim(),
+      desc:      p.querySelector(".pdesc").value.trim(),
+      qty:       Number(p.querySelector(".pqty").value) || 0,
+      unit:      p.querySelector(".punit").value.trim() || "ชิ้น",
+      price:     Number(p.querySelector(".pprice").value) || 0
+    });
+  });
+
+  return {
+    id: appleEditingId || generateAppleId(),
+    invoiceNo: currentInvoiceNo || "",
+    companyEn:      document.getElementById("companyEn").value.trim(),
+    storeName:      document.getElementById("storeName").value.trim(),
+    storeAddress:   document.getElementById("storeAddress").value.trim(),
+    storePhone:     document.getElementById("storePhone").value.trim(),
+    taxId:          document.getElementById("taxId").value.trim(),
+    email:          document.getElementById("email").value.trim(),
+    website:        document.getElementById("website").value.trim(),
+    platform:       document.getElementById("platform").value.trim(),
+    customer:       document.getElementById("customer").value.trim(),
+    customerAddress:document.getElementById("customerAddress").value.trim(),
+    customerPhone:  document.getElementById("customerPhone").value.trim(),
+    customerTaxId:  document.getElementById("customerTaxId").value.trim(),
+    seller:         document.getElementById("seller").value.trim(),
+    purchaseDate:   document.getElementById("purchaseDate").value,
+    orderNumber:    document.getElementById("orderNumber").value.trim(),
+    terms:          document.getElementById("terms").value.trim(),
+    paymentMethod:  document.getElementById("paymentMethod").value,
+    downPercent:    Number(document.getElementById("downPercent").value) || 0,
+    installmentMonths: Number(document.getElementById("installmentMonths").value) || 0,
+    cash:           Number(document.getElementById("cash").value) || 0,
+    bankName:       document.getElementById("bankName").value.trim(),
+    bankAccount:    document.getElementById("bankAccount").value.trim(),
+    transferDate:   document.getElementById("transferDate").value,
+    transferRef:    document.getElementById("transferRef").value.trim(),
+    discount:       Number(document.getElementById("discount").value) || 0,
+    note:           document.getElementById("note").value.trim(),
+    products: products,
+    updatedAt: new Date().toISOString()
+  };
+}
+
+function applyFormData(rec){
+  if(!rec) return;
+  const $ = id => document.getElementById(id);
+
+  $("companyEn").value      = rec.companyEn      || "";
+  $("storeName").value      = rec.storeName      || "";
+  $("storeAddress").value   = rec.storeAddress   || "";
+  $("storePhone").value     = rec.storePhone     || "";
+  $("taxId").value          = rec.taxId          || "";
+  $("email").value          = rec.email          || "";
+  $("website").value        = rec.website        || "";
+  $("platform").value       = rec.platform       || "";
+  $("customer").value       = rec.customer       || "";
+  $("customerAddress").value= rec.customerAddress|| "";
+  $("customerPhone").value  = rec.customerPhone  || "";
+  $("customerTaxId").value  = rec.customerTaxId  || "";
+  $("seller").value         = rec.seller         || "";
+  $("purchaseDate").value   = rec.purchaseDate   || "";
+  $("orderNumber").value    = rec.orderNumber    || "";
+  $("terms").value          = rec.terms          || "";
+  $("paymentMethod").value  = rec.paymentMethod  || "installment";
+  $("downPercent").value    = rec.downPercent    ?? 40;
+  $("installmentMonths").value = rec.installmentMonths ?? 12;
+  $("cash").value           = rec.cash     ?? 0;
+  $("bankName").value       = rec.bankName     || "";
+  $("bankAccount").value    = rec.bankAccount  || "";
+  $("transferDate").value   = rec.transferDate || "";
+  $("transferRef").value    = rec.transferRef  || "";
+  $("discount").value       = rec.discount ?? 0;
+  $("note").value           = rec.note     || "";
+
+  document.querySelectorAll(".pay-btn").forEach(b => {
+    b.classList.toggle("active", b.dataset.method === rec.paymentMethod);
+  });
+  document.querySelectorAll(".pay-detail").forEach(d => {
+    d.hidden = (d.id !== "payDetail-" + (rec.paymentMethod || "installment"));
+  });
+
+  document.getElementById("products").innerHTML = "";
+  productCount = 0;
+  (rec.products && rec.products.length ? rec.products : [{}]).forEach(p => addProduct(p));
+
+  currentInvoiceNo = rec.invoiceNo || "";
+}
+
+/* =========================================================
+   SAVE / EDIT
+   ========================================================= */
+function saveRecord(){
+  const data = collectFormData();
+
+  // Validation
+  if(!data.companyEn && !data.storeName){
+    highlightField("companyEn");
+    goToFormSlide(0);
+    showToast("กรุณากรอกชื่อบริษัท", "error");
+    return null;
+  }
+  if(!data.customer){
+    highlightField("customer");
+    goToFormSlide(1);
+    showToast("กรุณากรอกชื่อลูกค้า", "error");
+    return null;
+  }
+  if(!data.purchaseDate){
+    highlightField("purchaseDate");
+    goToFormSlide(2);
+    showToast("กรุณาเลือกวันที่ออกเอกสาร", "error");
+    return null;
+  }
+
+  if(!data.invoiceNo) data.invoiceNo = nextInvoice();
+  if(!data.terms) data.terms = buildTerms(data);
+
+  setState("saving");
+
+  if(appleEditingId){
+    const idx = appleRecords.findIndex(r => r.id === appleEditingId);
+    if(idx !== -1) appleRecords[idx] = data;
+  }else{
+    appleRecords.push(data);
+    appleEditingId = data.id;
+    currentInvoiceNo = data.invoiceNo;
+  }
+
+  saveAppleRecords();
+  savedRecordId = data.id;
+
+  // Clear draft on successful save
+  localStorage.removeItem(DRAFT_STORAGE_KEY);
+  document.getElementById("draftBanner").hidden = true;
+
+  setState("saved");
+
+  // Show success modal
+  setTimeout(() => {
+    document.getElementById("modalInvoice").textContent = data.invoiceNo;
+    document.getElementById("successModal").classList.add("show");
+  }, 200);
+
+  return data;
+}
+
+function buildTerms(data){
+  if(data.paymentMethod === "installment") return `Installment ${data.installmentMonths} Months`;
+  if(data.paymentMethod === "cash") return "Cash";
+  if(data.paymentMethod === "transfer") return "Bank Transfer";
+  return "";
+}
+
+function cancelEdit(){
+  appleEditingId = null;
+  currentInvoiceNo = "";
+  clearForm();
+  history.replaceState(null, "", "index.html");
+}
+
+/* =========================================================
+   MODAL ACTIONS
+   ========================================================= */
+function modalPreview(){
+  document.getElementById("successModal").classList.remove("show");
+  if(savedRecordId){
+    setTimeout(() => {
+      location.href = "preview.html?id=" + encodeURIComponent(savedRecordId);
+    }, 150);
+  }
+}
+
+function modalGoList(){
+  document.getElementById("successModal").classList.remove("show");
+  setTimeout(() => {
+    location.href = "data.html";
+  }, 150);
+}
+
+function modalNew(){
+  document.getElementById("successModal").classList.remove("show");
+  setTimeout(() => {
+    clearForm();
+    window.scrollTo({ top:0, behavior:"smooth" });
+  }, 150);
+}
+
+/* =========================================================
+   STORAGE
+   ========================================================= */
+function loadAppleRecords(){
+  try{
+    const raw = localStorage.getItem(APPLE_STORAGE_KEY);
+    if(!raw){ appleRecords = []; return; }
+    const data = JSON.parse(raw);
+    appleRecords = Array.isArray(data) ? data : [];
+  }catch(e){
+    console.error("Load error:", e);
+    appleRecords = [];
+  }
+}
+
+function saveAppleRecords(){
+  try{
+    localStorage.setItem(APPLE_STORAGE_KEY, JSON.stringify(appleRecords));
+    return true;
+  }catch(e){
+    console.error("Save failed:", e);
+    showToast("บันทึกไม่สำเร็จ: พื้นที่จัดเก็บเต็ม", "error");
+    return false;
+  }
+}
+
+function generateAppleId(){
+  return Date.now().toString(36) + "-" + Math.random().toString(36).substring(2,9);
+}
+
+function nextInvoice(){
+  let n = Number(localStorage.getItem(INVOICE_STORAGE_KEY) || 0);
+  n++;
+  try{ localStorage.setItem(INVOICE_STORAGE_KEY, n); }catch(e){}
+  return "INV" + String(n).padStart(9,"0");
+}
+
+/* =========================================================
+   FORMATTERS
+   ========================================================= */
+function money(n){
+  const v = Number(n);
+  if(!isFinite(v)) return "0.00";
+  return v.toLocaleString("th-TH", { minimumFractionDigits:2, maximumFractionDigits:2 });
+}
+
+function escapeHtml(text){
+  return String(text ?? "")
+    .replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;").replace(/'/g,"&#039;");
+}
+
+/* =========================================================
+   CLEAR FORM
+   ========================================================= */
+function clearForm(){
+  if(appleEditingId){
+    if(!confirm("ต้องการยกเลิกการแก้ไขและล้างข้อมูลทั้งหมด?")) return;
+  }else{
+    if(!confirm("ต้องการล้างข้อมูลทั้งหมด?")) return;
+  }
+
+  const $ = id => document.getElementById(id);
+
+  $("products").innerHTML = "";
+  $("customer").value = "";
+  $("customerAddress").value = "";
+  $("customerPhone").value = "";
+  $("customerTaxId").value = "";
+  $("seller").value = "";
+  $("orderNumber").value = "";
+  $("terms").value = "";
+  $("note").value = "";
+  $("discount").value = 0;
+  $("cash").value = 0;
+  $("downPercent").value = 40;
+  $("installmentMonths").value = 12;
+  $("bankName").value = "";
+  $("bankAccount").value = "";
+  $("transferDate").value = "";
+  $("transferRef").value = "";
+  $("paymentMethod").value = "installment";
+  $("purchaseDate").value = new Date().toISOString().slice(0,10);
+
+  document.querySelectorAll(".pay-btn").forEach(b => b.classList.toggle("active", b.dataset.method === "installment"));
+  document.querySelectorAll(".pay-detail").forEach(d => {
+    d.hidden = (d.id !== "payDetail-installment");
+  });
+
+  appleEditingId = null;
+  currentInvoiceNo = "";
+  savedRecordId = null;
+  productCount = 0;
+
+  addProduct();
+
+  localStorage.removeItem(DRAFT_STORAGE_KEY);
+  document.getElementById("draftBanner").hidden = true;
+
+  updateProgress();
+  updateLiveTotal();
+  updateInstallmentPreview();
+  goToFormSlide(0);
+  history.replaceState(null, "", "index.html");
+  showToast("ล้างข้อมูลเรียบร้อย", "success");
+}
+
+/* =========================================================
+   TOAST
+   ========================================================= */
+let toastTimer = null;
+function showToast(msg, type){
+  const el = document.getElementById("toast");
+  el.textContent = msg;
+  el.classList.remove("toast-success", "toast-error");
+  if(type === "success") el.classList.add("toast-success");
+  if(type === "error") el.classList.add("toast-error");
+  el.classList.add("show");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => el.classList.remove("show"), 2400);
+}
+</script>
+</body>
+</html>
