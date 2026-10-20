@@ -1,0 +1,9 @@
+[
+  { "id": "Apple", "name": "Apple", "icon": "phone_iphone" },
+  { "id": "Samsung", "name": "Samsung", "icon": "smartphone" },
+  { "id": "Oppo", "name": "Oppo", "icon": "ad_units" },
+  { "id": "Vivo", "name": "Vivo", "icon": "perm_device_information" },
+  { "id": "Xiaomi", "name": "Xiaomi", "icon": "devices" },
+  { "id": "Realme", "name": "Realme", "icon": "mobile_friendly" },
+  { "id": "Huawei", "name": "Huawei", "icon": "stay_current_portrait" }  
+]
