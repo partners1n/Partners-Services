@@ -1,0 +1,11 @@
+[
+  { "name": "หน้าจอ", "icon": "screenshot_region" },
+  { "name": "แบตเตอรี่", "icon": "battery_full" },
+  { "name": "ฝาหลัง", "icon": "smartphone" },
+  { "name": "กล้องหน้า", "icon": "photo_camera_front" },
+  { "name": "กล้องหลัง", "icon": "photo_camera" },
+  { "name": "แพชาร์จ", "icon": "cable" },
+  { "name": "ลำโพง", "icon": "volume_up" },
+  { "name": "คีย์บอร์ดโน้ตบุ๊ก", "icon": "keyboard" },
+  { "name": "สายชาร์จ/อแดปเตอร์", "icon": "bolt" }
+]

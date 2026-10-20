@@ -1,0 +1,6 @@
+[
+  { "id": "phone", "name": "โทรศัพท์มือถือ", "icon": "smartphone" },
+  { "id": "tablet", "name": "แท็บเล็ต / iPad", "icon": "tablet_mac" },
+  { "id": "computer", "name": "คอมพิวเตอร์ / โน้ตบุ๊ก", "icon": "laptop" },
+  { "id": "watch", "name": "นาฬิกาอัจฉริยะ", "icon": "watch" }
+]
