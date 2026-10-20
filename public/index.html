@@ -1,406 +1,187 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en-us" data-cw-private-build-number="2638Build27" data-cw-private-mastering-number="2638Build27">
 <head>
-    <meta charset="UTF-8"/>
-    <title>Partners | เลขาผู้ช่วยของคุณ</title> 
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover"/>
-    <meta name="theme-color" content="#1e40af">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"/>
+  <meta name="description" content="Log in to iCloud to access your photos, mail, notes, documents and more.">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1c1c1e" media="(prefers-color-scheme: dark)">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <link rel="manifest" href="manifest.json">
+    <title>iFix Partners | ศูนย์ซ่อมมือถือครบวงจร</title> 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Sarabun:wght@300;400;500;600;700&family=Spline+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet" />
 
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
-    <script src='https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js' defer='defer'></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" defer="defer"></script>
-
-
-  <style>
-/* --- CSS for Assistant Chat (Theme) --- */
-:root {
-    --primary-color: #1e40af;
-    --secondary-color: #db2777;
-    --bg-color: #f9fafb;
-    --chat-bg: #ffffff;
-    --text-primary: #111827;
-    --text-secondary: #6b7280;
-    --bot-message-bg: #e5e7eb;
-    --user-message-bg: #1e40af;
-    --border-color: #d1d5db;
-    --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
-    --safe-area-inset-top: env(safe-area-inset-top, 0px);
-    --safe-area-inset-bottom: env(safe-area-inset-bottom, 0px);
-    --header-height: 56px;
-}
-[data-theme="dark"] {
-    --bg-color: #111827;
-    --chat-bg: #1f2937;
-    --text-primary: #f9fafb;
-    --text-secondary: #9ca3af;
-    --bot-message-bg: #374151;
-    --user-message-bg: #3b82f6;
-    --border-color: #4b5563;
-}
-* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Sarabun', sans-serif; -webkit-tap-highlight-color: transparent; }
-html, body { height: 100%; overflow: hidden; }
-
-
-#assistant-container {
-    width: 100%; height: 100vh; display: flex; flex-direction: column; position: fixed; inset: 0;
-    padding-top: var(--safe-area-inset-top); padding-bottom: var(--safe-area-inset-bottom);
-    background-color: var(--bg-color); color: var(--text-primary);
-}
-
-
-.header {
-    display: flex; justify-content: space-between; align-items: center; padding: 0.75rem 1rem;
-    background-color: var(--chat-bg); border-bottom: 1px solid var(--border-color);
-    height: var(--header-height); flex-shrink: 0;
-}
-.header-title h1 { font-size: 1.1rem; font-weight: 600; }
-.header-controls { display: flex; gap: 0.5rem; }
-.theme-toggle, .clear-chat-btn {
-    background: transparent; border: 1px solid var(--border-color); padding: 0.5rem; border-radius: 0.5rem; cursor: pointer; color: var(--text-secondary);
-}
-
-
-/* Chat Area */
-.chat-container {
-    flex: 1; overflow-y: auto; padding: 1rem; background-color: var(--bg-color); scroll-behavior: smooth;
-    display: flex; flex-direction: column;
-}
-
-
-.message { display: flex; align-items: flex-end; margin-bottom: 1rem; max-width: 85%; }
-.user-message { align-self: flex-end; flex-direction: row-reverse; margin-left: auto; }
-.assistant-message, .bot-message { align-self: flex-start; margin-right: auto; }
-
-
-.avatar {
-    width: 32px; height: 32px; border-radius: 0.375rem; background: var(--bot-message-bg);
-    display: flex; align-items: center; justify-content: center; margin: 0 0.5rem; flex-shrink: 0;
-}
-.user-message .avatar { background: var(--user-message-bg); color: white; }
-
-
-.message-bubble {
-    padding: 0.6rem 0.9rem; border-radius: 0.75rem; line-height: 1.5; position: relative;
-    background-color: var(--bot-message-bg); color: var(--text-primary); box-shadow: var(--shadow-sm);
-    white-space: pre-wrap; word-break: break-word;
-}
-.user-message .message-bubble { background: var(--user-message-bg); color: white; }
-
-
-/* Input Area */
-.input-container {
-    padding: 0.5rem 0.75rem; background-color: var(--chat-bg); border-top: 1px solid var(--border-color);
-    position: sticky; bottom: 0; z-index: 5;
-}
-.input-wrapper {
-    display: flex; gap: 0.3rem; background-color: var(--bg-color); border-radius: 1.5rem; padding: 0.3rem 0.4rem; align-items: center;
-}
-.message-input {
-    flex: 1; padding: 0.6rem 0.5rem; border: none; background: none; color: var(--text-primary); font-size: 0.95rem; outline: none;
-}
-.action-btn, #send-button {
-    background: none; border: none; padding: 0.6rem; color: var(--text-secondary); cursor: pointer; border-radius: 50%; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center;
-}
-#send-button { background-color: var(--primary-color); color: white; }
-
-
-/* Typing Indicator */
-.typing-indicator { display: none; padding: 0.5rem; font-style: italic; color: var(--text-secondary); font-size: 0.8rem; }
-.typing-indicator.visible { display: block; }
-
-
-/* Menus & Grids */
-.menu-grid, .commands-grid {
-    position: absolute; bottom: 100%; left: 1rem; right: 1rem; background: var(--chat-bg);
-    display: none; grid-template-columns: repeat(auto-fit, minmax(90px, 1fr)); gap: 0.5rem; padding: 1rem;
-    border-radius: 0.75rem; box-shadow: 0 -4px 10px rgba(0,0,0,0.1); margin-bottom: 10px; z-index: 10;
-}
-.menu-grid.open, .commands-grid.open { display: grid; }
-.grid-item { padding: 0.5rem; border: 1px solid var(--border-color); border-radius: 0.5rem; background: var(--bg-color); cursor: pointer; text-align: center; font-size: 0.8rem; }
-
-
-/* --- Partner Buttons Styling (Colorful) --- */
-.partner-btn-item {
-    display: flex; align-items: center; justify-content: center;
-    padding: 10px; color: white; border-radius: 10px; border: none;
-    font-weight: 600; cursor: pointer; transition: transform 0.2s;
-    text-decoration: none; font-size: 0.85rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-.partner-btn-item:hover { transform: translateY(-2px); filter: brightness(1.1); }
-.partner-btn-item i { margin-right: 8px; font-size: 1.1em; }
-.google-partners { background-color: #4285F4; }
-.facebook-partners { background-color: #1877F2; }
-.youtube-partners { background-color: #FF0000; }
-.gemini-partners { background-color: #6200EA; }
-
-
-/* --- Popup Overlay Styles (From previous code) --- */
-.popup-overlay-partners {
-    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-    background-color: rgba(0,0,0,0.6); z-index: 2000; /* Higher than everything */
-    display: none; justify-content: center; align-items: flex-end;
-}
-.popup-container-partners {
-    width: 100%; max-width: 800px; height: 85vh;
-    background: white; border-radius: 20px 20px 0 0;
-    box-shadow: 0 -10px 30px rgba(0,0,0,0.2);
-    transform: translateY(100%); transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-    display: flex; flex-direction: column; overflow: hidden;
-}
-.popup-container-partners.active { transform: translateY(0); }
-.popup-header-partners {
-    padding: 15px 20px; background: linear-gradient(135deg, #6200EA, #3700B3);
-    color: white; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;
-}
-.popup-title-partners { font-weight: 600; font-size: 18px; }
-.popup-close-partners { background: none; border: none; color: white; font-size: 24px; cursor: pointer; padding: 5px; }
-.popup-content-partners { flex: 1; border: none; width: 100%; background: #fff; }
-
-
-.toast { position: fixed; top: 70px; right: 1rem; background: rgba(0,0,0,0.8); color: white; padding: 0.5rem 1rem; border-radius: 0.5rem; opacity: 0; transition: opacity 0.3s; pointer-events: none; z-index: 2001; }
-.toast.show { opacity: 1; }
-
-
-@media (max-width: 768px) { .message { max-width: 90%; } }
-  </style>
-</head>
-
-
-<body>
-  <div id='assistant-container'>
-    <header class='header'>
-        <div class='header-title'>
-            <h1 id='headerTitle'>Partners | เลขาแชท</h1>
-        </div>
-        <div class='header-controls'>
-            <button class='theme-toggle' aria-label='สลับโหมดสี'><i class='fas fa-moon'></i></button>
-            <button class='clear-chat-btn' aria-label='ล้างแชท'><i class='fas fa-trash'></i></button>
-        </div>
-    </header>
-
-
-    <div class='chat-container' id='chat-messages'></div>
-
-
-    <div class='input-container'>
-        <div class='typing-indicator' id='typing-indicator'>กำลังคิด...</div>
-        
-        <div class='menu-grid' id='menuGrid'>
-            <button class='grid-item' id='homeButton'><i class='fas fa-home'></i> หน้าแรก</button>
-            <button class='grid-item' id='clearAllButton'><i class='fas fa-trash-alt'></i> ล้างทั้งหมด</button>
-        </div>
-
-<div class='commands-grid' id='commandsGrid'>
-    <button class='partner-btn-item google-partners' data-url="https://support-ai.chatbot-partners.workers.dev/chat" data-name="Google Doc">
-        <i class="fas fa-user-tie"></i>เลขา
-    </button>
-    <button class='partner-btn-item facebook-partners' data-url="https://gufix.online/landing" data-name="หาวิธีซ่อมเบื้องต้น">
-        <i class="fas fa-tools"></i>บริการซ่อม
-    </button>
-    <button class='partner-btn-item google-partners' data-url="https://support-ai.chatbot-partners.workers.dev/slip" data-name="สร้างเอกสารมืออาชีพ">
-        <i class="fas fa-file-alt"></i>สร้างเอกสาร
-    </button>
-</div>
-
-        <div class='input-wrapper'>
-            <button class='action-btn' id='menuButton'><i class='fas fa-bars'></i></button>
-            
-            <input type='text' class='message-input' id='user-input' placeholder='พิมพ์ข้อความ...' autocomplete="off"/>
-            
-            <div class='action-buttons' style="display:flex; align-items:center;">
-                <input type='file' id='fileInput' accept='image/*' style='display: none;'/>
-                <button class='action-btn' id='attachButton'><i class='fas fa-paperclip'></i></button>
-              <button class='action-btn' id='commandsButton'><i class='fas fa-terminal'></i></button>
-                
-                <button id='send-button'><i class='fas fa-paper-plane'></i></button>
-            </div>
-        </div>
-    </div>
-
-
-    <div class='toast' id='toast'></div>
-    
-    <div class="popup-overlay-partners" id="popupOverlayPartners">
-        <div class="popup-container-partners" id="popupContainerPartners">
-            <div class="popup-header-partners">
-                <span class="popup-title-partners" id="popupTitlePartners">Browser</span>
-                <button class="popup-close-partners" id="popupClosePartners">&times;</button>
-            </div>
-            <iframe class="popup-content-partners" id="popupContentPartners" src="about:blank"></iframe>
-        </div>
-    </div>
-</div>
-
-
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            dark: "#ffffff",   
+                            primary: "#2563EB", /* Changed to Blue for Tech vibe */
+                            accent: "#38BDF8",  /* Light Blue */
+                            surface: "#ffffff",
+                        },
+                    },
+                    fontFamily: { 
+                        "display": ["Spline Sans", "sans-serif"],
+                        "body": ["Sarabun", "sans-serif"],
+                    },
+                    animation: {
+                        'enter': 'enter 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) forwards',
+                        'slide-in': 'slideIn 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) forwards',
+                    },
+                    keyframes: {
+                        enter: {
+                            '0%': { opacity: '0', transform: 'translateY(10px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        slideIn: {
+                             '0%': { opacity: '0', transform: 'translateX(20px)' },
+                            '100%': { opacity: '1', transform: 'translateX(0)' },
+                        }
+                    }
+                },
+            },
+        }
+    </script>
+<link rel="stylesheet" href="style.css">
 <script>
-    // Helpers
-    const getEl = (id) => document.getElementById(id);
-    const toast = getEl('toast');
-    const menuGrid = getEl('menuGrid');
-    const commandsGrid = getEl('commandsGrid');
-    const messageInput = getEl('user-input');
-
-
-    // Theme Logic
-    const themeToggle = document.querySelector('.theme-toggle');
-    themeToggle.addEventListener('click', () => {
-        const current = document.documentElement.getAttribute('data-theme') || 'light';
-        const next = current === 'dark' ? 'light' : 'dark';
-        document.documentElement.setAttribute('data-theme', next);
-        themeToggle.innerHTML = `<i class="fas fa-${next === 'dark' ? 'sun' : 'moon'}"></i>`;
-        localStorage.setItem('theme', next);
-    });
-    const savedTheme = localStorage.getItem('theme') || 'light';
-    document.documentElement.setAttribute('data-theme', savedTheme);
-
-
-    function showToast(msg) {
-        toast.textContent = msg;
-        toast.classList.add('show');
-        setTimeout(() => toast.classList.remove('show'), 3000);
-    }
-
-
-    // Toggle Menus
-    getEl('menuButton').addEventListener('click', () => {
-        menuGrid.classList.toggle('open');
-        commandsGrid.classList.remove('open');
-    });
-    getEl('commandsButton').addEventListener('click', () => {
-        commandsGrid.classList.toggle('open'); // Opens the Partners grid now
-        menuGrid.classList.remove('open');
-    });
-
-
-    // --- POPUP LOGIC ---
-    const popupOverlay = getEl('popupOverlayPartners');
-    const popupContainer = getEl('popupContainerPartners');
-    const popupContent = getEl('popupContentPartners');
-    const popupTitle = getEl('popupTitlePartners');
-    const popupClose = getEl('popupClosePartners');
-
-
-    // Handle Partner Button Clicks
-    document.querySelectorAll('.partner-btn-item').forEach(btn => {
-        btn.addEventListener('click', () => {
-            // Close the grid first
-            commandsGrid.classList.remove('open');
-            
-            const url = btn.getAttribute('data-url');
-            const name = btn.getAttribute('data-name');
-            popupTitle.textContent = name;
-            popupOverlay.style.display = 'flex';
-            
-            // Trigger animation
-            setTimeout(() => { popupContainer.classList.add('active'); }, 10);
-            popupContent.src = url;
-        });
-    });
-
-
-    function closePopup() {
-        popupContainer.classList.remove('active');
-        setTimeout(() => {
-            popupOverlay.style.display = 'none';
-            popupContent.src = 'about:blank';
-        }, 400);
-    }
-    
-    popupClose.addEventListener('click', closePopup);
-    popupOverlay.addEventListener('click', (e) => {
-        if (e.target === popupOverlay) closePopup();
-    });
-    // --- END POPUP LOGIC ---
-
-
-    // Clear Chat
-    document.querySelector('.clear-chat-btn').addEventListener('click', () => {
-        if(confirm('ล้างหน้าจอแชท?')) {
-            document.getElementById('chat-messages').innerHTML = '';
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then(reg => console.log('SW registered!', reg))
+                    .catch(err => console.log('SW failed', err));
+            });
         }
-    });
+    </script>
+</head>
+<body>
 
-
-    // OCR Logic
-    getEl('attachButton').addEventListener('click', () => getEl('fileInput').click());
-    getEl('fileInput').addEventListener('change', async (e) => {
-        const file = e.target.files[0];
-        if(!file) return;
-        showToast("กำลังอ่านรูปภาพ...");
+    <div id="app" class="relative w-full max-w-md mx-auto h-full bg-gray-50 dark:bg-[#0B1120] shadow-2xl overflow-hidden">
         
-        const reader = new FileReader();
-        reader.onload = function(event) {
-            const imgDiv = document.createElement('div');
-            imgDiv.className = 'message user-message';
-            imgDiv.innerHTML = `<div class="message-bubble"><img src="${event.target.result}" style="max-width:200px;border-radius:10px;"></div>`;
-            document.getElementById('chat-messages').appendChild(imgDiv);
-        };
-        reader.readAsDataURL(file);
+        <header id="header" class="absolute top-0 left-0 right-0 z-40 px-4 py-3 transition-all duration-300 rounded-b-[2rem] flex items-center justify-between pointer-events-none header-bg">
+        </header>
 
+        <main id="main-view" class="w-full pt-0 hide-scrollbar">
+        </main>
 
-        try {
-            const worker = await Tesseract.createWorker('tha+eng');
-            const { data: { text } } = await worker.recognize(file);
-            await worker.terminate();
-            if(text.trim()) {
-                messageInput.value = text.trim();
-                showToast("ดึงข้อความสำเร็จ!");
-            } else {
-                showToast("ไม่พบข้อความในภาพ");
-            }
-        } catch (err) {
-            console.error(err);
-            showToast("อ่านรูปภาพล้มเหลว");
-        }
-    });
+        <nav id="bottom-nav" class="glass absolute bottom-0 w-full h-[calc(var(--nav-height)+var(--safe-area-bottom))] z-40 rounded-t-[2.5rem] px-6 transition-transform duration-300">
+            <div class="relative w-full h-[var(--nav-height)] flex justify-between items-center">
+                <button onclick="Router.navigate('/')" data-path="/" class="nav-btn group flex flex-col items-center justify-center gap-1 text-gray-400 w-12 h-12 rounded-2xl hover:bg-gray-100 dark:hover:bg-white/5 transition-all">
+                    <span class="material-symbols-rounded text-[28px] group-[.active]:text-brand-primary dark:group-[.active]:text-white transition-colors">home_repair_service</span>
+                </button>
+                <button onclick="Router.navigate('/support')" data-path="/support" class="nav-btn group flex flex-col items-center justify-center gap-1 text-gray-400 w-12 h-12 rounded-2xl hover:bg-gray-100 dark:hover:bg-white/5 transition-all">
+                    <span class="material-symbols-rounded text-[26px] group-[.active]:text-brand-primary dark:group-[.active]:text-white transition-colors">support_agent</span>
+                </button>
+                <div class="relative w-14 h-full flex items-start justify-center pointer-events-none">
+                    <button onclick="Router.navigate('/landing')" data-path="/landing" class="pointer-events-auto absolute -top-6 w-16 h-16 rounded-[1.2rem] overflow-hidden shadow-[0_8px_20px_rgba(37,99,235,0.4)] border-4 border-gray-50 dark:border-[#0B1120] active:scale-95 active:shadow-sm transition-all duration-300 z-50 group">
+                        <img src="logo.jpeg" alt="logo" class="w-full h-full object-cover group-hover:scale-110 transition-transform">
+                    </button>
+                </div>
+                <button onclick="Router.navigate('/contact')" data-path="/contact" class="nav-btn group flex flex-col items-center justify-center gap-1 text-gray-400 w-12 h-12 rounded-2xl hover:bg-gray-100 dark:hover:bg-white/5 transition-all">
+                    <span class="material-symbols-rounded text-[26px] group-[.active]:text-brand-primary dark:group-[.active]:text-white transition-colors">chat_bubble</span>
+                </button>
+                <button onclick="Router.navigate('/profile')" data-path="/profile" class="nav-btn group flex flex-col items-center justify-center gap-1 text-gray-400 w-12 h-12 rounded-2xl hover:bg-gray-100 dark:hover:bg-white/5 transition-all">
+                    <span class="material-symbols-rounded text-[28px] group-[.active]:text-brand-primary dark:group-[.active]:text-white transition-colors">person</span>
+                </button>
+            </div>
+        </nav>
 
+        <div id="loanModal" class="fixed inset-0 z-[100] hidden pointer-events-none">
+             <div class="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity opacity-0 pointer-events-auto" id="loanModalBackdrop" onclick="UI.closeModal('loanModal')"></div>
+             <div class="absolute bottom-0 left-0 right-0 bg-white dark:bg-[#0f172a] rounded-t-[2.5rem] transform translate-y-full transition-height pointer-events-auto shadow-2xl flex flex-col h-[60vh]" id="loanModalPanel">
+                 <div class="w-full pt-4 pb-2 bg-transparent z-10 sticky top-0 shrink-0 cursor-pointer" onclick="UI.closeModal('loanModal')">
+                     <div class="w-12 h-1.5 bg-gray-300 dark:bg-gray-600 rounded-full mx-auto opacity-50"></div>
+                 </div>
+                 <div class="px-6 pb-2 flex justify-between items-center border-b border-gray-100 dark:border-gray-800 shrink-0">
+                     <h3 class="text-lg font-display font-bold dark:text-white" id="modalTitle">ผ่อนชำระค่าซ่อม</h3>
+                     <div class="flex gap-2">
+                          <button id="btnBackToSimple" onclick="UI.toggleViewMode(false)" class="hidden px-3 py-1 bg-gray-100 dark:bg-gray-800 rounded-lg text-xs font-bold text-gray-500">ย้อนกลับ</button>
+                         <button onclick="UI.closeModal('loanModal')" class="w-8 h-8 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-gray-500 hover:bg-gray-200"><span class="material-symbols-rounded text-lg">close</span></button>
+                     </div>
+                 </div>
+                 <div class="overflow-y-auto hide-scrollbar p-6 flex-1 relative">
+                      <div id="simpleView" class="animate-enter pb-20">
+                          <div class="text-center mt-4 mb-8">
+                            <p class="text-gray-400 text-sm mb-1">ผ่อน 0% นาน 10 เดือน</p>
+                            <h2 class="text-4xl font-display font-bold text-brand-primary dark:text-brand-accent" id="monthlyPaymentDisplay">0</h2>
+                            <p class="text-xs text-gray-400 mt-2">บาท/เดือน</p>
+                          </div>
+                          <input type="hidden" id="inpDown" value="0">
+                          <input type="hidden" id="inpYears" value="1">
+                          
+                          <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-xl mb-4 border border-blue-100 dark:border-blue-800">
+                             <p class="text-sm text-blue-800 dark:text-blue-200 flex items-start gap-2">
+                                <span class="material-symbols-rounded text-lg">info</span>
+                                สามารถผ่อนชำระผ่านบัตรเครดิตที่ร่วมรายการได้ 0% นานสูงสุด 10 เดือน
+                             </p>
+                          </div>
+                          <div id="bankListSimple" class="space-y-3"></div>
+                      </div>
+                      <div id="comparisonView" class="hidden space-y-6 animate-enter pb-24">
+                         <div id="bankListCards" class="space-y-4"></div>
+                      </div>
+                 </div>
+             </div>
+        </div>
 
-    // Speech Logic
-    const micButton = getEl('micButton');
-    if ('webkitSpeechRecognition' in window) {
-        const recognition = new webkitSpeechRecognition();
-        recognition.lang = 'th-TH';
-        recognition.interimResults = false;
+        <div id="docModal" class="fixed inset-0 z-[100] hidden pointer-events-none">
+            <div class="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity opacity-0 pointer-events-auto" id="docModalBackdrop" onclick="UI.closeModal('docModal')"></div>
+            <div class="absolute bottom-0 left-0 right-0 bg-white dark:bg-[#0f172a] rounded-t-[2.5rem] transform translate-y-full transition-all duration-500 pointer-events-auto shadow-2xl flex flex-col h-[75vh]" id="docModalPanel">
+                <div class="w-full pt-4 pb-2 bg-transparent z-10 sticky top-0 shrink-0 cursor-pointer" onclick="UI.closeModal('docModal')">
+                    <div class="w-12 h-1.5 bg-gray-300 dark:bg-gray-600 rounded-full mx-auto opacity-50"></div>
+                </div>
+                <div class="px-6 pb-4 flex justify-between items-center border-b border-gray-100 dark:border-gray-800 shrink-0">
+                    <h3 class="text-lg font-display font-bold dark:text-white">เงื่อนไขการรับประกัน</h3>
+                    <button onclick="UI.closeModal('docModal')" class="w-8 h-8 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-gray-500 hover:bg-gray-200"><span class="material-symbols-rounded text-lg">close</span></button>
+                </div>
+                <div class="overflow-y-auto hide-scrollbar p-6 flex-1 pb-24">
+                     <div class="space-y-8 animate-enter">
+                        <div class="bg-gray-50 dark:bg-gray-800/50 rounded-2xl p-4 border border-gray-100 dark:border-gray-700">
+                            <h4 class="font-bold text-brand-primary dark:text-white mb-4 flex items-center gap-2">
+                                <span class="material-symbols-rounded text-brand-accent bg-brand-accent/10 p-1 rounded-lg">verified_user</span> การรับประกันอะไหล่
+                            </h4>
+                            <ul class="space-y-3">
+                                <li class="flex items-start gap-3 text-sm text-gray-600 dark:text-gray-300">
+                                    <span class="material-symbols-rounded text-green-500 text-lg shrink-0 mt-0.5">check_circle</span>
+                                    <span>หน้าจอแท้ รับประกัน 1 ปี</span>
+                                </li>
+                                <li class="flex items-start gap-3 text-sm text-gray-600 dark:text-gray-300">
+                                    <span class="material-symbols-rounded text-green-500 text-lg shrink-0 mt-0.5">check_circle</span>
+                                    <span>แบตเตอรี่ รับประกัน 6 เดือน - 1 ปี</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
+        <div id="mapModal" class="fixed inset-0 z-[100] hidden pointer-events-none">
+            <div class="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity opacity-0 pointer-events-auto" id="mapModalBackdrop" onclick="UI.closeModal('mapModal')"></div>
+            <div class="absolute bottom-0 left-0 right-0 bg-white dark:bg-[#0f172a] rounded-t-[2.5rem] transform translate-y-full transition-all duration-500 pointer-events-auto shadow-2xl flex flex-col h-[85vh]" id="mapModalPanel">
+                <div class="w-full pt-4 pb-2 bg-transparent z-10 sticky top-0 shrink-0 cursor-pointer" onclick="UI.closeModal('mapModal')">
+                    <div class="w-12 h-1.5 bg-gray-300 dark:bg-gray-600 rounded-full mx-auto opacity-50"></div>
+                </div>
+                <div class="px-6 pb-4 flex justify-between items-center border-b border-gray-100 dark:border-gray-800 shrink-0">
+                    <h3 class="text-lg font-display font-bold dark:text-white">แผนที่สาขา</h3>
+                    <button onclick="UI.closeModal('mapModal')" class="w-8 h-8 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-gray-500 hover:bg-gray-200"><span class="material-symbols-rounded text-lg">close</span></button>
+                </div>
+                <div class="flex-1 relative bg-gray-100 w-full h-full">
+                    <iframe id="mapFrame" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3777.458994576304!2d98.985!3d18.788!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTjCsDQ3JzE2LjgiTiA5OCo1OScwNi4wIkU!5e0!3m2!1sen!2sth!4v1620000000000!5m2!1sen!2sth"></iframe>
+                </div>
+            </div>
+        </div>
 
-        micButton.addEventListener('click', () => {
-            recognition.start();
-            micButton.style.color = 'red';
-            messageInput.placeholder = 'กำลังฟัง...';
-        });
-
-
-        recognition.onresult = (event) => {
-            const transcript = event.results[0][0].transcript;
-            messageInput.value += transcript;
-            micButton.style.color = '';
-            messageInput.placeholder = 'พิมพ์ข้อความ...';
-        };
-
-
-        recognition.onend = () => {
-            micButton.style.color = '';
-            messageInput.placeholder = 'พิมพ์ข้อความ...';
-        };
-    } else {
-        micButton.style.display = 'none';
-    }
-
-
-    // Close menus on click outside
-    document.addEventListener('click', (e) => {
-        if (!e.target.closest('.input-wrapper') && !e.target.closest('.menu-grid') && !e.target.closest('.commands-grid')) {
-            menuGrid.classList.remove('open');
-            commandsGrid.classList.remove('open');
-        }
-    });
-</script>
-
-
-<script src="chat.js"></script>
-
+    </div>
+    <script type="module" src="js/core/router.js"></script>
 
 </body>
 </html>
