@@ -1,0 +1,258 @@
+/* ═══════════════════════════════════════════════════════════
+   iFix Partners — style.css
+   Neumorphic · Mobile-First · Physics Aesthetic
+   ═══════════════════════════════════════════════════════════ */
+
+/* ─── Design Tokens & Original Variables ─────────────────── */
+:root {
+    /* Original Variables (ห้ามลบ) */
+    --app-height: 100dvh;
+    --nav-height: 70px; 
+    --safe-area-bottom: env(safe-area-inset-bottom, 20px);
+
+    /* Neumorphic Tokens */
+    --c-bg:      #e8ecf1;
+    --c-surface: #f0f4f8;
+    --c-primary: #7c9bc3;
+    --c-deep:    #3d5a6c;
+    --c-accent:  #f0a060;
+    --c-red:     #e07070;
+    --c-green:   #6db98a;
+
+    --sh-out:    6px 6px 14px rgba(100,130,175,.22), -6px -6px 14px rgba(255,255,255,.82);
+    --sh-in:     inset 4px 4px 10px rgba(100,130,175,.2), inset -4px -4px 10px rgba(255,255,255,.8);
+    --sh-accent: 4px 4px 12px rgba(240,160,96,.45), -3px -3px 10px rgba(255,255,255,.8);
+
+    --r-card: 1.4rem;
+    --r-btn:  0.9rem;
+    --r-inp:  1rem;
+
+    --font-ui:   'Sarabun', 'DM Sans', sans-serif;
+    --font-mono: 'Space Mono', monospace;
+}
+
+/* ─── Reset & Base ───────────────────────────────────────── */
+*, *::before, *::after {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html {
+    height: 100%;
+    touch-action: manipulation;
+}
+
+body {
+    background-color: var(--c-bg);
+    color: var(--c-deep);
+    font-family: var(--font-ui);
+    -webkit-font-smoothing: antialiased;
+    height: var(--app-height);
+    width: 100%;
+    overflow: hidden;
+    position: fixed;
+    overscroll-behavior: none;
+    touch-action: pan-y;
+}
+
+/* Dark Mode Fallback (รักษาความเข้ากันได้กับ Tailwind) */
+.dark body { 
+    background-color: #1e293b; 
+    color: #ffffff; 
+}
+
+/* Hide Scrollbar but allow scrolling */
+.hide-scrollbar::-webkit-scrollbar { display: none; }
+.hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Physics Scroll for Horizontal Lists */
+.physics-scroll {
+    display: flex;
+    gap: 1rem;
+    cursor: grab;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 0.5rem;
+    -webkit-overflow-scrolling: touch;
+}
+.physics-scroll > * { scroll-snap-align: center; }
+
+/* ─── App Shell ──────────────────────────────────────────── */
+#app {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: 1;
+}
+
+#main-view {
+    flex: 1;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-bottom: calc(var(--nav-height) + var(--safe-area-bottom) + 60px); 
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: contain;
+}
+#main-view.loaded { opacity: 1; }
+
+/* ─── Neumorphic Effect Integration ──────────────────────── */
+/* ประยุกต์ Glass เดิมให้มีความเป็น Neumorphic */
+.glass {
+    background: rgba(240,244,248,.88);
+    backdrop-filter: blur(16px) saturate(1.4);
+    -webkit-backdrop-filter: blur(16px) saturate(1.4);
+    box-shadow: 0 -4px 24px rgba(0,0,0,.07), 0 -1px 0 rgba(255,255,255,.6);
+}
+.dark .glass {
+    background: rgba(11, 17, 32, 0.85);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Header Transition */
+.header-bg { transition: all 0.3s ease; }
+.header-scrolled {
+    background: var(--c-surface);
+    box-shadow: var(--sh-out);
+}
+.dark .header-scrolled {
+    background: rgba(11, 17, 32, 0.95);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* ─── Typography & Helpers ───────────────────────────────── */
+.line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.safe-bottom { padding-bottom: var(--safe-area-bottom); }
+.prose p { margin-bottom: 0.8rem; }
+.prose strong { color: var(--c-accent); font-weight: 700; }
+.prose ul { list-style-type: disc; padding-left: 1.5rem; margin-top: 0.5rem; }
+
+/* ─── Thumbnails Gallery ─────────────────────────────────── */
+.thumb-scroll {
+    display: flex;
+    gap: 0.5rem;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+}
+.thumb-scroll::-webkit-scrollbar { display: none; }
+.thumb-item {
+    width: 60px;
+    height: 40px;
+    flex-shrink: 0;
+    border-radius: 8px;
+    overflow: hidden;
+    opacity: 0.6;
+    transition: all 0.2s;
+    border: 2px solid transparent;
+    box-shadow: var(--sh-out);
+}
+.thumb-item.active {
+    opacity: 1;
+    border-color: var(--c-accent);
+    box-shadow: var(--sh-in);
+}
+.thumb-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Gallery Swipe Styles */
+.gallery-swipe {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; 
+    width: 100%;
+    height: 100%;
+}
+.gallery-swipe::-webkit-scrollbar { display: none; }
+.gallery-swipe > * {
+    scroll-snap-align: center;
+    flex-shrink: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* Height Transition for Bottom Modal Panels */
+.transition-height {
+    transition: height 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ─── Neumorphic UI Primitives (Added for HTML usage) ────── */
+.neo-card {
+    background: var(--c-surface);
+    border-radius: var(--r-card);
+    box-shadow: var(--sh-out);
+    padding: 1.2rem;
+}
+
+.neo-inset {
+    background: var(--c-bg);
+    border-radius: 1rem;
+    box-shadow: var(--sh-in);
+    padding: 1rem;
+}
+
+.neo-btn {
+    background: var(--c-surface);
+    color: var(--c-deep);
+    border: none;
+    border-radius: var(--r-btn);
+    padding: .85rem 1rem;
+    font-family: var(--font-ui);
+    font-size: .9rem;
+    font-weight: 600;
+    box-shadow: var(--sh-out);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: .45rem;
+    transition: box-shadow .18s, transform .15s, color .15s;
+    width: 100%;
+    -webkit-appearance: none;
+}
+.neo-btn:active {
+    box-shadow: var(--sh-in);
+    transform: scale(.97);
+}
+
+.neo-btn-accent {
+    background: var(--c-accent);
+    color: #fff;
+    box-shadow: var(--sh-accent);
+}
+.neo-btn-accent:active {
+    box-shadow: inset 3px 3px 8px rgba(0,0,0,.2), inset -2px -2px 6px rgba(255,255,255,.25);
+}
+
+.neo-input {
+    width: 100%;
+    background: var(--c-bg);
+    border: none;
+    border-radius: var(--r-inp);
+    padding: .95rem 1.1rem;
+    font-family: var(--font-ui);
+    font-size: .95rem;
+    color: var(--c-deep);
+    box-shadow: var(--sh-in);
+    outline: none;
+    transition: box-shadow .25s;
+    -webkit-appearance: none;
+}
+.neo-input:focus {
+    box-shadow: var(--sh-in), 0 0 0 2px rgba(124,155,195,.3);
+}
