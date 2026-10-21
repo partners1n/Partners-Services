@@ -1,276 +1,98 @@
 [
   {
     "id": 1,
-    "tag": "Official Part",
-    "price": "฿12,900",
-    "title": "เปลี่ยนหน้าจอ iPhone 15 Pro Max (แท้แกะเครื่อง)",
+    "tag": "เอกสารปลดล็อคไอคลาว",
+    "price": "500 - 5,000 บาท",
+    "title": "สร้างเอกสารยื่นปลดล็อคเครื่อง",
     "brand": "Apple",
-    "model": "iPhone 15 Pro Max",
-    "issue": "หน้าจอแตก",
+    "model": "iPhone 6-18 Pro Max",
+    "issue": "ติดไอคลาว",
     "address": "ศูนย์ซ่อมสาขาเซ็นทรัลเชียงใหม่",
-    "specs": { "beds": "1 ปี", "baths": "1 ชม.", "sqft": "รอรับได้เลย" },
-    "details": { "map": "High Quality", "parking": "มีประกัน", "facing": "OLED", "fee": "ฟรีค่าแรง" },
+    "specs": { "beds": "รับประกัน 1 ปี", "baths": "ดำเนินการ 1 ชม.", "sqft": "รอรับได้เลย" },
+    "details": { "map": "เอกสารปลดล็อค", "parking": "มีประกัน", "facing": "บริการออนไลน์", "fee": "ฟรีค่าแรง" },
     "images": [
+      "https://services.chatbot-partners.workers.dev/1.jpg",
+      "https://images.unsplash.com/photo-1603539270381-08183617e9e6?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1603539270381-08183617e9e6?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1592890288564-76628a30a657?auto=format&fit=crop&w=800&q=80"
     ],
-    "type": "อะไหล่แท้",
-    "description": "หน้าจอแท้ Original ถอดจากเครื่องศูนย์ ให้สีสันคมชัด True Tone ทำงานปกติ พร้อมซีลกาวกันน้ำมาตรฐานโรงงาน รับประกันยาวนาน"
+    "type": "บริการปลดล็อคไอคลาว",
+    "description": "บริการจัดทำเอกสารยื่นปลดล็อค iCloud สำหรับ iPhone 6-18 Pro Max ตรวจสอบข้อมูลและยื่นเรื่องอย่างถูกต้อง มีทีมงานให้คำปรึกษา พร้อมรับประกันการดำเนินงาน 1 ปี"
   },
   {
     "id": 2,
-    "tag": "Best Value",
-    "price": "฿1,500",
-    "title": "เปลี่ยนแบตเตอรี่ iPhone 13 / 14 (High Capacity)",
-    "brand": "Apple",
-    "model": "iPhone 13",
-    "issue": "แบตเตอรี่เสื่อม",
-    "address": "สาขาหน้า ม.เชียงใหม่",
-    "specs": { "beds": "6 เดือน", "baths": "30 นาที", "sqft": "แถมฟิล์ม" },
-    "details": { "year": "2024", "parking": "มอก.", "facing": "เพิ่มความจุ", "fee": "รวมค่าแรง" },
+    "tag": "เช่าโปรแกรม",
+    "price": "50 บาท",
+    "title": "เช่า Unlock tools 6 ชั่วโมง",
+    "brand": "ios/Android",
+    "model": "Android/ios",
+    "issue": "ปลดล็อคเครื่องที่ใช้งานไม่ได้",
+    "address": "ใช้คอมพิวเตอร์",
+    "specs": { "beds": "เช่าใช้งาน 6 ชั่วโมง", "baths": "เริ่มใช้งาน 30 นาที", "sqft": "ใช้งานผ่านคอมพิวเตอร์" },
+    "details": { "year": "2024", "parking": "มีคู่มือการใช้งาน", "facing": "รองรับ iOS/Android", "fee": "รวมค่าเช่า" },
     "images": [
-      "https://images.unsplash.com/photo-1619561081555-464a78c9d032?auto=format&fit=crop&w=800&q=80",
+      "https://services.chatbot-partners.workers.dev/2.jpg",
       "https://images.unsplash.com/photo-1585338662803-a1789c094406?auto=format&fit=crop&w=800&q=80"
     ],
-    "type": "แบตเตอรี่",
-    "description": "แบตเตอรี่คุณภาพสูง มาตรฐาน มอก. เพิ่มความจุใช้งานได้ยาวนานกว่าเดิม 20% พร้อมโปรแกรมจูนสุขภาพแบตเตอรี่ให้โชว์ 100%"
+    "type": "บริการเช่าโปรแกรม",
+    "description": "ให้เช่า Unlock tools สำหรับปลดล็อคเครื่องที่ใช้งานไม่ได้ รองรับ iOS และ Android ใช้งานผ่านคอมพิวเตอร์ ระยะเวลาเช่า 6 ชั่วโมง พร้อมคู่มือการใช้งาน"
   },
   {
     "id": 3,
-    "tag": "Expert Fix",
-    "price": "฿8,500",
-    "title": "ซ่อมบอร์ด เปิดไม่ติด Samsung S24 Ultra",
-    "brand": "Samsung",
-    "model": "Galaxy S24 Ultra",
-    "issue": "เปิดไม่ติด",
-    "address": "Lab ซ่อมเมนบอร์ด (สำนักงานใหญ่)",
-    "specs": { "beds": "3 เดือน", "baths": "3-5 วัน", "sqft": "กู้ข้อมูล" },
-    "details": { "year": "-", "parking": "-", "facing": "IC แท้", "fee": "เช็คฟรี" },
+    "tag": "วิธีซ่อม",
+    "price": "ฟรี",
+    "title": "หาวิธีซ่อมไอโฟน-แอนดรอย",
+    "brand": "iPhone-Android",
+    "model": "iPhone/Android",
+    "issue": "ต้องการวิธีซ่อม",
+    "address": "ศูนย์ซ่อมสาขาเซ็นทรัลเชียงใหม่",
+    "specs": { "beds": "เนื้อหาอัปเดต 1 ปี", "baths": "อ่าน/ดูได้ 1 ชม.", "sqft": "เข้าดูได้ทันที" },
+    "details": { "map": "รวมเทคนิคซ่อม", "parking": "มีตัวอย่างจริง", "facing": "ไอโฟน/แอนดรอย", "fee": "ฟรี" },
     "images": [
-      "https://images.unsplash.com/photo-1591196155941-958b44407e3e?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1588508065123-287b28e013da?auto=format&fit=crop&w=800&q=80"
+      "https://services.chatbot-partners.workers.dev/3.jpg",
+      "https://images.unsplash.com/photo-1592890288564-76628a30a657?auto=format&fit=crop&w=800&q=80"
     ],
-    "type": "ซ่อมเมนบอร์ด",
-    "description": "บริการซ่อมเมนบอร์ดโดยช่างผู้เชี่ยวชาญ วิเคราะห์อาการด้วยเครื่องมือทันสมัย เน้นกู้ข้อมูลเดิมให้กลับมาครบถ้วน"
+    "type": "คู่มือ/วิธีซ่อม",
+    "description": "รวมวิธีซ่อมไอโฟนและแอนดรอยด์สำหรับผู้ที่ต้องการหาแนวทางซ่อมด้วยตนเอง มีตัวอย่างการซ่อมและเทคนิคเบื้องต้น พร้อมเนื้อหาอัปเดต 1 ปี เข้าดูได้ฟรี"
   },
   {
     "id": 4,
-    "tag": "Hot Price",
-    "price": "฿4,500",
-    "title": "เปลี่ยนจองานเทียบ (OLED) Samsung S23",
-    "brand": "Samsung",
-    "model": "Galaxy S23",
-    "issue": "หน้าจอแตก",
+    "tag": "ราคาอะไหล่",
+    "price": "",
+    "title": "เช็คราคาอะไหล่",
+    "brand": "ios/Android",
+    "model": "มือถือ/แทปเลท/คอม/นาฬิกา",
+    "issue": "สอบถามราคาอะไหล่",
     "address": "สาขากาดสวนแก้ว",
-    "specs": { "beds": "3 เดือน", "baths": "2 ชม.", "sqft": "สแกนนิ้วได้" },
-    "details": { "year": "2023", "parking": "AAA+", "facing": "จอ OLED", "fee": "ฟรีติดกาว" },
+    "specs": { "beds": "อัปเดตราคา 3 เดือน", "baths": "ตอบกลับภายใน 2 ชม.", "sqft": "เช็คได้หลายรุ่น" },
+    "details": { "year": "2024", "parking": "มีหลายเกรด", "facing": "มือถือ/แท็บเล็ต/คอม/นาฬิกา", "fee": "ราคาเริ่มต้น" },
     "images": [
-      "https://images.unsplash.com/photo-1629895066928-8636b17c179c?auto=format&fit=crop&w=800&q=80",
+      "https://services.chatbot-partners.workers.dev/4.jpg",
       "https://images.unsplash.com/photo-1512054502232-120feb11f725?auto=format&fit=crop&w=800&q=80"
     ],
-    "type": "อะไหล่เทียบ",
-    "description": "ทางเลือกประหยัดงบ จอ OLED งานเทียบเกรด AAA+ สีสวย สัมผัสลื่น สแกนลายนิ้วมือได้ปกติ ในราคาที่ถูกกว่าศูนย์ครึ่งหนึ่ง"
+    "type": "บริการเช็คราคาอะไหล่",
+    "description": "บริการเช็คราคาอะไหล่สำหรับมือถือ แท็บเล็ต คอมพิวเตอร์ และนาฬิกา มีอะไหล่หลายเกรดให้เลือก พร้อมอัปเดตราคาและตอบกลับภายใน 2 ชั่วโมง"
   },
   {
     "id": 5,
-    "tag": "Official Part",
-    "price": "฿14,900",
-    "title": "เปลี่ยนหน้าจอ iPhone 15 Pro (แท้)",
+    "tag": "โปรแกรม",
+    "price": "ฟรี",
+    "title": "โปรแกรมที่จำเป็นต้องมี",
     "brand": "Apple",
     "model": "iPhone 15 Pro",
-    "issue": "หน้าจอแตก",
+    "issue": "ต้องการโปรแกรมที่จำเป็น",
     "address": "สาขาเซ็นทรัลเวสต์เกต",
-    "specs": { "beds": "1 ปี", "baths": "1.5 ชม.", "sqft": "รอรับได้" },
-    "details": { "map": "High Quality", "parking": "มีประกัน", "facing": "OLED", "fee": "ฟรีค่าแรง" },
+    "specs": { "beds": "อัปเดต 1 ปี", "baths": "ติดตั้ง 1.5 ชม.", "sqft": "ดาวน์โหลดได้" },
+    "details": { "map": "รวมโปรแกรมแนะนำ", "parking": "ปลอดภัย", "facing": "iOS", "fee": "ฟรี" },
     "images": [
       "https://images.unsplash.com/photo-1592890288564-76628a30a657?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1603539270381-08183617e9e6?auto=format&fit=crop&w=800&q=80"
     ],
-    "type": "อะไหล่แท้",
-    "description": "หน้าจอแท้สำหรับ iPhone 15 Pro สีสันสมจริง True Tone และ Always-On Display ทำงานสมบูรณ์ กันน้ำ IP68 รับประกัน 1 ปี"
+    "type": "โปรแกรม/แอป",
+    "description": "รวมโปรแกรมที่จำเป็นสำหรับ iPhone 15 Pro แนะนำแอปที่ควรมี วิธีติดตั้งและตั้งค่าเบื้องต้น ใช้งานได้ปลอดภัย พร้อมอัปเดตข้อมูล 1 ปี"
   },
   {
     "id": 6,
-    "tag": "Best Value",
-    "price": "฿1,800",
-    "title": "เปลี่ยนแบตเตอรี่ iPhone 15 (ความจุสูง)",
-    "brand": "Apple",
-    "model": "iPhone 15",
-    "issue": "แบตเตอรี่เสื่อม",
-    "address": "สาขาเซ็นทรัลพลาซ่า",
-    "specs": { "beds": "6 เดือน", "baths": "45 นาที", "sqft": "แถมฟิล์ม" },
-    "details": { "map": "High Quality", "parking": "มอก.", "facing": "เพิ่มความจุ", "fee": "รวมค่าแรง" },
-    "images": [
-      "https://images.unsplash.com/photo-1619561081555-464a78c9d032?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1592890288564-76628a30a657?auto=format&fit=crop&w=800&q=80"
-    ],
-    "type": "แบตเตอรี่",
-    "description": "แบตเตอรี่เกรดพรีเมียม ความจุ 3,500 mAh ใช้งานได้ยาวนาน 20% กว่าเดิม รองรับการชาร์จไว รับประกัน 6 เดือน"
-  },
-  {
-    "id": 7,
-    "tag": "Official Part",
-    "price": "฿11,500",
-    "title": "เปลี่ยนหน้าจอ iPhone 14 Pro Max (แท้)",
-    "brand": "Apple",
-    "model": "iPhone 14 Pro Max",
-    "issue": "หน้าจอแตก",
-    "address": "สาขาเมญ่า เชียงใหม่",
-    "specs": { "beds": "1 ปี", "baths": "1 ชม.", "sqft": "รอรับได้" },
-    "details": { "map": "High Quality", "parking": "มีประกัน", "facing": "OLED", "fee": "ฟรีค่าแรง" },
-    "images": [
-      "https://images.unsplash.com/photo-1603539270381-08183617e9e6?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1592890288564-76628a30a657?auto=format&fit=crop&w=800&q=80"
-    ],
-    "type": "อะไหล่แท้",
-    "description": "จอแท้จากศูนย์ มี Dynamic Island พร้อม ProMotion 120Hz กันน้ำมาตรฐาน IP68"
-  },
-  {
-    "id": 8,
-    "tag": "Best Value",
-    "price": "฿1,600",
-    "title": "เปลี่ยนแบตเตอรี่ iPhone 14 (ความจุสูง)",
-    "brand": "Apple",
-    "model": "iPhone 14",
-    "issue": "แบตเตอรี่เสื่อม",
-    "address": "สาขาเซ็นทรัลเฟสติวัล",
-    "specs": { "beds": "6 เดือน", "baths": "30 นาที", "sqft": "แถมฟิล์ม" },
-    "details": { "map": "High Quality", "parking": "มอก.", "facing": "เพิ่มความจุ", "fee": "รวมค่าแรง" },
-    "images": [
-      "https://images.unsplash.com/photo-1619561081555-464a78c9d032?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1585338662803-a1789c094406?auto=format&fit=crop&w=800&q=80"
-    ],
-    "type": "แบตเตอรี่",
-    "description": "แบตเตอรี่ความจุ 3,279 mAh ผ่านมาตรฐาน มอก. พร้อมวงจรป้องกัน过热 รับประกัน 6 เดือน"
-  },
-  {
-    "id": 9,
-    "tag": "Expert Fix",
-    "price": "฿6,900",
-    "title": "ซ่อมบอร์ด iPhone 13 Pro (เปิดไม่ติด)",
-    "brand": "Apple",
-    "model": "iPhone 13 Pro",
-    "issue": "เปิดไม่ติด",
-    "address": "Lab ซ่อมเมนบอร์ด (สาขา 2)",
-    "specs": { "beds": "3 เดือน", "baths": "2-3 วัน", "sqft": "กู้ข้อมูล" },
-    "details": { "map": "Microsoldering", "parking": "มีประกัน", "facing": "IC แท้", "fee": "เช็คฟรี" },
-    "images": [
-      "https://images.unsplash.com/photo-1591196155941-958b44407e3e?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1588508065123-287b28e013da?auto=format&fit=crop&w=800&q=80"
-    ],
-    "type": "ซ่อมเมนบอร์ด",
-    "description": "ซ่อมบอร์ดระดับไมโครโซลเดอร์ริ่ง เปลี่ยน IC เพาเวอร์ วิเคราะห์ด้วยกล้องจุลทรรศน์ รับประกันงานซ่อม 3 เดือน"
-  },
-  {
-    "id": 10,
-    "tag": "Hot Price",
-    "price": "฿3,900",
-    "title": "เปลี่ยนจอ iPhone 13 (OLED เทียบ)",
-    "brand": "Apple",
-    "model": "iPhone 13",
-    "issue": "หน้าจอแตก",
-    "address": "สาขาแม่โจ้",
-    "specs": { "beds": "3 เดือน", "baths": "1.5 ชม.", "sqft": "True Tone ได้" },
-    "details": { "map": "AAA+", "parking": "-", "facing": "OLED", "fee": "ฟรีติดกาว" },
-    "images": [
-      "https://images.unsplash.com/photo-1629895066928-8636b17c179c?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1512054502232-120feb11f725?auto=format&fit=crop&w=800&q=80"
-    ],
-    "type": "อะไหล่เทียบ",
-    "description": "จอ OLED เทียบเกรด AAA+ ให้สีสันสดใส รองรับ True Tone และ HDR ราคาประหยัด คุ้มค่าที่สุด"
-  },
-  {
-    "id": 11,
-    "tag": "Best Value",
-    "price": "฿1,400",
-    "title": "เปลี่ยนแบตเตอรี่ iPhone 12 Pro Max (ความจุสูง)",
-    "brand": "Apple",
-    "model": "iPhone 12 Pro Max",
-    "issue": "แบตเตอรี่เสื่อม",
-    "address": "สาขาเซ็นทรัลเชียงใหม่",
-    "specs": { "beds": "6 เดือน", "baths": "40 นาที", "sqft": "แถมฟิล์ม" },
-    "details": { "map": "High Quality", "parking": "มอก.", "facing": "เพิ่มความจุ", "fee": "รวมค่าแรง" },
-    "images": [
-      "https://images.unsplash.com/photo-1619561081555-464a78c9d032?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1585338662803-a1789c094406?auto=format&fit=crop&w=800&q=80"
-    ],
-    "type": "แบตเตอรี่",
-    "description": "แบตเตอรี่ความจุ 3,687 mAh ใช้งานหนักได้ทั้งวัน พร้อมระบบจูนสุขภาพแบตเตอรี่ รับประกัน 6 เดือน"
-  },
-  {
-    "id": 12,
-    "tag": "Official Part",
-    "price": "฿9,900",
-    "title": "เปลี่ยนหน้าจอ iPhone 12 (แท้)",
-    "brand": "Apple",
-    "model": "iPhone 12",
-    "issue": "หน้าจอแตก",
-    "address": "สาขาหน้า ม.เชียงใหม่",
-    "specs": { "beds": "1 ปี", "baths": "1 ชม.", "sqft": "รอรับได้" },
-    "details": { "map": "High Quality", "parking": "มีประกัน", "facing": "OLED", "fee": "ฟรีค่าแรง" },
-    "images": [
-      "https://images.unsplash.com/photo-1603539270381-08183617e9e6?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1592890288564-76628a30a657?auto=format&fit=crop&w=800&q=80"
-    ],
-    "type": "อะไหล่แท้",
-    "description": "หน้าจอแท้ Original สีสันคมชัด True Tone ทำงานปกติ กันน้ำ IP68 รับประกัน 1 ปี"
-  },
-  {
-    "id": 13,
-    "tag": "Expert Fix",
-    "price": "฿7,200",
-    "title": "ซ่อมบอร์ด iPhone 11 Pro (น้ำเข้า)",
-    "brand": "Apple",
-    "model": "iPhone 11 Pro",
-    "issue": "น้ำเข้า",
-    "address": "Lab ซ่อมเมนบอร์ด (สาขา 3)",
-    "specs": { "beds": "3 เดือน", "baths": "3-5 วัน", "sqft": "กู้ข้อมูล" },
-    "details": { "map": "Ultrasonic Cleaning", "parking": "มีประกัน", "facing": "IC แท้", "fee": "เช็คฟรี" },
-    "images": [
-      "https://images.unsplash.com/photo-1591196155941-958b44407e3e?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1588508065123-287b28e013da?auto=format&fit=crop&w=800&q=80"
-    ],
-    "type": "ซ่อมเมนบอร์ด",
-    "description": "ซ่อมบอร์ดน้ำเข้า ด้วยเครื่อง Ultrasonic และเปลี่ยน IC ที่เสียหาย กู้ข้อมูลเดิมคืน รับประกัน 3 เดือน"
-  },
-  {
-    "id": 14,
-    "tag": "Best Value",
-    "price": "฿1,200",
-    "title": "เปลี่ยนแบตเตอรี่ iPhone 11 (ความจุสูง)",
-    "brand": "Apple",
-    "model": "iPhone 11",
-    "issue": "แบตเตอรี่เสื่อม",
-    "address": "สาขากาดสวนแก้ว",
-    "specs": { "beds": "6 เดือน", "baths": "30 นาที", "sqft": "แถมฟิล์ม" },
-    "details": { "map": "High Quality", "parking": "มอก.", "facing": "เพิ่มความจุ", "fee": "รวมค่าแรง" },
-    "images": [
-      "https://images.unsplash.com/photo-1619561081555-464a78c9d032?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1585338662803-a1789c094406?auto=format&fit=crop&w=800&q=80"
-    ],
-    "type": "แบตเตอรี่",
-    "description": "แบตเตอรี่ความจุ 3,110 mAh ผ่านมาตรฐาน มอก. ใช้งานได้ยาวนาน รับประกัน 6 เดือน"
-  },
-  {
-    "id": 15,
-    "tag": "Hot Price",
-    "price": "฿3,500",
-    "title": "เปลี่ยนหน้าจอ iPhone SE (2022) (LCD เทียบ)",
-    "brand": "Apple",
-    "model": "iPhone SE (2022)",
-    "issue": "หน้าจอแตก",
-    "address": "สาขาเซ็นทรัลเฟสติวัล",
-    "specs": { "beds": "3 เดือน", "baths": "1 ชม.", "sqft": "Touch ID ได้" },
-    "details": { "map": "AAA+", "parking": "-", "facing": "LCD", "fee": "ฟรีติดกาว" },
-    "images": [
-      "https://images.unsplash.com/photo-1629895066928-8636b17c179c?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1512054502232-120feb11f725?auto=format&fit=crop&w=800&q=80"
-    ],
-    "type": "อะไหล่เทียบ",
-    "description": "จอ LCD เทียบเกรด AAA+ สีสวยคมชัด Touch ID ทำงานปกติ ราคาประหยัด เหมาะกับงบจำกัด"
-  },
-  {
-    "id": 16,
     "tag": "Best Value",
     "price": "฿1,000",
     "title": "เปลี่ยนแบตเตอรี่ iPhone X (ความจุสูง)",
@@ -278,13 +100,13 @@
     "model": "iPhone X",
     "issue": "แบตเตอรี่เสื่อม",
     "address": "สาขาแม่โจ้",
-    "specs": { "beds": "6 เดือน", "baths": "30 นาที", "sqft": "แถมฟิล์ม" },
-    "details": { "map": "High Quality", "parking": "มอก.", "facing": "เพิ่มความจุ", "fee": "รวมค่าแรง" },
+    "specs": { "beds": "รับประกัน 6 เดือน", "baths": "เปลี่ยน 30 นาที", "sqft": "แถมฟิล์มกันรอย" },
+    "details": { "map": "แบตเตอรี่ความจุสูง", "parking": "มอก.", "facing": "เพิ่มความจุ", "fee": "รวมค่าแรง" },
     "images": [
       "https://images.unsplash.com/photo-1619561081555-464a78c9d032?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1585338662803-a1789c094406?auto=format&fit=crop&w=800&q=80"
     ],
     "type": "แบตเตอรี่",
-    "description": "แบตเตอรี่ความจุ 2,716 mAh ใช้งานได้ยาวนาน รับประกัน 6 เดือน พร้อมบริการติดตั้งฟรี"
+    "description": "แบตเตอรี่ความจุสูงสำหรับ iPhone X ใช้งานได้ยาวนานขึ้น รับประกัน 6 เดือน พร้อมบริการติดตั้งฟรีและแถมฟิล์มกันรอย"
   }
 ]
