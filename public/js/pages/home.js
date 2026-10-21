@@ -18,6 +18,7 @@ export function renderHome(view, header, Router) {
     let props = Store.data.properties;
     let isFiltered = false;
     const state = Store.checkState;
+    const hasData = state.brand || state.model;
     
     if (state.brand && state.model && state.issue) {
         isFiltered = true;
@@ -35,8 +36,28 @@ export function renderHome(view, header, Router) {
                 </div>
             </div>` : ''}
 
-            <div class="flex justify-between items-end mb-4">
-                <h2 class="text-xl font-bold dark:text-white">${state.brand || ''} ${state.model || ''}</h2>
+            <div class="mb-6">
+                ${hasData ? `
+                    <label class="text-xs font-bold text-gray-500 mb-2 block ml-1">ค้นหาวิธีซ่อมอื่นๆ</label>
+                    <div class="flex gap-2">
+                        <input type="text" id="custom-issue-input" placeholder="พิมพ์อาการเสีย..." class="flex-1 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl text-sm focus:ring-brand-primary dark:text-white shadow-sm px-3 py-2">
+                        <button onclick="
+                            const val = document.getElementById('custom-issue-input').value;
+                            const hasCheckData = window.Store?.checkState?.brand || window.Store?.checkState?.model;
+                            if (!hasCheckData) {
+                                if (window.Router && typeof window.Router.navigate === 'function') {
+                                    window.Router.navigate('/landing');
+                                } else {
+                                    window.location.href = '#/landing';
+                                }
+                            } else {
+                                window.UI.handleSupportSearch(val, false);
+                            }
+                        " class="bg-brand-primary text-white px-4 rounded-xl font-bold shadow-lg shadow-brand-primary/20 active:scale-95 transition-transform flex items-center justify-center">
+                            <span class="material-symbols-rounded">search</span>
+                        </button>
+                    </div>
+                ` : ''}
             </div>
             
             ${props.length === 0 ? `<div class="text-center py-10 text-gray-400">ไม่พบรายการที่ตรงกัน<br>ลองติดต่อสอบถามโดยตรง</div>` : ''}
@@ -59,11 +80,52 @@ export function renderHome(view, header, Router) {
                         </div>
                     </div>`).join('')}
             </div>
-            
-            <h2 class="text-xl font-bold mb-4 mt-2 dark:text-white">รายการเช็คราคาอะไหล่</h2>
+<div class="flex justify-between items-end mb-4">
+                <h2 class="text-xl font-bold dark:text-white">${state.brand || ''} ${state.model || ''}</h2>
+            </div>
+            <!-- ส่วนอาการเสียที่พบบ่อย -->
+            <h2 class="text-xl font-bold mb-4 mt-2 dark:text-white">อาการเสียที่พบบ่อย</h2>
+            <div class="flex gap-4 overflow-x-auto hide-scrollbar pb-4 -mx-6 px-6">
+                 ${CheckData.issues.map(i => `
+                    <div onclick="
+                        const hasCheckData = window.Store?.checkState?.brand || window.Store?.checkState?.model;
+                        if (!hasCheckData) {
+                            if (window.Router && typeof window.Router.navigate === 'function') {
+                                window.Router.navigate('/landing');
+                            } else {
+                                window.location.href = '#/landing';
+                            }
+                        } else {
+                            window.UI.handleSupportSearch('${i.name}', false);
+                        }
+                    " class="w-[240px] shrink-0 flex p-3 bg-white dark:bg-gray-800 rounded-[1.2rem] border border-gray-100 dark:border-gray-700 shadow-sm active:scale-[0.98] transition-transform cursor-pointer group">
+                        <div class="w-20 h-20 rounded-xl bg-red-50 dark:bg-red-900/20 overflow-hidden shrink-0 relative flex flex-col items-center justify-center text-red-500 dark:text-red-300 group-hover:bg-red-500 group-hover:text-white transition-colors">
+                            <span class="material-symbols-rounded text-3xl mb-1">${i.icon}</span>
+                        </div>
+                        <div class="flex-1 ml-3 flex flex-col py-1 justify-center">
+                            <h4 class="font-bold text-sm dark:text-white line-clamp-2 mb-1 font-display leading-tight">${i.name}</h4>
+                            <p class="font-bold text-red-500 dark:text-red-400 text-xs mt-1">ดูวิธีแก้ <span class="material-symbols-rounded text-[10px] align-middle">chevron_right</span></p>
+                        </div>
+                    </div>
+                `).join('')}
+            </div>
+      
+            <!-- ส่วนรายการเช็คราคาอะไหล่ -->
+            <h2 class="text-xl font-bold mb-4 mt-4 dark:text-white">รายการเช็คราคาอะไหล่</h2>
             <div class="flex gap-4 overflow-x-auto hide-scrollbar pb-4 -mx-6 px-6">
                  ${CheckData.parts.map(p => `
-                    <div onclick="window.UI.handlePartsExactSearch('${p.name}')" class="w-[240px] shrink-0 flex p-3 bg-white dark:bg-gray-800 rounded-[1.2rem] border border-gray-100 dark:border-gray-700 shadow-sm active:scale-[0.98] transition-transform cursor-pointer group">
+                    <div onclick="
+                        const hasCheckData = window.Store?.checkState?.brand || window.Store?.checkState?.model;
+                        if (!hasCheckData) {
+                            if (window.Router && typeof window.Router.navigate === 'function') {
+                                window.Router.navigate('/landing');
+                            } else {
+                                window.location.href = '#/landing';
+                            }
+                        } else {
+                            window.UI.handlePartsExactSearch('${p.name}');
+                        }
+                    " class="w-[240px] shrink-0 flex p-3 bg-white dark:bg-gray-800 rounded-[1.2rem] border border-gray-100 dark:border-gray-700 shadow-sm active:scale-[0.98] transition-transform cursor-pointer group">
                         <div class="w-20 h-20 rounded-xl bg-blue-50 dark:bg-blue-900/20 overflow-hidden shrink-0 relative flex flex-col items-center justify-center text-blue-500 dark:text-blue-300 group-hover:bg-brand-primary group-hover:text-white transition-colors">
                             <span class="material-symbols-rounded text-3xl mb-1">${p.icon}</span>
                         </div>
