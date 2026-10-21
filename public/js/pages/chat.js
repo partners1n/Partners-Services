@@ -1,20 +1,26 @@
 import { CheckData, Store } from '../core/store.js';
-import { restartBtnHtml } from '../core/ui.js';
 
 export function renderChat(view, header) { 
     header.innerHTML = `
         <div class="absolute inset-0 bg-white dark:bg-[#0B1120] -z-10 border-b border-gray-100 dark:border-gray-800 shadow-sm"></div>
         <div class="flex items-center gap-3 pointer-events-auto relative z-10">
-            <div class="w-10 h-10 rounded-xl bg-white flex items-center justify-center shadow-md overflow-hidden p-0.5 border border-gray-100 dark:border-gray-700">
-                <img src="logo.jpeg" alt="logo" class="w-full h-full object-contain">
+            <!-- ปรับให้โลโก้แสดงในกรอบขอบโค้งมนสวยงาม ขนาด 10x10 เท่าเดิม -->
+            <div class="w-10 h-10 rounded-xl bg-white dark:bg-gray-800 flex items-center justify-center shadow-sm overflow-hidden p-1 border border-gray-200 dark:border-gray-700 shrink-0">
+                <img src="logo.jpeg" alt="logo" class="w-full h-full object-contain rounded-lg">
             </div>
             <div>
                 <p class="text-[10px] text-gray-400 uppercase font-bold">iFix <span style="color: OrangeRed;">Partners</span></p>
                 <p class="font-bold dark:text-white text-sm">ผู้ช่วยซ่อม (Chat)</p>
             </div>
         </div>
-        <div class="relative z-10 ml-auto shrink-0">
-            ${restartBtnHtml}
+        
+        <div class="relative z-10 ml-auto shrink-0 flex items-center gap-2">
+            <button onclick="window.UI.openModalChat('issuesModalChat')" class="pointer-events-auto px-2.5 py-1.5 bg-white dark:bg-gray-800 text-brand-primary dark:text-white border border-gray-200 dark:border-gray-700 rounded-lg font-bold text-[11px] shadow-sm flex items-center gap-1 active:scale-95 transition-transform">
+                <span class="material-symbols-rounded text-sm">list</span> อาการอื่นๆ
+            </button>
+            <button onclick="window.UI.openModalChat('partsModalChat')" class="pointer-events-auto px-2.5 py-1.5 bg-brand-primary text-white rounded-lg font-bold text-[11px] shadow-sm flex items-center gap-1 hover:bg-brand-primary/90 transition-colors active:scale-95">
+                <span class="material-symbols-rounded text-sm">build</span> ราคาอะไหล่
+            </button>
         </div>
     `;
 
@@ -44,15 +50,6 @@ export function renderChat(view, header) {
 
         <div id="chat-wrapper" class="fixed inset-0 pt-0 z-10 bg-white dark:bg-[#0B1120] transition-all duration-300">
             <iframe id="chat-iframe" src="${iframeSrc}" class="w-full h-full border-0 block" allowfullscreen loading="lazy"></iframe>
-        </div>
-
-        <div class="fixed bottom-[calc(var(--nav-height)+24px)] left-0 right-0 px-4 z-30 flex justify-between gap-3 pointer-events-none">
-             <button onclick="window.UI.openModalChat('issuesModalChat')" class="pointer-events-auto flex-1 max-w-[160px] py-2 bg-white dark:bg-gray-800 text-brand-primary dark:text-white border border-gray-200 dark:border-gray-700 rounded-full font-bold text-xs shadow-lg flex items-center justify-center gap-2 active:scale-95 transition-transform">
-                <span class="material-symbols-rounded text-lg">list</span> อาการอื่นๆ
-             </button>
-             <button onclick="window.UI.openModalChat('partsModalChat')" class="pointer-events-auto flex-1 max-w-[160px] py-2 bg-brand-primary text-white rounded-full font-bold text-xs shadow-lg shadow-brand-primary/30 flex items-center justify-center gap-2 hover:bg-brand-primary/90 transition-colors active:scale-95">
-                <span class="material-symbols-rounded text-lg">build</span> ราคาอะไหล่
-             </button>
         </div>
 
         <div id="issuesModalChat" class="fixed inset-0 z-50 hidden">
